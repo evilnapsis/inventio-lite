@@ -13,12 +13,9 @@ if(isset($_SESSION["cart"])){
 
 			///
 			$q = OperationData::getQYesF($c["product_id"]);
-			print_r($c);
-			echo ">>".$q;
 			if($c["q"]<=$q){
 				if(isset($_POST["is_oficial"])){
 				$qyf =OperationData::getQYesF($c["product_id"]); /// son los productos que puedo facturar
-				echo $qyf;
 				if($c["q"]<=$qyf){
 					$num_succ++;
 				}else{
@@ -60,10 +57,16 @@ $_SESSION["errors"] = $errors;
 //////////////////////////////////
 		if($process==true){
 			$sell = new SellData();
-			$s = $sell->add();
+			$sell->user_id = $_SESSION["user_id"];
+			 if(isset($_POST["client_id"]) && $_POST["client_id"]!=""){
+			 	$sell->person_id=$_POST["client_id"];
+ 				$s = $sell->add_with_client();
+			 }else{
+ 				$s = $sell->add();
+			 }
+
+
 		foreach($cart as  $c){
-			print_r($c);
-			print "<br>";
 
 
 			$op = new OperationData();
@@ -76,7 +79,7 @@ $_SESSION["errors"] = $errors;
 				$op->is_oficial = 1;
 			}
 
-			$add = $op->add();
+			$add = $op->add();			 		
 
 			unset($_SESSION["cart"]);
 			setcookie("selled","selled");

@@ -6,11 +6,21 @@ class SellData {
 		$this->created_at = "NOW()";
 	}
 
+	public function getPerson(){ return PersonData::getById($this->person_id);}
+	public function getUser(){ return UserData::getById($this->user_id);}
+
 	public function add(){
-		$sql = "insert into ".self::$tablename." (created_at) ";
-		$sql .= "value ($this->created_at)";
+		$sql = "insert into ".self::$tablename." (user_id,created_at) ";
+		echo $sql .= "value ($this->user_id,$this->created_at)";
 		return Executor::doit($sql);
 	}
+
+	public function add_with_client(){
+		$sql = "insert into ".self::$tablename." (person_id,user_id,created_at) ";
+		echo $sql .= "value ($this->person_id,$this->user_id,$this->created_at)";
+		return Executor::doit($sql);
+	}
+
 
 	public static function delById($id){
 		$sql = "delete from ".self::$tablename." where id=$id";
@@ -30,6 +40,8 @@ class SellData {
 		$data = new SellData();
 		while($r = $query[0]->fetch_array()){
 			$data->id = $r['id'];
+			$data->user_id = $r['user_id'];
+			$data->person_id = $r['person_id'];
 			$data->created_at = $r['created_at'];
 			$found = $data;
 			break;
@@ -47,7 +59,9 @@ class SellData {
 		while($r = $query[0]->fetch_array()){
 			$array[$cnt] = new SellData();
 			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->created_at = $r['created_at'];
+		$array[$cnt]->person_id = $r['person_id'];
+			$array[$cnt]->user_id = $r['user_id'];
+				$array[$cnt]->created_at = $r['created_at'];
 			$cnt++;
 		}
 		return $array;
@@ -61,6 +75,8 @@ class SellData {
 		while($r = $query[0]->fetch_array()){
 			$array[$cnt] = new SellData();
 			$array[$cnt]->id = $r['id'];
+			$array[$cnt]->person_id = $r['person_id'];
+			$array[$cnt]->user_id = $r['user_id'];
 			$array[$cnt]->created_at = $r['created_at'];
 			$cnt++;
 		}

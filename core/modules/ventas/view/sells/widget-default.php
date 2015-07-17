@@ -59,7 +59,7 @@ if($px<=$npaginas):
 	<?php foreach($curr_products as $sell):?>
 
 	<tr>
-		<td><a href="index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+		<td style="width:30px;"><a href="index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></a></td>
 
 		<td>
 
@@ -106,8 +106,8 @@ for($i=0;$i<$npaginas;$i++){
 }else{
 	?>
 	<div class="jumbotron">
-		<h2>No hay productos</h2>
-		<p>No se han agregado productos a la base de datos, puedes agregar uno dando click en el boton <b>"Agregar Producto"</b>.</p>
+		<h2>No hay ventas</h2>
+		<p>No se ha realizado ninguna venta.</p>
 	</div>
 	<?php
 }

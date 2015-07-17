@@ -5,8 +5,15 @@ $operations = OperationData::getAllByProductId($product->id);
 ?>
 <div class="row">
 	<div class="col-md-12">
-
-<h1><?php echo $product->name;; ?></h1>
+<div class="btn-group pull-right">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="report/history-word.php?id=<?php echo $product->id;?>">Word 2007 (.docx)</a></li>
+  </ul>
+</div>
+<h1><?php echo $product->name;; ?> <small>Historial</small></h1>
 	</div>
 	</div>
 
@@ -87,7 +94,6 @@ $ototal = -1*OperationData::GetOutputQYesF($product->id);
 			<thead>
 			<th></th>
 			<th>Cantidad</th>
-			<th>Con factura</th>
 			<th>Tipo</th>
 			<th>Fecha</th>
 			<th></th>
@@ -96,19 +102,9 @@ $ototal = -1*OperationData::GetOutputQYesF($product->id);
 			<tr>
 			<td></td>
 			<td><?php echo $operation->q; ?></td>
-			<td>
-			<center>
-				<?php if($operation->is_oficial==1):?>
-					<i class="glyphicon glyphicon-ok-sign"></i>
-				<?php else:?>
-					<i class="glyphicon glyphicon-remove"></i>
-				<?php endif; ?>
-			</center>
-
-			</td>
 			<td><?php echo $operation->getOperationType()->name; ?></td>
 			<td><?php echo $operation->created_at; ?></td>
-			<td style="width:40px;"><a href="#" id="oper-<?php echo $operation->id; ?>" class="btn tip btn-sm btn-danger" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a> </td>
+			<td style="width:40px;"><a href="#" id="oper-<?php echo $operation->id; ?>" class="btn tip btn-xs btn-danger" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a> </td>
 			<script>
 			$("#oper-"+<?php echo $operation->id; ?>).click(function(){
 				x = confirm("Estas seguro que quieres eliminar esto ??");

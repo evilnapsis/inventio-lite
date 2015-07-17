@@ -1,6 +1,16 @@
 <div class="row">
 	<div class="col-md-12">
-	<a href="index.php?view=addproduct" class="btn btn-primary pull-right">Agregar Producto</a>
+<div class="btn-group  pull-right">
+	<a href="index.php?view=newproduct" class="btn btn-default">Agregar Producto</a>
+<div class="btn-group pull-right">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="report/products-word.php">Word 2007 (.docx)</a></li>
+  </ul>
+</div>
+</div>
 		<h1>Lista de Productos</h1>
 		<div class="clearfix"></div>
 
@@ -51,19 +61,33 @@ if($px<=$npaginas):
 <br><table class="table table-bordered table-hover">
 	<thead>
 		<th>Codigo</th>
+		<th>Imagen</th>
 		<th>Nombre</th>
 		<th>Precio Entrada</th>
 		<th>Precio Salida</th>
+		<th>Categoria</th>
+		<th>Minima</th>
+		<th>Activo</th>
 		<th></th>
 	</thead>
 	<?php foreach($curr_products as $product):?>
 	<tr>
 		<td><?php echo $product->id; ?></td>
+		<td>
+			<?php if($product->image!=""):?>
+				<img src="storage/products/<?php echo $product->image;?>" style="width:64px;">
+			<?php endif;?>
+		</td>
 		<td><?php echo $product->name; ?></td>
-		<td><?php echo $product->price_in; ?></td>
-		<td><?php echo $product->price_out; ?></td>
+		<td>$ <?php echo number_format($product->price_in,2,'.',','); ?></td>
+		<td>$ <?php echo number_format($product->price_out,2,'.',','); ?></td>
+		<td><?php if($product->category_id!=null){echo $product->getCategory()->name;}else{ echo "<center>----</center>"; }  ?></td>
+		<td><?php echo $product->inventary_min; ?></td>
+		<td><?php if($product->is_active): ?><i class="fa fa-check"></i><?php endif;?></td>
+		
+
 		<td style="width:40px;">
-		<a href="index.php?view=editproduct&id=<?php echo $product->id; ?>" title="Editar Producto" class="btn tip btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+		<a href="index.php?view=editproduct&id=<?php echo $product->id; ?>" title="Editar Producto" class="btn btn-xs tip btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
 		</td>
 	</tr>
 	<?php endforeach;?>

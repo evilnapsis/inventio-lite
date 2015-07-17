@@ -1,67 +1,55 @@
-<div class="row">
-	<div class="col-md-12">
-	<h1>Agregar Producto</h1>
-	<br><br>
-		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=newproduct" role="form">
-  <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Nombre*</label>
-    <div class="col-md-6">
-      <input type="text" name="name" class="form-control" id="name" placeholder="Nombre del Producto">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Precio de Entrada*</label>
-    <div class="col-md-6">
-      <input type="text" name="price_in" class="form-control" id="price_in" placeholder="Precio de entrada">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Precio de Salida*</label>
-    <div class="col-md-6">
-      <input type="text" name="price_out" class="form-control" id="price_out" placeholder="Precio de salida">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Unidad*</label>
-    <div class="col-md-6">
-      <input type="text" name="unit" class="form-control" id="unit" placeholder="Unidad del Producto">
-    </div>
-  </div>
+<?php
 
-  <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Presentacion</label>
-    <div class="col-md-6">
-      <input type="text" name="presentation" class="form-control" id="inputEmail1" placeholder="Presentacion del Producto">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Inventario inicial:</label>
-    <div class="col-md-6">
-      <input type="text" name="q" class="form-control" id="inputEmail1" placeholder="Inventario inicial">
-    </div>
-  </div>
+if(count($_POST)>0){
+  $product = new ProductData();
+  $product->name = $_POST["name"];
+  $product->price_in = $_POST["price_in"];
+  $product->price_out = $_POST["price_out"];
+  $product->unit = $_POST["unit"];
+  $product->description = $_POST["description"];
+  $product->presentation = $_POST["presentation"];
+  $product->inventary_min = $_POST["inventary_min"];
+  $category_id="NULL";
+  if($_POST["category_id"]!=""){ $category_id=$_POST["category_id"];}
+  $product->category_id=$category_id;
+  $product->user_id = Session::getUID();
 
 
-<p class="alert alert-info">* Campor obligatorios: Nombre, Precio de Entrada, Precio de Salida, Unidad</p>
-
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <button type="submit" class="btn btn-primary">Agregar Producto</button>
-    </div>
-  </div>
-</form>
-<script>
-  $("#addproduct").submit(function(e){
-    if($("#name").val()!="" && $("#price_in").val()!="" && $("#price_out").val()!="" && $("#unit").val()!="" ){
-
+  if(isset($_FILES["image"])){
+    $image = new Upload($_FILES["image"]);
+    if($image->uploaded){
+      $image->Process("storage/products/");
+      if($image->processed){
+        $product->image = $image->file_dst_name;
+        $product->add_with_image();
+      }
     }else{
-    e.preventDefault();
-    alert("No debes dejar campos vacios.");
+
+  $product= $product->add();
+    }
+  }
+  else{
+  $product= $product->add();
+
   }
 
-  });
-</script>
 
-<br><br><br><br><br><br><br><br><br>
-	</div>
-</div>
+
+
+if($_POST["q"]!="" || $_POST["q"]!="0"){
+ $op = new OperationData();
+ $op->product_id = $product[1] ;
+ $op->operation_type_id=OperationTypeData::getByName("entrada")->id;
+ $op->q= $_POST["q"];
+ $op->sell_id="NULL";
+$op->is_oficial=1;
+$op->add();
+}
+
+print "<script>window.location='index.php?view=products';</script>";
+
+
+}
+
+
+?>

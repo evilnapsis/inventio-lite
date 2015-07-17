@@ -1,19 +1,8 @@
 <div class="row">
-	<div class="col-md-3">
-		<div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class='glyphicon glyphicon-cog'></i> Opciones</h3>
-            </div>
-        	<div class="list-group">
-					<a href='index.php' class='list-group-item'> Panel de Control</a>
-					<a href='index.php?view=users' class='list-group-item'> Usuarios</a>
-			</div>
-        </div>
-	</div>
-	<div class="col-md-9">
-	<a href="" class="btn btn-default pull-right"><i class='glyphicon glyphicon-user'></i> Nuevo Usuario</a>
-		<div style="font-size:35px;">Lista de Usuarios</div>
-
+	<div class="col-md-12">
+	<a href="index.php?view=newuser" class="btn btn-default pull-right"><i class='glyphicon glyphicon-user'></i> Nuevo Usuario</a>
+		<h1>Lista de Usuarios</h1>
+<br>
 		<?php
 		/*
 		$u = new UserData();
@@ -39,7 +28,10 @@
 			<table class="table table-bordered table-hover">
 			<thead>
 			<th>Nombre completo</th>
+			<th>Nick</th>
 			<th>Email</th>
+			<th>Activo</th>
+			<th>Admin</th>
 			<th></th>
 			</thead>
 			<?php
@@ -48,7 +40,18 @@
 				<tr>
 				<td><?php echo $user->name." ".$user->lastname; ?></td>
 				<td><?php echo $user->email; ?></td>
-				<td></td>
+				<td><?php echo $user->username; ?></td>
+				<td>
+					<?php if($user->is_active):?>
+						<i class="glyphicon glyphicon-ok"></i>
+					<?php endif; ?>
+				</td>
+				<td>
+					<?php if($user->is_admin):?>
+						<i class="glyphicon glyphicon-ok"></i>
+					<?php endif; ?>
+				</td>
+				<td style="width:30px;"><a href="index.php?view=edituser&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a></td>
 				</tr>
 				<?php
 

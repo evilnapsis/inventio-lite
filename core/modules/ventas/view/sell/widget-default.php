@@ -39,7 +39,7 @@ $q= OperationData::getQYesF($product->id);
 	<?php 
 	if($q>0):?>
 		<form method="post" action="index.php?view=addtocart">
-	<tr class="<?php if($q<=5){ echo "danger"; }?>">
+	<tr class="<?php if($q<=$product->inventary_min){ echo "danger"; }?>">
 		<td style="width:80px;"><?php echo $product->id; ?></td>
 		<td><?php echo $product->name; ?></td>
 		<td><?php echo $product->unit; ?></td>
@@ -127,8 +127,29 @@ $product = ProductData::getById($p["product_id"]);
 
 <?php endforeach; ?>
 </table>
+<form method="post" class="form-horizontal" id="processsell" action="index.php?view=processsell">
 <h2>Resumen</h2>
-<div class="row">
+<div class="form-group">
+    <label for="inputEmail1" class="col-lg-2 control-label">Cliente</label>
+    <div class="col-lg-10">
+    <?php 
+$clients = PersonData::getClients();
+    ?>
+    <select name="client_id" class="form-control">
+    <option value="">-- NINGUNO --</option>
+    <?php foreach($clients as $client):?>
+    	<option value="<?php echo $client->id;?>"><?php echo $client->name." ".$client->lastname;?></option>
+    <?php endforeach;?>
+    	</select>
+    </div>
+  </div>
+<div class="form-group">
+    <label for="inputEmail1" class="col-lg-2 control-label">Efectivo</label>
+    <div class="col-lg-10">
+      <input type="text" name="money" required class="form-control" id="money" placeholder="Efectivo">
+    </div>
+  </div>
+  <div class="row">
 <div class="col-md-6 col-md-offset-6">
 <table class="table table-bordered">
 <tr>
@@ -145,7 +166,6 @@ $product = ProductData::getById($p["product_id"]);
 </tr>
 
 </table>
-<form method="post" action="index.php?view=processsell">
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <div class="checkbox">
@@ -166,7 +186,19 @@ $product = ProductData::getById($p["product_id"]);
     </div>
   </div>
 </form>
-
+<script>
+	$("#processsell").submit(function(e){
+		money = $("#money").val();
+		if(money<<?php echo $total;?>){
+			alert("No se puede efectuar la operacion");
+			e.preventDefault();
+		}else{
+			go = confirm("Cambio: $"+(money-<?php echo $total;?>));
+			if(go){}
+				else{e.preventDefault();}
+		}
+	});
+</script>
 </div>
 </div>
 

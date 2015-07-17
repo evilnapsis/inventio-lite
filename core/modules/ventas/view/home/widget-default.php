@@ -1,8 +1,28 @@
+	<?php
+	$found=false;
+$products = ProductData::getAll();
+foreach($products as $product){
+	$q=OperationData::getQYesF($product->id);	
+	if($q<$product->inventary_min){
+		$found=true;
+		break;
+
+	}
+}
+	?>
 <div class="row">
 	<div class="col-md-12">
-
+<?php if($found):?>
+<div class="btn-group pull-right">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="report/alerts-word.php">Word 2007 (.docx)</a></li>
+  </ul>
+</div>
+<?php endif;?>
 		<h1>Inventio Lite</h1>
-		<div class="clearfix"></div>
 
 
 <?php
@@ -14,7 +34,6 @@ $limit=10;
 if(isset($_GET["limit"]) && $_GET["limit"]!="" && $_GET["limit"]!=$limit){
 	$limit=$_GET["limit"];
 }
-$products = ProductData::getAll();
 if(count($products)>0){
 
 if($page==1){
@@ -58,14 +77,16 @@ if($px<=$npaginas):
 foreach($curr_products as $product):
 	$q=OperationData::getQYesF($product->id);
 	?>
-	<tr class="<?php if($q<=5){ echo "danger"; } ?>">
+	<?php if($q<$product->inventary_min):?>
+	<tr class="<?php if($q==0){ echo "danger"; }else if($q<=$product->inventary_min/2){ echo "danger"; } else if($q<=$product->inventary_min){ echo "warning"; } ?>">
 		<td><?php echo $product->id; ?></td>
 		<td><?php echo $product->name; ?></td>
 		<td><?php echo $q; ?></td>
 		<td>
-		<?php if($q<=5){ echo "<span class='label label-danger'>Quedan pocas existencias.</span>";}?>
+		<?php if($q==0){ echo "<span class='label label-danger'>No hay existencias.</span>";}else if($q<=$product->inventary_min/2){ echo "<span class='label label-danger'>Quedan muy pocas existencias.</span>";} else if($q<=$product->inventary_min){ echo "<span class='label label-warning'>Quedan pocas existencias.</span>";} ?>
 		</td>
 	</tr>
+<?php endif;?>
 <?php
 endforeach;
 ?>
@@ -90,8 +111,8 @@ for($i=0;$i<$npaginas;$i++){
 }else{
 	?>
 	<div class="jumbotron">
-		<h2>No hay productos</h2>
-		<p>No se han agregado productos a la base de datos, puedes agregar uno dando click en el boton <b>"Agregar Producto"</b>.</p>
+		<h2>No hay alertas</h2>
+		<p>Por el momento no hay alertas de inventario, estas se muestran cuando el inventario ha alcanzado el nivel minimo.</p>
 	</div>
 	<?php
 }

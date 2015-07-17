@@ -17,7 +17,7 @@ if(!isset($_SESSION["cart"])){
 
 			///
 			$q = OperationData::getQYesF($c["product_id"]);
-			echo ">>".$q;
+//			echo ">>".$q;
 			if($c["q"]<=$q){
 				$num_succ++;
 
@@ -30,7 +30,7 @@ if(!isset($_SESSION["cart"])){
 		}
 ///////////////////////////////////////////////////////////////////
 
-echo $num_succ;
+//echo $num_succ;
 if($num_succ==count($cart)){
 	$process = true;
 }
@@ -86,8 +86,8 @@ foreach($cart as $c){
 		break;
 	}
 	$index++;
-	print_r($c);
-	print "<br>";
+//	print_r($c);
+//	print "<br>";
 }
 
 if($found==true){
@@ -101,7 +101,7 @@ if($found==false){
     $nc = count($cart);
 	$product = array("product_id"=>$_POST["product_id"],"q"=>$_POST["q"]);
 	$cart[$nc] = $product;
-	print_r($cart);
+//	print_r($cart);
 	$_SESSION["cart"] = $cart;
 }
 
