@@ -8,13 +8,12 @@ class OperationData {
 		$this->q = "";
 		$this->cut_id = "";
 		$this->operation_type_id = "";
-		$this->is_oficial = "0";
 		$this->created_at = "NOW()";
 	}
 
 	public function add(){
-		$sql = "insert into ".self::$tablename." (product_id,q,operation_type_id,is_oficial,sell_id,created_at) ";
-		$sql .= "value (\"$this->product_id\",\"$this->q\",$this->operation_type_id,\"$this->is_oficial\",$this->sell_id,$this->created_at)";
+		$sql = "insert into ".self::$tablename." (product_id,q,operation_type_id,sell_id,created_at) ";
+		$sql .= "value (\"$this->product_id\",\"$this->q\",$this->operation_type_id,$this->sell_id,$this->created_at)";
 		return Executor::doit($sql);
 	}
 
@@ -29,7 +28,7 @@ class OperationData {
 
 // partiendo de que ya tenemos creado un objecto OperationData previamente utilizamos el contexto
 	public function update(){
-		$sql = "update ".self::$tablename." set product_id=\"$this->product_id\",q=\"$this->q\",is_oficial=\"$this->is_oficial\" where id=$this->id";
+		$sql = "update ".self::$tablename." set product_id=\"$this->product_id\",q=\"$this->q\" where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -42,7 +41,6 @@ class OperationData {
 			$data->id = $r['id'];
 			$data->product_id = $r['product_id'];
 			$data->q = $r['q'];
-			$data->is_oficial = $r['is_oficial'];
 			$data->cut_id = $r['cut_id'];
 			$data->operation_type_id = $r['operation_type_id'];
 			$data->sell_id = $r['sell_id'];
@@ -65,7 +63,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->cut_id = $r['cut_id'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$cnt++;
@@ -109,7 +106,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
 			$cnt++;
@@ -149,10 +145,8 @@ class OperationData {
 		$input_id = OperationTypeData::getByName("entrada")->id;
 		$output_id = OperationTypeData::getByName("salida")->id;
 		foreach($operations as $operation){
-			if($operation->is_oficial){
 				if($operation->operation_type_id==$input_id){ $q+=$operation->q; }
 				else if($operation->operation_type_id==$output_id){  $q+=(-$operation->q); }
-			}
 		}
 		// print_r($data);
 		return $q;
@@ -176,7 +170,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->cut_id = $r['cut_id'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
@@ -195,7 +188,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
 			$cnt++;
@@ -214,7 +206,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->cut_id = $r['cut_id'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
@@ -253,7 +244,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
 			$cnt++;
@@ -272,7 +262,6 @@ class OperationData {
 						$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->cut_id = $r['cut_id'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
@@ -281,25 +270,6 @@ class OperationData {
 		return $array;
 	}
 
-	public static function getAllByProductIdCutIdNoF($product_id,$cut_id){
-		$sql = "select * from ".self::$tablename." where product_id=$product_id and cut_id=$cut_id and is_oficial=0 order by created_at desc";
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new OperationData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->product_id = $r['product_id'];
-			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
-			$array[$cnt]->cut_id = $r['cut_id'];
-			$array[$cnt]->operation_type_id = $r['operation_type_id'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
-	}
-////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 	public static function getOutputQ($product_id,$cut_id){
 		$q=0;
@@ -351,7 +321,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->cut_id = $r['cut_id'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
@@ -362,7 +331,7 @@ class OperationData {
 
 
 	public static function getOutputByProductId($product_id){
-		$sql = "select * from ".self::$tablename." where product_id=$product_id and is_oficial=1 and operation_type_id=2 order by created_at desc";
+		$sql = "select * from ".self::$tablename." where product_id=$product_id and operation_type_id=2 order by created_at desc";
 		$query = Executor::doit($sql);
 		$array = array();
 		$cnt = 0;
@@ -371,7 +340,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
 			$cnt++;
@@ -379,25 +347,6 @@ class OperationData {
 		return $array;
 	}
 
-	public static function getOutputByProductIdCutIdNoF($product_id,$cut_id){
-		$sql = "select * from ".self::$tablename." where product_id=$product_id and cut_id=$cut_id and is_oficial=0 and operation_type_id=2 order by created_at desc";
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new OperationData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->product_id = $r['product_id'];
-			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
-			$array[$cnt]->cut_id = $r['cut_id'];
-			$array[$cnt]->operation_type_id = $r['operation_type_id'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
-	}
-////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 	public static function getInputQ($product_id,$cut_id){
 		$q=0;
@@ -425,19 +374,6 @@ class OperationData {
 		return $q;
 	}
 
-	public static function getInputQNoF($product_id,$cut_id){
-		$q=0;
-		$operations = self::getInputByProductIdCutIdNoF($product_id,$cut_id);
-		$input_id = OperationTypeData::getByName("entrada")->id;
-		$output_id = OperationTypeData::getByName("salida")->id;
-		foreach($operations as $operation){
-			if($operation->operation_type_id==$input_id){ $q+=$operation->q; }
-			else if($operation->operation_type_id==$output_id){  $q+=(-$operation->q); }
-		}
-		// print_r($data);
-		return $q;
-	}
-
 
 	public static function getInputByProductIdCutId($product_id,$cut_id){
 		$sql = "select * from ".self::$tablename." where product_id=$product_id and cut_id=$cut_id and operation_type_id=1 order by created_at desc";
@@ -449,7 +385,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->cut_id = $r['cut_id'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
@@ -468,7 +403,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
 			$cnt++;
@@ -486,7 +420,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->cut_id = $r['cut_id'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];
@@ -505,7 +438,6 @@ class OperationData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->product_id = $r['product_id'];
 			$array[$cnt]->q = $r['q'];
-			$array[$cnt]->is_oficial = $r['is_oficial'];
 			$array[$cnt]->cut_id = $r['cut_id'];
 			$array[$cnt]->operation_type_id = $r['operation_type_id'];
 			$array[$cnt]->created_at = $r['created_at'];

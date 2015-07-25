@@ -1,15 +1,13 @@
 <div class="row">
 	<div class="col-md-12">
-		<h1><i class='glyphicon glyphicon-shopping-cart'></i> Lista de Ventas</h1>
+		<h1><i class='glyphicon glyphicon-shopping-cart'></i> Reabastecimientos</h1>
 		<div class="clearfix"></div>
 
 
 <?php
-
-$products = SellData::getSells();
+$products = SellData::getRes();
 
 if(count($products)>0){
-
 	?>
 <br>
 <table class="table table-bordered table-hover	">
@@ -23,8 +21,7 @@ if(count($products)>0){
 	<?php foreach($products as $sell):?>
 
 	<tr>
-		<td style="width:30px;">
-		<a href="index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+		<td style="width:30px;"><a href="index.php?view=onere&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></a></td>
 
 		<td>
 
@@ -38,7 +35,7 @@ echo count($operations);
 $total=0;
 	foreach($operations as $operation){
 		$product  = $operation->getProduct();
-		$total += $operation->q*$product->price_out;
+		$total += $operation->q*$product->price_in;
 	}
 		echo "<b>$ ".number_format($total)."</b>";
 
@@ -46,21 +43,20 @@ $total=0;
 
 		</td>
 		<td><?php echo $sell->created_at; ?></td>
-		<td style="width:30px;"><a href="index.php?view=delsell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a></td>
+		<td style="width:30px;"><a href="index.php?view=delre&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a></td>
 	</tr>
 
 <?php endforeach; ?>
 
 </table>
 
-<div class="clearfix"></div>
 
 	<?php
 }else{
 	?>
 	<div class="jumbotron">
-		<h2>No hay ventas</h2>
-		<p>No se ha realizado ninguna venta.</p>
+		<h2>No hay datos</h2>
+		<p>No se ha realizado ninguna operacion.</p>
 	</div>
 	<?php
 }

@@ -73,10 +73,20 @@ create table operation_type(
 insert into operation_type (name) value ("entrada");
 insert into operation_type (name) value ("salida");
 
+create table box(
+	id int not null auto_increment primary key,
+	created_at datetime not null
+);
+
+
 create table sell(
 	id int not null auto_increment primary key,
 	person_id int ,
 	user_id int ,
+	operation_type_id int default 2,
+	box_id int,
+	foreign key (box_id) references box(id),
+	foreign key (operation_type_id) references operation_type(id),
 	foreign key (user_id) references user(id),
 	foreign key (person_id) references person(id),
 	created_at datetime not null
@@ -88,7 +98,6 @@ create table operation(
 	q float not null,
 	operation_type_id int not null,
 	sell_id int,
-	is_oficial boolean not null default 0,
 	created_at datetime not null,
 	foreign key (product_id) references product(id),
 	foreign key (operation_type_id) references operation_type(id),

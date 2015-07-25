@@ -15,8 +15,8 @@ class ProductData {
 	public function getCategory(){ return CategoryData::getById($this->category_id);}
 
 	public function add(){
-		$sql = "insert into ".self::$tablename." (name,description,price_in,price_out,user_id,presentation,unit,category_id,inventary_min) ";
-		$sql .= "value (\"$this->name\",\"$this->description\",\"$this->price_in\",\"$this->price_out\",$this->user_id,\"$this->presentation\",\"$this->unit\",$this->category_id,$this->inventary_min)";
+		$sql = "insert into ".self::$tablename." (name,description,price_in,price_out,user_id,presentation,unit,category_id,inventary_min,created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->description\",\"$this->price_in\",\"$this->price_out\",$this->user_id,\"$this->presentation\",\"$this->unit\",$this->category_id,$this->inventary_min,NOW())";
 		return Executor::doit($sql);
 	}
 	public function add_with_image(){
@@ -40,6 +40,12 @@ class ProductData {
 		$sql = "update ".self::$tablename." set name=\"$this->name\",price_in=\"$this->price_in\",price_out=\"$this->price_out\",unit=\"$this->unit\",presentation=\"$this->presentation\",category_id=$this->category_id,inventary_min=\"$this->inventary_min\",description=\"$this->description\",is_active=\"$this->is_active\" where id=$this->id";
 		Executor::doit($sql);
 	}
+
+	public function del_category(){
+		$sql = "update ".self::$tablename." set category_id=NULL where id=$this->id";
+		Executor::doit($sql);
+	}
+
 
 	public function update_image(){
 		$sql = "update ".self::$tablename." set image=\"$this->image\" where id=$this->id";
@@ -149,6 +155,27 @@ class ProductData {
 
 	public static function getAllByUserId($user_id){
 		$sql = "select * from ".self::$tablename." where user_id=$user_id order by created_at desc";
+		$query = Executor::doit($sql);
+		$array = array();
+		$cnt = 0;
+		while($r = $query[0]->fetch_array()){
+			$array[$cnt] = new ProductData();
+			$array[$cnt]->id = $r['id'];
+			$array[$cnt]->name = $r['name'];
+			$array[$cnt]->price_in = $r['price_in'];
+			$array[$cnt]->price_out = $r['price_out'];
+			$array[$cnt]->presentation = $r['presentation'];
+			$array[$cnt]->unit = $r['unit'];
+			$array[$cnt]->image = $r['image'];
+			$array[$cnt]->user_id = $r['user_id'];
+			$array[$cnt]->created_at = $r['created_at'];
+			$cnt++;
+		}
+		return $array;
+	}
+
+	public static function getAllByCategoryId($category_id){
+		$sql = "select * from ".self::$tablename." where category_id=$category_id order by created_at desc";
 		$query = Executor::doit($sql);
 		$array = array();
 		$cnt = 0;

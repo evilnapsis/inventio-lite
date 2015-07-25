@@ -32,7 +32,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="./">Inventio Lite <sup><small><span class="label label-danger">v1.5</span></small></sup> </a>
+          <a class="navbar-brand" href="./">Inventio Lite <sup><small><span class="label label-danger">v1.8</span></small></sup> </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -45,14 +45,18 @@ if(Session::getUID()!=""):
           <ul class="nav navbar-nav side-nav">
           <li><a href="index.php?view=home"><i class="fa fa-home"></i> Inicio</a></li>
           <li><a href="index.php?view=sell"><i class="fa fa-usd"></i> Vender</a></li>
-          <li><a href="index.php?view=products"><i class="fa fa-glass"></i> Productos</a></li>
-          <li><a href="index.php?view=categories"><i class="fa fa-th-list"></i> Categorias <small><span class="label label-success">Nuevo</span></small></a></li>
-          <li><a href="index.php?view=clients"><i class="fa fa-smile-o"></i> Clientes <small><span class="label label-success">Nuevo</span></small></a></li>
           <li><a href="index.php?view=sells"><i class="fa fa-shopping-cart"></i> Ventas</a></li>
+          <li><a href="index.php?view=box"><i class="fa fa-archive"></i> Caja <small><span class="label label-success">Nuevo</span></small></a></li>
+          <li><a href="index.php?view=products"><i class="fa fa-glass"></i> Productos</a></li>
+          <li><a href="index.php?view=categories"><i class="fa fa-th-list"></i> Categorias </a></li>
+          <li><a href="index.php?view=clients"><i class="fa fa-smile-o"></i> Clientes </a></li>
+          <li><a href="index.php?view=providers"><i class="fa fa-truck"></i> Proveedores <small><span class="label label-success">Nuevo</span></small></a></li>
           <li><a href="index.php?view=inventary"><i class="fa fa-area-chart"></i> Inventario</a></li>
+          <li><a href="index.php?view=re"><i class="fa fa-refresh"></i> Reabastecer <small><span class="label label-success">Nuevo</span></small></a></li>
+          <li><a href="index.php?view=res"><i class="fa fa-th-list"></i> Reabastecimientos <small><span class="label label-success">Nuevo</span></small></a></li>
           <li><a href="index.php?view=reports"><i class="fa fa-tasks"></i> Reportes</a></li>
           <?php if($u->is_admin):?>
-          <li><a href="index.php?view=users"><i class="fa fa-users"></i> Usuarios <small><span class="label label-success">Nuevo</span></small></a></li>
+          <li><a href="index.php?view=users"><i class="fa fa-users"></i> Usuarios </a></li>
           <li><a href="index.php?view=settings"><i class="fa fa-cogs"></i> Configuracion <small><span class="label label-warning">Experimental</span></small></a></li>
         <?php endif;?>
           </ul>

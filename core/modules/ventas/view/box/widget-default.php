@@ -1,16 +1,18 @@
 <div class="row">
 	<div class="col-md-12">
-		<h1><i class='glyphicon glyphicon-shopping-cart'></i> Lista de Ventas</h1>
+<div class="btn-group pull-right">
+<a href="./index.php?view=boxhistory" class="btn btn-primary "><i class="fa fa-clock-o"></i> Historial</a>
+<a href="./index.php?view=processbox" class="btn btn-primary ">Procesar Ventas <i class="fa fa-arrow-right"></i></a>
+</div>
+		<h1><i class='fa fa-archive'></i> Caja</h1>
 		<div class="clearfix"></div>
 
 
 <?php
-
-$products = SellData::getSells();
-
+$products = SellData::getSellsUnBoxed();
 if(count($products)>0){
-
-	?>
+$total_total = 0;
+?>
 <br>
 <table class="table table-bordered table-hover	">
 	<thead>
@@ -18,13 +20,11 @@ if(count($products)>0){
 		<th>Producto</th>
 		<th>Total</th>
 		<th>Fecha</th>
-		<th></th>
 	</thead>
 	<?php foreach($products as $sell):?>
 
 	<tr>
 		<td style="width:30px;">
-		<a href="index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></a></td>
 
 		<td>
 
@@ -40,32 +40,29 @@ $total=0;
 		$product  = $operation->getProduct();
 		$total += $operation->q*$product->price_out;
 	}
-		echo "<b>$ ".number_format($total)."</b>";
+		$total_total += $total;
+		echo "<b>$ ".number_format($total,2,".",",")."</b>";
 
 ?>			
 
 		</td>
 		<td><?php echo $sell->created_at; ?></td>
-		<td style="width:30px;"><a href="index.php?view=delsell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a></td>
 	</tr>
 
 <?php endforeach; ?>
 
 </table>
-
-<div class="clearfix"></div>
-
+<h1>Total: <?php echo "$ ".number_format($total_total,2,".",","); ?></h1>
 	<?php
-}else{
-	?>
+}else {
+
+?>
 	<div class="jumbotron">
 		<h2>No hay ventas</h2>
 		<p>No se ha realizado ninguna venta.</p>
 	</div>
-	<?php
-}
 
-?>
+<?php } ?>
 <br><br><br><br><br><br><br><br><br><br>
 	</div>
 </div>

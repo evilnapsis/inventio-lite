@@ -8,10 +8,14 @@ if(count($_POST)>0){
   $product->unit = $_POST["unit"];
   $product->description = $_POST["description"];
   $product->presentation = $_POST["presentation"];
-  $product->inventary_min = $_POST["inventary_min"];
+  //$product->inventary_min = $_POST["inventary_min"];
   $category_id="NULL";
   if($_POST["category_id"]!=""){ $category_id=$_POST["category_id"];}
+  $inventary_min="\"\"";
+  if($_POST["inventary_min"]!=""){ $inventary_min=$_POST["inventary_min"];}
+
   $product->category_id=$category_id;
+  $product->inventary_min=$inventary_min;
   $product->user_id = Session::getUID();
 
 

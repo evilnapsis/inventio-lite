@@ -86,8 +86,9 @@ if($px<=$npaginas):
 		<td><?php if($product->is_active): ?><i class="fa fa-check"></i><?php endif;?></td>
 		
 
-		<td style="width:40px;">
-		<a href="index.php?view=editproduct&id=<?php echo $product->id; ?>" title="Editar Producto" class="btn btn-xs tip btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+		<td style="width:70px;">
+		<a href="index.php?view=editproduct&id=<?php echo $product->id; ?>" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+		<a href="index.php?view=delproduct&id=<?php echo $product->id; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
 		</td>
 	</tr>
 	<?php endforeach;?>
