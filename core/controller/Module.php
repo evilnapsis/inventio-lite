@@ -10,14 +10,13 @@ class Module {
 	public static $view;
 	public static $message;
 
-	public static function setModule($module){
+	public  function setModule($module){
 		self::$module = $module;
 	}
 
 	public static function loadLayout(){
 		include "core/modules/".Module::$module."/view/layout.php";
 	}
-
 
 	// validacion del modulo
 	public static function isValid(){

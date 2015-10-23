@@ -1,0 +1,28 @@
+	<tables dbname="lb_test">
+		<table name="user">
+				<field name="id" type="int" null="not" key="primary" extra="auto_increment"></field>
+				<field name="name" type="varchar" size="50" required="false"></field>
+				<field name="lastname" type="varchar" size="50" required="false"></field>
+				<field name="email" type="varchar" size="50" required="false"></field>
+				<field name="password" type="varchar" size="50" required="false"></field>
+				<field name="is_active" type="boolean" default="0"></field>
+				<field name="created_at" type="datetime" default="now"></field>
+		</table>
+		<table name="post">
+				<field name="id" type="int" null="not" key="primary" extra="auto_increment"></field>
+				<field name="title" type="varchar" size="255" null="not"></field>
+				<field name="content" type="text"></field>
+				<field name="image" type="varchar" size="255"></field>
+				<field name="user_id" type="int" null="not" foreign-table="user" foreign-reference="id"></field>
+				<field name="is_public" type="boolean" default="0"></field>
+				<field name="created_at" type="datetime" default="now"></field>
+		</table>
+		<table name="category">
+				<field name="id" type="int" null="not" key="primary" extra="auto_increment"></field>
+				<field name="name" type="varchar" size="50" required="false"></field>
+		</table>
+		<table name="post_category">
+				<field name="post_id" type="int" null="not" foreign-table="post" foreign-reference="id"></field>
+				<field name="category_id" type="int" null="not" foreign-table="category" foreign-reference="id"></field>
+		</table>
+	</tables>

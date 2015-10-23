@@ -1,11 +1,11 @@
 <?php
 include "../core/autoload.php";
-include "../core/modules/ventas/model/PersonData.php";
-include "../core/modules/ventas/model/UserData.php";
-include "../core/modules/ventas/model/SellData.php";
-include "../core/modules/ventas/model/OperationData.php";
-include "../core/modules/ventas/model/OperationTypeData.php";
-include "../core/modules/ventas/model/ProductData.php";
+include "../core/modules/index/model/PersonData.php";
+include "../core/modules/index/model/UserData.php";
+include "../core/modules/index/model/SellData.php";
+include "../core/modules/index/model/OperationData.php";
+include "../core/modules/index/model/OperationTypeData.php";
+include "../core/modules/index/model/ProductData.php";
 
 require_once '../PhpWord/Autoloader.php';
 use PhpOffice\PhpWord\Autoloader;

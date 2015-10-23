@@ -1,29 +1,50 @@
 <?php
 
 
-// 13 de Abril del 2014
+// 14 de Abril del 2014
 // Core.php
 // @brief obtiene las configuraciones, muestra y carga los contenidos necesarios.
 
 class Core {
 
-	public static function loadModule($module){
-			if(!isset($_GET['module'])){
-				Module::setModule($module);
-				include "core/modules/".$module."/init.php";
-			}else{
-				Module::setModule($_GET['module']);
-				if(Module::isValid()){
-					include "core/modules/".$_GET['module']."/init.php";
-				}else {
-					Module::Error();
+	public static function includeCSS(){
+		$path = "res/css/";
+		$handle=opendir($path);
+		if($handle){
+			while (false !== ($entry = readdir($handle)))  {
+				if($entry!="." && $entry!=".."){
+					$fullpath = $path.$entry;
+				if(!is_dir($fullpath)){
+						echo "<link rel='stylesheet' type='text/css' href='".$fullpath."' />";
+
+					}
 				}
 			}
+		closedir($handle);
+		}
 
 	}
 
 	public static function redir($url){
-		echo "<script>window.location=\"$url\";</script>";
+		echo "<script>window.location='".$url."';</script>";
+	}
+
+	public static function includeJS(){
+		$path = "res/js/";
+		$handle=opendir($path);
+		if($handle){
+			while (false !== ($entry = readdir($handle)))  {
+				if($entry!="." && $entry!=".."){
+					$fullpath = $path.$entry;
+				if(!is_dir($fullpath)){
+						echo "<script type='text/javascript' src='".$fullpath."'></script>";
+
+					}
+				}
+			}
+		closedir($handle);
+		}
+
 	}
 
 }

@@ -85,6 +85,11 @@ create table sell(
 	user_id int ,
 	operation_type_id int default 2,
 	box_id int,
+
+	total double,
+	cash double,
+	discount double,
+
 	foreign key (box_id) references box(id),
 	foreign key (operation_type_id) references operation_type(id),
 	foreign key (user_id) references user(id),

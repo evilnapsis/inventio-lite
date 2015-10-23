@@ -1,6 +1,6 @@
 <?php
 include "../core/autoload.php";
-include "../core/modules/ventas/model/PersonData.php";
+include "../core/modules/index/model/PersonData.php";
 
 require_once '../PhpWord/Autoloader.php';
 use PhpOffice\PhpWord\Autoloader;

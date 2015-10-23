@@ -12,8 +12,6 @@ class View {
 	**/	
 	public static function load($view){
 		// Module::$module;
-		
-
 		if(!isset($_GET['view'])){
 			include "core/modules/".Module::$module."/view/".$view."/widget-default.php";
 		}else{
@@ -36,8 +34,10 @@ class View {
 	**/	
 	public static function isValid(){
 		$valid=false;
-		if(file_exists($file = "core/modules/".Module::$module."/view/".$_GET['view']."/widget-default.php")){
-			$valid = true;
+		if(isset($_GET["view"])){
+			if(file_exists($file = "core/modules/".Module::$module."/view/".$_GET['view']."/widget-default.php")){
+				$valid = true;
+			}
 		}
 		return $valid;
 	}

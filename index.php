@@ -1,9 +1,9 @@
 <?php
-// el archivo autoload inicializa todos lo archivos necesarios para que el framework funcione
-define("ROOT", "slidle");
 include "core/autoload.php";
+ob_start();
+session_start();
 
-// cargamos el modulo iniciar.
-Core::loadModule("ventas");
+$lb = new Lb();
+$lb->loadModule("index");
 
 ?>

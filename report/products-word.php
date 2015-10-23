@@ -1,7 +1,7 @@
 <?php
 include "../core/autoload.php";
-include "../core/modules/ventas/model/ProductData.php";
-include "../core/modules/ventas/model/CategoryData.php";
+include "../core/modules/index/model/ProductData.php";
+include "../core/modules/index/model/CategoryData.php";
 
 require_once '../PhpWord/Autoloader.php';
 use PhpOffice\PhpWord\Autoloader;
