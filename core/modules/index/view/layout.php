@@ -39,7 +39,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
 <?php 
 $u=null;
-if($_SESSION["user_id"]!=""):
+if(isset($_SESSION["user_id"]) &&$_SESSION["user_id"]!=""):
   $u = UserData::getById($_SESSION["user_id"]);
 ?>
           <ul class="nav navbar-nav side-nav">
@@ -76,10 +76,10 @@ if($_SESSION["user_id"]!=""):
 
 
 
-<?php if($_SESSION["user_id"]!=""):?>
+<?php if(isset($_SESSION["user_id"]) && $_SESSION["user_id"]!=""):?>
 <?php 
 $u=null;
-if($_SESSION["user_id"]!=""){
+if( isset($_SESSION["user_id"]) && $_SESSION["user_id"]!=""){
   $u = UserData::getById($_SESSION["user_id"]);
   $user = $u->name." ".$u->lastname;
 

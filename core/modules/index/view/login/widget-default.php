@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["user_id"]!=""){
+if(isset($_SESSION["user_id"]) && $_SESSION["user_id"]!=""){
 		print "<script>window.location='index.php?view=home';</script>";
 }
 

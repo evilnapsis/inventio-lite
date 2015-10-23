@@ -3,7 +3,7 @@
 // define('LBROOT',getcwd()); // LegoBox Root ... the server root
 // include("core/controller/Database.php");
 
-if(Session::getUID()=="") {
+if(!isset($_SESSION["user_id"])) {
 $user = $_POST['mail'];
 $pass = sha1(md5($_POST['password']));
 
@@ -20,7 +20,7 @@ while($r = $query->fetch_array()){
 }
 
 if($found==true) {
-	session_start();
+//	session_start();
 //	print $userid;
 	$_SESSION['user_id']=$userid ;
 //	setcookie('userid',$userid);
