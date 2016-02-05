@@ -1,3 +1,10 @@
+<?php
+if(!isset($_SESSION["user_id"])){
+  if(isset($_GET["view"]) && $_GET["view"]!=""){
+    Core::redir("./");
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
