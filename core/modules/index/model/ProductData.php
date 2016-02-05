@@ -12,7 +12,7 @@ class ProductData {
 		$this->created_at = "NOW()";
 	}
 
-	public function getCategory(){ return ProductData::getById($this->category_id);}
+	public function getCategory(){ return CategoryData::getById($this->category_id);}
 
 	public function add(){
 		$sql = "insert into ".self::$tablename." (barcode,name,description,price_in,price_out,user_id,presentation,unit,category_id,inventary_min,created_at) ";
