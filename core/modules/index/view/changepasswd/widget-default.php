@@ -1,12 +1,12 @@
 <?php
 
 
-if(Session::getUID()!=""){
-	$user = UserData::getById(Session::getUID());
+if(isset($_SESSION["user_id"])){
+	$user = UserData::getById($_SESSION["user_id"]);
 	$password = sha1(md5($_POST["password"]));
 	if($password==$user->password){
 		$user->password = sha1(md5($_POST["newpassword"]));
-		$user->update();
+		$user->update_passwd();
 		setcookie("password_updated","true");
 		print "<script>window.location='logout.php';</script>";
 	}else{
