@@ -7,6 +7,8 @@
 
 class Core {
 
+	public static $debug_sql = false;
+
 	public static function includeCSS(){
 		$path = "res/css/";
 		$handle=opendir($path);

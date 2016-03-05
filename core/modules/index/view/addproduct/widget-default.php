@@ -1,5 +1,6 @@
 <?php
 
+
 if(count($_POST)>0){
   $product = new ProductData();
   $product->barcode = $_POST["barcode"];
