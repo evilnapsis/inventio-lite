@@ -13,7 +13,7 @@ if(!isset($_SESSION["user_id"])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>.: Inventio Lite :.</title>
+    <title>.: Inventio Lite - Evilnapsis :.</title>
 
     <!-- Bootstrap core CSS -->
     <link href="res/bootstrap3/css/bootstrap.css" rel="stylesheet">

@@ -3,15 +3,15 @@ use inventiolite;
 
 create table user(
 	id int not null auto_increment primary key,
-	name varchar(50) not null,
-	lastname varchar(50) not null,
+	name varchar(50),
+	lastname varchar(50),
 	username varchar(50),
-	email varchar(255) not null,
-	password varchar(60) not null,
+	email varchar(255),
+	password varchar(60),
 	image varchar(255),
 	is_active boolean not null default 1,
 	is_admin boolean not null default 0,
-	created_at datetime not null
+	created_at datetime
 );
 
 insert into user(name,lastname,email,password,is_active,is_admin,created_at) value ("Administrador", "","admin","90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad",1,1,NOW());
@@ -19,26 +19,26 @@ insert into user(name,lastname,email,password,is_active,is_admin,created_at) val
 create table category(
 	id int not null auto_increment primary key,
 	image varchar(255),
-	name varchar(50) not null,
-	description text not null,
-	created_at datetime not null
+	name varchar(50),
+	description text,
+	created_at datetime
 );
 
 create table product(
 	id int not null auto_increment primary key,
 	image varchar(255),
-	barcode varchar(50) not null,
-	name varchar(50) not null,
-	description text not null,
-	inventary_min int not null default 10,
-	price_in float not null,
+	barcode varchar(50),
+	name varchar(50),
+	description text,
+	inventary_min int default 10,
+	price_in float,
 	price_out float,
-	unit varchar(255) not null,
-	presentation varchar(255) not null,
-	user_id int not null,
+	unit varchar(255),
+	presentation varchar(255),
+	user_id int,
 	category_id int,
-	created_at datetime not null,
-	is_active boolean not null default 1,
+	created_at datetime,
+	is_active boolean default 1,
 	foreign key (category_id) references category(id),
 	foreign key (user_id) references user(id)
 );
@@ -50,24 +50,24 @@ person kind
 */
 create table person(
 	id int not null auto_increment primary key,
-	image varchar(255) not null,
-	name varchar(255) not null,
-	lastname varchar(50) not null,
-	company varchar(50) not null,
-	address1 varchar(50) not null,
-	address2 varchar(50) not null,
-	phone1 varchar(50) not null,
-	phone2 varchar(50) not null,
-	email1 varchar(50) not null,
-	email2 varchar(50) not null,
+	image varchar(255),
+	name varchar(255),
+	lastname varchar(50),
+	company varchar(50),
+	address1 varchar(50),
+	address2 varchar(50),
+	phone1 varchar(50),
+	phone2 varchar(50),
+	email1 varchar(50),
+	email2 varchar(50),
 	kind int,
-	created_at datetime not null
+	created_at datetime
 );
 
 
 create table operation_type(
 	id int not null auto_increment primary key,
-	name varchar(50) not null
+	name varchar(50)
 );
 
 insert into operation_type (name) value ("entrada");
@@ -75,7 +75,7 @@ insert into operation_type (name) value ("salida");
 
 create table box(
 	id int not null auto_increment primary key,
-	created_at datetime not null
+	created_at datetime
 );
 
 
@@ -94,16 +94,16 @@ create table sell(
 	foreign key (operation_type_id) references operation_type(id),
 	foreign key (user_id) references user(id),
 	foreign key (person_id) references person(id),
-	created_at datetime not null
+	created_at datetime
 );
 
 create table operation(
 	id int not null auto_increment primary key,
-	product_id int not null,
-	q float not null,
-	operation_type_id int not null,
+	product_id int,
+	q float,
+	operation_type_id int,
 	sell_id int,
-	created_at datetime not null,
+	created_at datetime,
 	foreign key (product_id) references product(id),
 	foreign key (operation_type_id) references operation_type(id),
 	foreign key (sell_id) references sell(id)
@@ -117,10 +117,10 @@ configuration kind
 */
 create table configuration(
 	id int not null auto_increment primary key,
-	short varchar(255) not null unique,
-	name varchar(255) not null unique,
-	kind int not null,
-	val varchar(255) not null
+	short varchar(255) unique,
+	name varchar(255) unique,
+	kind int,
+	val varchar(255)
 );
 insert into configuration(short,name,kind,val) value("title","Titulo del Sistema",2,"Inventio Lite");
 insert into configuration(short,name,kind,val) value("use_image_product","Utilizar Imagenes en los productos",1,0);
