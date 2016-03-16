@@ -20,7 +20,7 @@ class View {
 			if(View::isValid()){
 				include "core/modules/".Module::$module."/view/".$_GET['view']."/widget-default.php";				
 			}else{
-				View::Error("<b>404 NOT FOUND</b> View <b>".$_GET['view']."</b> folder  !!");
+				View::Error("<b>404 NOT FOUND</b> View <b>".$_GET['view']."</b> folder !! - <a href='http://evilnapsis.com/legobox/help/' target='_blank'>Help</a>");
 			}
 
 

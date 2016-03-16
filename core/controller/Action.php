@@ -21,7 +21,7 @@ class Action {
 			if(Action::isValid()){
 				include "core/modules/".Module::$module."/action/".$_GET['action']."/action-default.php";				
 			}else{
-				Action::Error("<b>404 NOT FOUND</b> Action <b>".$_GET['action']."</b> folder  !!");
+				Action::Error("<b>404 NOT FOUND</b> Action <b>".$_GET['action']."</b> folder  !! - <a href='http://evilnapsis.com/legobox/help/' target='_blank'>Help</a>");
 			}
 
 

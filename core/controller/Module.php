@@ -26,7 +26,7 @@ class Module {
 			if(is_dir($folder)){
 				$valid=true;
 
-			}else { self::$message= "<b>404 NOT FOUND</b> Module <b>".Module::$module."</b> folder  !!"; }
+			}else { self::$message= "<b>404 NOT FOUND</b> Module <b>".Module::$module."</b> folder !! - <a href='http://evilnapsis.com/legobox/help/' target='_blank'>Help</a>"; }
 		
 	
 		return $valid;
