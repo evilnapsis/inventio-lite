@@ -1,28 +1,33 @@
 <?php
 
+/**
+* 1 de agosto del 2013
+* Esta funcion contiene el nombre de los identificadores que se usaran como variables de session
+* y tambien los setters y getters correspondientes.
+**/
 
-// 13 de Octubre del 2014
-// Session.php
-// @brief esto es algo mucho mas magico
-
-class Session {
-	function __get($value){
-		if(!$this->exist($value)){
-			print "<b>SESSION ERROR</b> El parametro <b>$value</b> que intentas llamar no existe!";
-			die();
-		}
-		return $_SESSION[$value];
+class Session{
+	public static function setUID($uid){
+		$_SESSION['user_id'] = $uid;
 	}
 
-	function  exist($value){
-		$found = false;
-		if(isset($_SESSION[$value])){
-			$found=true;
-		}
-		return $found;
+	public static function unsetUID(){
+		if(isset($_SESSION['user_id']))
+			unset($_SESSION['user_id']);
 	}
+
+	public static function issetUID(){
+		if(isset($_SESSION['user_id']))
+			return true;
+		else return false;
+	}
+
+	public static function getUID(){
+		if(isset($_SESSION['user_id']))
+			return $_SESSION['user_id'];
+		else return false;
+	}
+
 }
-
-
 
 ?>

@@ -1,8 +1,8 @@
 <?php
 include "../core/autoload.php";
-include "../core/modules/index/model/ProductData.php";
-include "../core/modules/index/model/OperationData.php";
-include "../core/modules/index/model/OperationTypeData.php";
+include "../core/app/model/ProductData.php";
+include "../core/app/model/OperationData.php";
+include "../core/app/model/OperationTypeData.php";
 
 require_once '../PhpWord/Autoloader.php';
 use PhpOffice\PhpWord\Autoloader;

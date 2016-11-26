@@ -17,7 +17,7 @@ class Model {
 	}
 
 	public static function getFullpath($modelname){
-		return "core/modules/".Module::$module."/model/".$modelname.".php";
+		return Core::$root."core/app/model/".$modelname.".php";
 	}
 
 	public static function many($query,$aclass){

@@ -1,10 +1,10 @@
 <?php
 include "../core/autoload.php";
-include "../core/modules/index/model/BoxData.php";
-include "../core/modules/index/model/SellData.php";
-include "../core/modules/index/model/PersonData.php";
-include "../core/modules/index/model/OperationData.php";
-include "../core/modules/index/model/ProductData.php";
+include "../core/app/model/BoxData.php";
+include "../core/app/model/SellData.php";
+include "../core/app/model/PersonData.php";
+include "../core/app/model/OperationData.php";
+include "../core/app/model/ProductData.php";
 
 require_once '../PhpWord/Autoloader.php';
 use PhpOffice\PhpWord\Autoloader;

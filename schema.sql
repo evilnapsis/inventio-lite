@@ -1,5 +1,6 @@
 create database inventiolite;
 use inventiolite;
+set sql_mode='';
 
 create table user(
 	id int not null auto_increment primary key,

@@ -4,10 +4,15 @@
 // 14 de Abril del 2014
 // Core.php
 // @brief obtiene las configuraciones, muestra y carga los contenidos necesarios.
-
+// actualizado [11-Aug-2016]
 class Core {
+	public static $theme = "";
+	public static $root = "";
 
+
+	public static $user = null;
 	public static $debug_sql = false;
+
 
 	public static function includeCSS(){
 		$path = "res/css/";
@@ -25,6 +30,10 @@ class Core {
 		closedir($handle);
 		}
 
+	}
+
+	public static function alert($text){
+		echo "<script>alert('".$text."');</script>";
 	}
 
 	public static function redir($url){

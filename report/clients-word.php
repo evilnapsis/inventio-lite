@@ -6,7 +6,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 }
 include "../core/autoload.php";
-include "../core/modules/index/model/PersonData.php";
+include "../core/app/model/PersonData.php";
 
 require_once '../PhpWord/Autoloader.php';
 use PhpOffice\PhpWord\Autoloader;

@@ -14,12 +14,12 @@ class Action {
 		// Module::$module;
 		
 		if(!isset($_GET['action'])){
-			include "core/modules/".Module::$module."/action/".$action."/action-default.php";
+			include "core/app/action/".$action."-action.php";
 		}else{
 
 
 			if(Action::isValid()){
-				include "core/modules/".Module::$module."/action/".$_GET['action']."/action-default.php";				
+				include "core/app/action/".$_GET['action']."-action.php";				
 			}else{
 				Action::Error("<b>404 NOT FOUND</b> Action <b>".$_GET['action']."</b> folder  !! - <a href='http://evilnapsis.com/legobox/help/' target='_blank'>Help</a>");
 			}
@@ -35,7 +35,7 @@ class Action {
 	**/	
 	public static function isValid(){
 		$valid=false;
-		if(file_exists($file = "core/modules/".Module::$module."/action/".$_GET['action']."/action-default.php")){
+		if(file_exists($file = "core/app/action/".$_GET['action']."-action.php")){
 			$valid = true;
 		}
 		return $valid;
@@ -46,7 +46,7 @@ class Action {
 	}
 
 	public function execute($action,$params){
-		$fullpath =  "core/modules/".Module::$module."/action/".$action."/action-default.php";
+		$fullpath =  "core/app/action/".$action."-action.php";
 		if(file_exists($fullpath)){
 			include $fullpath;
 		}else{
