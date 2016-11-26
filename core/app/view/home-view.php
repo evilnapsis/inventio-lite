@@ -1,15 +1,84 @@
 	<?php
-	$found=false;
+	$found=true;
 $products = ProductData::getAll();
 foreach($products as $product){
 	$q=OperationData::getQYesF($product->id);	
-	if($q<$product->inventary_min){
+	if($q<=$product->inventary_min){
 		$found=true;
 		break;
 
 	}
 }
 	?>
+<div class="row">
+	<div class="col-md-12">
+		<h1>Bienvenido a Inventio Lite</h1>
+</div>
+</div>
+  <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3><?php echo count(ProductData::getAll());?></h3>
+
+              <p>Productos</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="./?view=products" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-purple">
+            <div class="inner">
+              <h3><?php echo count(PersonData::getClients());?></h3>
+
+              <p>Clientes</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="./?view=clients" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3><?php echo count(PersonData::getProviders());?></h3>
+
+              <p>Proveedores</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="./?view=providers" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><?php echo count(CategoryData::getAll());?></h3>
+
+              <p>Categorias</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="./?view=categories" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+
 <div class="row">
 	<div class="col-md-12">
 <?php if($found):?>
@@ -22,50 +91,10 @@ foreach($products as $product){
   </ul>
 </div>
 <?php endif;?>
-		<h1>Inventio Lite</h1>
 
-
-<?php
-$page = 1;
-if(isset($_GET["page"])){
-	$page=$_GET["page"];
-}
-$limit=10;
-if(isset($_GET["limit"]) && $_GET["limit"]!="" && $_GET["limit"]!=$limit){
-	$limit=$_GET["limit"];
-}
-if(count($products)>0){
-
-if($page==1){
-$curr_products = ProductData::getAllByPage($products[0]->id,$limit);
-}else{
-$curr_products = ProductData::getAllByPage($products[($page-1)*$limit]->id,$limit);
-
-}
-$npaginas = floor(count($products)/$limit);
-$spaginas = count($products)%$limit;
-
-if($spaginas>0){ $npaginas++;}
-
-	?>
-
-	<h3>Pagina <?php echo $page." de ".$npaginas; ?></h3>
-<div class="btn-group pull-right">
-<?php
-$px=$page-1;
-if($px>0):
-?>
-<a class="btn btn-sm btn-default" href="<?php echo "index.php?view=home&limit=$limit&page=".($px); ?>"><i class="glyphicon glyphicon-chevron-left"></i> Atras </a>
-<?php endif; ?>
-
-<?php 
-$px=$page+1;
-if($px<=$npaginas):
-?>
-<a class="btn btn-sm btn-default" href="<?php echo "index.php?view=home&limit=$limit&page=".($px); ?>">Adelante <i class="glyphicon glyphicon-chevron-right"></i></a>
-<?php endif; ?>
 </div>
 <div class="clearfix"></div>
+<?php if(count($products)>0){?>
 <br><table class="table table-bordered table-hover">
 	<thead>
 		<th >Codigo</th>
@@ -74,10 +103,10 @@ if($px<=$npaginas):
 		<th></th>
 	</thead>
 	<?php
-foreach($curr_products as $product):
+foreach($products as $product):
 	$q=OperationData::getQYesF($product->id);
 	?>
-	<?php if($q<$product->inventary_min):?>
+	<?php if($q<=$product->inventary_min):?>
 	<tr class="<?php if($q==0){ echo "danger"; }else if($q<=$product->inventary_min/2){ echo "danger"; } else if($q<=$product->inventary_min){ echo "warning"; } ?>">
 		<td><?php echo $product->id; ?></td>
 		<td><?php echo $product->name; ?></td>
@@ -91,19 +120,6 @@ foreach($curr_products as $product):
 endforeach;
 ?>
 </table>
-<div class="btn-group pull-right">
-<?php
-
-for($i=0;$i<$npaginas;$i++){
-	echo "<a href='index.php?view=home&limit=$limit&page=".($i+1)."' class='btn btn-default btn-sm'>".($i+1)."</a> ";
-}
-?>
-</div>
-<form class="form-inline">
-	<label for="limit">Limite</label>
-	<input type="hidden" name="view" value="home">
-	<input type="number" value=<?php echo $limit?> name="limit" style="width:60px;" class="form-control">
-</form>
 
 <div class="clearfix"></div>
 
