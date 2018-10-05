@@ -118,8 +118,8 @@ configuration kind
 */
 create table configuration(
 	id int not null auto_increment primary key,
-	short varchar(255) unique,
-	name varchar(255) unique,
+	short varchar(200) unique,
+	name varchar(200) unique,
 	kind int,
 	val varchar(255)
 );
