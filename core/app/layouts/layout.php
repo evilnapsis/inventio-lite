@@ -167,7 +167,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 3.0
         </div>
-        <strong>Copyright &copy; 2019 <a href="http://evilnapsis.com/" target="_blank">Evilnapsis</a></strong>
+        <strong>Copyright &copy; 2019 <a href="http://evilnapsis.com/company/" target="_blank">Evilnapsis</a></strong>
       </footer>
       <?php else:?>
 <div class="login-box">
