@@ -5,15 +5,11 @@ $operations = OperationData::getAllByProductId($product->id);
 ?>
 <div class="row">
 	<div class="col-md-12">
-<div class="btn-group pull-right">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="report/history-word.php?id=<?php echo $product->id;?>">Word 2007 (.docx)</a></li>
-  </ul>
-</div>
+
+
 <h1><?php echo $product->name;; ?> <small>Historial</small></h1>
+
+
 	</div>
 	</div>
 
@@ -27,14 +23,7 @@ $operations = OperationData::getAllByProductId($product->id);
 $itotal = OperationData::GetInputQYesF($product->id);
 
 	?>
-<div class="jumbotron">
-<center>
-	<h2>Entradas</h2>
-	<h1><?php echo $itotal; ?></h1>
-</center>
-</div>
 
-<br>
 <?php
 ?>
 
@@ -46,14 +35,9 @@ $total = OperationData::GetQYesF($product->id);
 
 
 	?>
-<div class="jumbotron">
-<center>
-	<h2>Disponibles</h2>
-	<h1><?php echo $total; ?></h1>
-</center>
-</div>
-<div class="clearfix"></div>
-<br>
+
+
+
 <?php
 ?>
 
@@ -66,29 +50,76 @@ $total = OperationData::GetQYesF($product->id);
 $ototal = -1*OperationData::GetOutputQYesF($product->id);
 
 	?>
-<div class="jumbotron">
-<center>
-	<h2>Salidas</h2>
-	<h1><?php echo $ototal; ?></h1>
-</center>
-</div>
 
 
-<div class="clearfix"></div>
-<br>
+
 <?php
 ?>
 
 </div>
-
-
-
-
-
-
 </div>
 <div class="row">
+                      <div class="col-6 col-lg-4">
+                        <div class="card">
+                          <div class="card-body p-3 d-flex align-items-center">
+                            <div class="bg-primary text-white p-3 me-3">
+                              <svg class="icon icon-xl">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-truck"></use>
+                              </svg>
+                            </div>
+                            <div>
+                              <div class="fs-6 fw-semibold text-primary"><?php echo $itotal; ?></div>
+                              <div class="text-medium-emphasis text-uppercase fw-semibold small">ENTRADAS</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.col-->
+                      <div class="col-6 col-lg-4">
+                        <div class="card">
+                          <div class="card-body p-3 d-flex align-items-center">
+                            <div class="bg-success text-white p-3 me-3">
+                              <svg class="icon icon-xl">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-check"></use>
+                              </svg>
+                            </div>
+                            <div>
+                              <div class="fs-6 fw-semibold text-success"><?php echo $total; ?></div>
+                              <div class="text-medium-emphasis text-uppercase fw-semibold small">DISPONIBLE</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.col-->
+                      <div class="col-6 col-lg-4">
+                        <div class="card">
+                          <div class="card-body p-3 d-flex align-items-center">
+                            <div class="bg-warning text-white p-3 me-3">
+                              <svg class="icon icon-xl">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cart"></use>
+                              </svg>
+                            </div>
+                            <div>
+                              <div class="fs-6 fw-semibold text-warning"><?php echo $ototal; ?></div>
+                              <div class="text-medium-emphasis text-uppercase fw-semibold small">SALIDAS</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.col-->
+
+                      <!-- /.col-->
+                    </div>
+<br>
+<div class="row">
 	<div class="col-md-12">
+<div class="card">
+	<div class="card-header">
+		HISTORIAL
+	</div>
+		<div class="card-body">
+
+
 		<?php if(count($operations)>0):?>
 			<table class="table table-bordered table-hover">
 			<thead>
@@ -104,7 +135,7 @@ $ototal = -1*OperationData::GetOutputQYesF($product->id);
 			<td><?php echo $operation->q; ?></td>
 			<td><?php echo $operation->getOperationType()->name; ?></td>
 			<td><?php echo $operation->created_at; ?></td>
-			<td style="width:40px;"><a href="#" id="oper-<?php echo $operation->id; ?>" class="btn tip btn-xs btn-danger" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a> </td>
+			<td style="width:40px;"><a href="#" id="oper-<?php echo $operation->id; ?>" class="btn tip btn-sm btn-danger" title="Eliminar"><i class="bi  bi-trash"></i></a> </td>
 			<script>
 			$("#oper-"+<?php echo $operation->id; ?>).click(function(){
 				x = confirm("Estas seguro que quieres eliminar esto ??");
@@ -118,6 +149,9 @@ $ototal = -1*OperationData::GetOutputQYesF($product->id);
 			<?php endforeach; ?>
 			</table>
 		<?php endif; ?>
+		</div>
+</div>
+
 	</div>
 </div>
 
