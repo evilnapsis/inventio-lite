@@ -1,11 +1,14 @@
 <div class="row">
 	<div class="col-md-12">
+
+
+		<h1><i class='fa fa-archive'></i> Caja</h1>
 <div class="btn-group pull-right">
 <a href="./index.php?view=boxhistory" class="btn btn-primary "><i class="fa fa-clock-o"></i> Historial</a>
 <a href="./index.php?view=processbox" class="btn btn-primary ">Procesar Ventas <i class="fa fa-arrow-right"></i></a>
 </div>
-		<h1><i class='fa fa-archive'></i> Caja</h1>
 		<div class="clearfix"></div>
+<br>
 
 
 <?php
@@ -13,7 +16,11 @@ $products = SellData::getSellsUnBoxed();
 if(count($products)>0){
 $total_total = 0;
 ?>
-<br>
+<div class="card">
+	<div class="card-header">
+		CAJA
+	</div>
+		<div class="card-body">
 <table class="table table-bordered table-hover	">
 	<thead>
 		<th></th>
@@ -53,6 +60,10 @@ $total=0;
 
 </table>
 <h1>Total: <?php echo "$ ".number_format($total_total,2,".",","); ?></h1>
+		</div>
+</div>
+
+
 	<?php
 }else {
 

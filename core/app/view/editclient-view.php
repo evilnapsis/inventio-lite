@@ -3,6 +3,13 @@
 	<div class="col-md-12">
 	<h1>Editar Cliente</h1>
 	<br>
+<div class="card">
+  <div class="card-header">
+    EDITAR CLIENTE
+  </div>
+    <div class="card-body">
+
+
 		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updateclient" role="form">
 
 
@@ -49,4 +56,6 @@
   </div>
 </form>
 	</div>
+</div> 
+   </div>
 </div>

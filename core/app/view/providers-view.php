@@ -1,9 +1,11 @@
 <div class="row">
 	<div class="col-md-12">
+
+		<h1>Directorio de Proveedores</h1>
+<div class="">
+	<a href="index.php?view=newprovider" class="btn btn-secondary"><i class='fa fa-truck'></i> Nuevo Proveedor</a>
 <div class="btn-group pull-right">
-	<a href="index.php?view=newprovider" class="btn btn-default"><i class='fa fa-truck'></i> Nuevo Proveedor</a>
-<div class="btn-group pull-right">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
     <i class="fa fa-download"></i> Descargar <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
@@ -11,8 +13,14 @@
   </ul>
 </div>
 </div>
-		<h1>Directorio de Proveedores</h1>
 <br>
+<div class="card">
+	<div class="card-header">
+		PROVEEDORES
+	</div>
+		<div class="card-body">
+
+
 		<?php
 
 		$users = PersonData::getProviders();
@@ -45,6 +53,7 @@
 				<?php
 
 			}
+			echo "</table>";
 
 
 
@@ -55,6 +64,8 @@
 
 		?>
 
+		</div>
+</div>
 
 	</div>
 </div>

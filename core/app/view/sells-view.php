@@ -11,7 +11,13 @@ $products = SellData::getSells();
 if(count($products)>0){
 
 	?>
-<br>
+
+<div class="card">
+	<div class="card-header">
+		VENTAS
+	</div>
+		<div class="card-body">
+
 <table class="table table-bordered table-hover	">
 	<thead>
 		<th></th>
@@ -24,7 +30,7 @@ if(count($products)>0){
 
 	<tr>
 		<td style="width:30px;">
-		<a href="index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+		<a href="index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-link"><i class="bi bi-eye"></i></a></td>
 
 		<td>
 
@@ -46,7 +52,7 @@ $total= $sell->total-$sell->discount;
 
 		</td>
 		<td><?php echo $sell->created_at; ?></td>
-		<td style="width:30px;"><a href="index.php?view=delsell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a></td>
+		<td style="width:30px;"><a href="index.php?view=delsell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-danger"><i class="bi bi-trash"></i></a></td>
 	</tr>
 
 <?php endforeach; ?>
@@ -66,6 +72,10 @@ $total= $sell->total-$sell->discount;
 }
 
 ?>
+		</div>
+</div>
+
+
 <br><br><br><br><br><br><br><br><br><br>
 	</div>
 </div>

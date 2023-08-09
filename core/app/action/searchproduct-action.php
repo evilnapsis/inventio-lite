@@ -1,10 +1,19 @@
 
 <?php if(isset($_GET["product"]) && $_GET["product"]!=""):?>
+<div class="card">
+	<div class="card-header">
+<span>Resultados de la Busqueda</span>
+	</div>
+		<div class="card-body">
+
 	<?php
 $products = ProductData::getLike($_GET["product"]);
 if(count($products)>0){
 	?>
-<h3>Resultados de la Busqueda</h3>
+
+
+
+
 <table class="table table-bordered table-hover">
 	<thead>
 		<th>Codigo</th>
@@ -53,10 +62,12 @@ $q= OperationData::getQYesF($product->id);
 
 	<?php
 }else{
-	echo "<br><p class='alert alert-danger'>No se encontro el producto</p>";
+	echo "<p class='alert alert-danger'>No se encontro el producto</p>";
 }
 ?>
-<hr><br>
 <?php else:
 ?>
 <?php endif; ?>
+
+		</div>
+</div>

@@ -1,3 +1,7 @@
+/**
+ * Update 2023
+ * Powered by Evilnapsis
+ * **/
 create database inventiolite;
 use inventiolite;
 set sql_mode='';

@@ -2,6 +2,12 @@
 	<div class="col-md-12">
 	<h1>Nuevo Cliente</h1>
 	<br>
+<div class="card">
+  <div class="card-header">
+    NUEVO CLIENTE
+  </div>
+    <div class="card-body">
+
 		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=addclient" role="form">
 
 
@@ -47,5 +53,8 @@
     </div>
   </div>
 </form>
+    </div>
+</div>
+
 	</div>
 </div>

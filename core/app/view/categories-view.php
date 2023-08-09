@@ -1,10 +1,17 @@
 <div class="row">
 	<div class="col-md-12">
-<div class="btn-group pull-right">
-	<a href="index.php?view=newcategory" class="btn btn-default"><i class='fa fa-th-list'></i> Nueva Categoria</a>
-</div>
 		<h1>Categorias</h1>
+<div class="">
+	<a href="index.php?view=newcategory" class="btn btn-secondary"><i class='fa fa-th-list'></i> Nueva Categoria</a>
+</div>
 <br>
+<div class="card">
+	<div class="card-header">
+		CATEGORIAS
+	</div>
+		<div class="card-body">
+
+
 		<?php
 
 		$users = CategoryData::getAll();
@@ -27,6 +34,7 @@
 				<?php
 
 			}
+			echo "</table>";
 
 
 
@@ -36,6 +44,8 @@
 
 
 		?>
+		</div>
+</div>
 
 
 	</div>

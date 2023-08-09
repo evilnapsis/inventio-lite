@@ -2,6 +2,12 @@
 	<div class="col-md-12">
 	<h1>Nuevo Proveedor</h1>
 	<br>
+<div class="card">
+  <div class="card-header">
+    NUEVO PROVEEDOR
+  </div>
+    <div class="card-body">
+
 		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=addprovider" role="form">
 
 
@@ -48,4 +54,6 @@
   </div>
 </form>
 	</div>
+</div>    
+</div>
 </div>

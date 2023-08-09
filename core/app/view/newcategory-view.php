@@ -2,6 +2,13 @@
 	<div class="col-md-12">
 	<h1>Nueva Categoria</h1>
 	<br>
+<div class="card">
+  <div class="card-header">
+    NUEVA CATEGORIA
+  </div>
+    <div class="card-body">
+
+
 		<form class="form-horizontal" method="post" id="addcategory" action="index.php?view=addcategory" role="form">
 
 
@@ -17,6 +24,9 @@
       <button type="submit" class="btn btn-primary">Agregar Categoria</button>
     </div>
   </div>
-</form>
+</form>   
+ </div>
+</div>
+
 	</div>
 </div>

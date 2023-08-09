@@ -13,6 +13,7 @@
 			</div>
 		</div>
 		</form>
+		<br>
 	</div>
 <div id="show_search_results"></div>
 <script>
@@ -42,6 +43,7 @@ $(document).ready(function(){
 </script>
 
 <?php if(isset($_SESSION["errors"])):?>
+	<div class="card">
 <h2>Errores</h2>
 <p></p>
 <table class="table table-bordered table-hover">
@@ -61,6 +63,7 @@ $product = ProductData::getById($error["product_id"]);
 
 <?php endforeach; ?>
 </table>
+</div>
 <?php
 unset($_SESSION["errors"]);
  endif; ?>
@@ -70,7 +73,15 @@ unset($_SESSION["errors"]);
 <?php if(isset($_SESSION["cart"])):
 $total = 0;
 ?>
-<h2>Lista de venta</h2>
+<div class="container">
+<div class="card">
+	<div class="card-header">
+		RESUMEN DE LA VENTA
+	</div>
+		<div class="card-body">
+
+
+<h2>Resumen de venta</h2>
 <table class="table table-bordered table-hover">
 <thead>
 	<th style="width:30px;">Codigo</th>
@@ -163,6 +174,10 @@ $clients = PersonData::getClients();
     </div>
   </div>
 </form>
+		</div>
+	</div>
+</div>
+
 <script>
 	$("#processsell").submit(function(e){
 		discount = $("#discount").val();
