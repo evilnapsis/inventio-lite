@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-	<h1>Reabastecer Inventario</h1>
+	<h1>Realizar Compra</h1>
 	<p><b>Buscar producto por nombre o por codigo:</b></p>
 		<form>
 		<div class="row">
@@ -20,7 +20,15 @@
 $products = ProductData::getLike($_GET["product"]);
 if(count($products)>0){
 	?>
-<h3>Resultados de la Busqueda</h3>
+	<div class="container">
+<div class="card">
+	<div class="card-header">Resultados de la Busqueda
+	</div>
+		<div class="card-body">
+
+
+
+
 <table class="table table-bordered table-hover">
 	<thead>
 		<th>Codigo</th>
@@ -55,12 +63,12 @@ $q= OperationData::getQYesF($product->id);
 	</form>
 	<?php endforeach;?>
 </table>
-
+		</div>
+</div>
+</div>
 	<?php
 }
 ?>
-<br><hr>
-<hr><br>
 <?php else:
 ?>
 
@@ -95,7 +103,13 @@ unset($_SESSION["errors"]);
 <?php if(isset($_SESSION["reabastecer"])):
 $total = 0;
 ?>
-<h2>Lista de Reabastecimiento</h2>
+<div class="container">
+<div class="card">
+	<div class="card-header">Lista de Reabastecimiento
+	</div>
+		<div class="card-body">
+
+
 <table class="table table-bordered table-hover">
 <thead>
 	<th style="width:30px;">Codigo</th>
@@ -180,6 +194,10 @@ $clients = PersonData::getProviders();
     </div>
   </div>
 </form>
+
+		</div>
+</div>
+</div>
 <script>
 	$("#processsell").submit(function(e){
 		money = $("#money").val();

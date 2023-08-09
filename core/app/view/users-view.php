@@ -1,8 +1,8 @@
 <div class="row">
 	<div class="col-md-12">
-	<a href="index.php?view=newuser" class="btn btn-default pull-right"><i class='glyphicon glyphicon-user'></i> Nuevo Usuario</a>
 		<h1>Lista de Usuarios</h1>
-<br>
+	<a href="index.php?view=newuser" class="btn btn-secondary "><i class='bi bi-user'></i> Nuevo Usuario</a>
+	<br><br>
 		<?php
 		/*
 		$u = new UserData();
@@ -19,6 +19,12 @@
 		echo $f->label("name")." ".$f->render("name");
 		*/
 		?>
+<div class="card">
+	<div class="card-header">USUARIOS
+	</div>
+		<div class="card-body">
+
+
 		<?php
 
 		$users = UserData::getAll();
@@ -65,6 +71,8 @@
 
 
 		?>
+		</div>
+</div>
 
 
 	</div>

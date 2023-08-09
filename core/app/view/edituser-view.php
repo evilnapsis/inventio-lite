@@ -3,6 +3,13 @@
 	<div class="col-md-12">
 	<h1>Editar Usuario</h1>
 	<br>
+<div class="card">
+  <div class="card-header">EDITAR USUARIO
+  </div>
+    <div class="card-body">
+
+
+
 		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updateuser" role="form">
 
 
@@ -71,5 +78,7 @@
     </div>
   </div>
 </form>
+    </div>
+</div>
 	</div>
 </div>

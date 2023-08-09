@@ -1,13 +1,15 @@
 
-<div class="btn-group pull-right">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+
+<h1>Resumen de Compra</h1>
+<div class="">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
     <i class="fa fa-download"></i> Descargar <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
     <li><a href="report/onere-word.php?id=<?php echo $_GET["id"];?>">Word 2007 (.docx)</a></li>
   </ul>
 </div>
-<h1>Resumen de Reabastecimiento</h1>
+<br>
 <?php if(isset($_GET["id"]) && $_GET["id"]!=""):?>
 <?php
 $sell = SellData::getById($_GET["id"]);
@@ -33,6 +35,13 @@ if(isset($_COOKIE["selled"])){
 }
 
 ?>
+<div class="card">
+	<div class="card-header">
+		RESUMEN DE COMPRA
+	</div>
+		<div class="card-body">
+
+
 <table class="table table-bordered">
 <?php if($sell->person_id!=""):
 $client = $sell->getPerson();
@@ -77,6 +86,8 @@ $user = $sell->getUser();
 	?>
 </table>
 <br><br><h1>Total: $ <?php echo number_format($total,2,'.',','); ?></h1>
+		</div>
+</div>
 	<?php
 
 ?>	

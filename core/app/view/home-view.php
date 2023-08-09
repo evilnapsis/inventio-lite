@@ -1,11 +1,11 @@
 	<?php
-	$found=true;
+	$found=false;
 $products = ProductData::getAll();
+$products_array = array();
 foreach($products as $product){
 	$q=OperationData::getQYesF($product->id);	
 	if($q<=$product->inventary_min){
-		$found=true;
-		break;
+    $products_array[]  = $product;
 
 	}
 }
@@ -15,86 +15,101 @@ foreach($products as $product){
 		<h1>Bienvenido a Inventio Lite</h1>
 </div>
 </div>
-  <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3><?php echo count(ProductData::getAll());?></h3>
 
-              <p>Productos</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="./?view=products" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-purple">
-            <div class="inner">
-              <h3><?php echo count(PersonData::getClients());?></h3>
+                    <div class="row">
+                      <div class="col-6 col-lg-3">
+                        <div class="card">
+                          <div class="card-body p-3 d-flex align-items-center">
+                            <div class="bg-primary text-white p-3 me-3">
+                              <svg class="icon icon-xl">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-smile"></use>
+                              </svg>
+                            </div>
+                            <div>
+                              <div class="fs-6 fw-semibold text-primary"><?php echo count(ProductData::getAll());?></div>
+                              <div class="text-medium-emphasis text-uppercase fw-semibold small">PRODUCTOS</div>
+                            </div>
+                          </div>
+                          <div class="card-footer px-3 py-2"><a class="btn-block text-medium-emphasis d-flex justify-content-between align-items-center" href="./?view=products"><span class="small fw-semibold">IR A PRODUCTOS</span>
+                              <svg class="icon">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chevron-right"></use>
+                              </svg></a></div>
+                        </div>
+                      </div>
+                      <!-- /.col-->
+                      <div class="col-6 col-lg-3">
+                        <div class="card">
+                          <div class="card-body p-3 d-flex align-items-center">
+                            <div class="bg-info text-white p-3 me-3">
+                              <svg class="icon icon-xl">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                              </svg>
+                            </div>
+                            <div>
+                              <div class="fs-6 fw-semibold text-info"><?php echo count(PersonData::getClients());?></div>
+                              <div class="text-medium-emphasis text-uppercase fw-semibold small">CLIENTES</div>
+                            </div>
+                          </div>
+                          <div class="card-footer px-3 py-2"><a class="btn-block text-medium-emphasis d-flex justify-content-between align-items-center" href="./?view=clients"><span class="small fw-semibold">IR A CLIENTES</span>
+                              <svg class="icon">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chevron-right"></use>
+                              </svg></a></div>
+                        </div>
+                      </div>
+                      <!-- /.col-->
+                      <div class="col-6 col-lg-3">
+                        <div class="card">
+                          <div class="card-body p-3 d-flex align-items-center">
+                            <div class="bg-warning text-white p-3 me-3">
+                              <svg class="icon icon-xl">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-truck"></use>
+                              </svg>
+                            </div>
+                            <div>
+                              <div class="fs-6 fw-semibold text-warning"><?php echo count(PersonData::getProviders());?></div>
+                              <div class="text-medium-emphasis text-uppercase fw-semibold small">IR A PROVEEDORES</div>
+                            </div>
+                          </div>
+                          <div class="card-footer px-3 py-2"><a class="btn-block text-medium-emphasis d-flex justify-content-between align-items-center" href="./?view=providers"><span class="small fw-semibold">IR A PROVEEDORES</span>
+                              <svg class="icon">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chevron-right"></use>
+                              </svg></a></div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-lg-3">
+                        <div class="card">
+                          <div class="card-body p-3 d-flex align-items-center">
+                            <div class="bg-danger text-white p-3 me-3">
+                              <svg class="icon icon-xl">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                              </svg>
+                            </div>
+                            <div>
+                              <div class="fs-6 fw-semibold text-danger"><?php echo count(CategoryData::getAll());?></div>
+                              <div class="text-medium-emphasis text-uppercase fw-semibold small">Widget title</div>
+                            </div>
+                          </div>
+                          <div class="card-footer px-3 py-2"><a class="btn-block text-medium-emphasis d-flex justify-content-between align-items-center" href="./?view=categories"><span class="small fw-semibold">IR A CATEGORIAS</span>
+                              <svg class="icon">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chevron-right"></use>
+                              </svg></a></div>
+                        </div>
+                      </div>
+                    </div>
 
-              <p>Clientes</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="./?view=clients" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><?php echo count(PersonData::getProviders());?></h3>
-
-              <p>Proveedores</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="./?view=providers" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3><?php echo count(CategoryData::getAll());?></h3>
-
-              <p>Categorias</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="./?view=categories" class="small-box-footer">Ver mas <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-      </div>
-      <!-- /.row -->
-
+<br>
 <div class="row">
 	<div class="col-md-12">
-<?php if($found):?>
-<div class="btn-group pull-right">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="report/alerts-word.php">Word 2007 (.docx)</a></li>
-  </ul>
-</div>
-<?php endif;?>
+<div class="card">
+  <div class="card-header">ALERTAS DE INVENTARIO
+  </div>
+    <div class="card-body">
 
-</div>
-<div class="clearfix"></div>
-<?php if(count($products)>0){?>
+
+
+<?php 
+
+if(count($products_array)>0){?>
 <br><table class="table table-bordered table-hover">
 	<thead>
 		<th >Codigo</th>
@@ -134,6 +149,7 @@ endforeach;
 }
 
 ?>
-<br><br><br><br><br><br><br><br><br><br>
+    </div>
+</div>
 	</div>
 </div>

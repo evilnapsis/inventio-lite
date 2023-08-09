@@ -63,8 +63,12 @@ $products = ProductData::getAll();
 <div class="row">
 	
 	<div class="col-md-12">
-		<?php if(isset($_GET["sd"]) && isset($_GET["ed"]) ):?>
+<div class="card">
+	<div class="card-header">MOVIMIENTOS
+	</div>
+		<div class="card-body">		<?php if(isset($_GET["sd"]) && isset($_GET["ed"]) ):?>
 <?php if($_GET["sd"]!=""&&$_GET["ed"]!=""):?>
+
 			<?php 
 			$operations = array();
 
@@ -77,6 +81,8 @@ $products = ProductData::getAll();
 
 
 			 ?>
+
+
 
 			 <?php if(count($operations)>0):?>
 <table class="table table-bordered">
@@ -115,7 +121,7 @@ $products = ProductData::getAll();
 <script>
 	$("#wellcome").hide();
 </script>
-<div class="jumbotron">
+<div class="">
 	<h2>Fecha Incorrectas</h2>
 	<p>Puede ser que no selecciono un rango de fechas, o el rango seleccionado es incorrecto.</p>
 </div>
@@ -123,6 +129,8 @@ $products = ProductData::getAll();
 
 		<?php endif; ?>
 	</div>
+</div>
+		</div>
 </div>
 
 <br><br><br><br>

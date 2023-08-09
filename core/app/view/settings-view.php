@@ -10,6 +10,12 @@ $configurations = ConfigurationData::getAll();
 
 <?php if(count($configurations)>0):?>
 <br>
+<div class="card">
+	<div class="card-header">AJUSTES
+	</div>
+		<div class="card-body">
+
+
 <table class="table table-bordered">
 <thead>
 	<th>Clave</th>
@@ -31,6 +37,8 @@ $configurations = ConfigurationData::getAll();
 
 <?php endif; ?>
 
+		</div>
+</div>
 
 </div>
 </div>

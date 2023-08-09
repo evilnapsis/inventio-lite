@@ -1,7 +1,13 @@
 <div class="row">
 	<div class="col-md-12">
-		<h1><i class='glyphicon glyphicon-shopping-cart'></i> Reabastecimientos</h1>
+		<h1><i class='glyphicon glyphicon-shopping-cart'></i> COMPRAS</h1>
 		<div class="clearfix"></div>
+<div class="card">
+	<div class="card-header">
+		COMPRAS
+	</div>
+		<div class="card-body">
+
 
 
 <?php
@@ -9,7 +15,6 @@ $products = SellData::getRes();
 
 if(count($products)>0){
 	?>
-<br>
 <table class="table table-bordered table-hover	">
 	<thead>
 		<th></th>
@@ -21,7 +26,7 @@ if(count($products)>0){
 	<?php foreach($products as $sell):?>
 
 	<tr>
-		<td style="width:30px;"><a href="index.php?view=onere&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+		<td style="width:30px;"><a href="index.php?view=onere&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-link"><i class="bi bi-eye"></i></a></td>
 
 		<td>
 
@@ -43,7 +48,7 @@ $total=0;
 
 		</td>
 		<td><?php echo $sell->created_at; ?></td>
-		<td style="width:30px;"><a href="index.php?view=delre&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a></td>
+		<td style="width:30px;"><a href="index.php?view=delre&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-danger"><i class="bi bi-trash"></i></a></td>
 	</tr>
 
 <?php endforeach; ?>
@@ -62,6 +67,8 @@ $total=0;
 }
 
 ?>
-<br><br><br><br><br><br><br><br><br><br>
+		</div>
+</div>
+
 	</div>
 </div>

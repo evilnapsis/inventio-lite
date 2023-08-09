@@ -161,7 +161,7 @@
             </svg> REPORTES</a>
           <ul class="nav-group-items">
             <li class="nav-item"><a class="nav-link" href="./?view=reports"><span class="nav-icon"></span> MOVIMIENTOS</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=sellsreports"><span class="nav-icon"></span> REPORTE DE VENTAS  </a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=sellreports"><span class="nav-icon"></span> REPORTE DE VENTAS  </a></li>
           </ul>
         </li>
 <!--
@@ -170,7 +170,7 @@
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-            </svg> Administracion</a>
+            </svg> ADMINISTRACION</a>
           <ul class="nav-group-items">
             <li class="nav-item"><a class="nav-link" href="./?view=users&opt=all"><span class="nav-icon"></span> USUARIOS</a></li>
             <li class="nav-item"><a class="nav-link" href="./?view=settings&opt=all"><span class="nav-icon"></span> AJUSTES</a></li>

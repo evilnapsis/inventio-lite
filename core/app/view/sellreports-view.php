@@ -63,6 +63,12 @@ $clients = PersonData::getClients();
 <div class="row">
 	
 	<div class="col-md-12">
+<div class="card">
+	<div class="card-header">REPORTE DE VENTAS
+	</div>
+		<div class="card-body">
+
+
 		<?php if(isset($_GET["sd"]) && isset($_GET["ed"]) ):?>
 <?php if($_GET["sd"]!=""&&$_GET["ed"]!=""):?>
 			<?php 
@@ -127,6 +133,8 @@ $supertotal+= ($operation->total-$operation->discount);
 
 		<?php endif; ?>
 	</div>
+</div>
+		</div>
 </div>
 
 <br><br><br><br>
