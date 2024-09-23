@@ -4,19 +4,38 @@
 // include("core/controller/Database.php");
 
 if(!isset($_SESSION["user_id"])) {
-$user = $_POST['username'];
-$pass = sha1(md5($_POST['password']));
+    $user = $_POST['username'];
+    $pass = sha1(md5($_POST['password']));
 
-$base = new Database();
-$con = $base->connect();
- $sql = "select * from user where (email= \"".$user."\" or username= \"".$user."\") and password= \"".$pass."\" and is_active=1";
-//print $sql;
-$query = $con->query($sql);
-$found = false;
-$userid = null;
-while($r = $query->fetch_array()){
-	$found = true ;
-	$userid = $r['id'];
+    $base = new Database();
+    $con = $base->connect();
+
+    // Prepare the query
+    $stmt = $con->prepare("
+        SELECT * FROM user 
+        WHERE (email = ? OR username = ?) 
+        AND password = ? 
+        AND is_active = 1
+    ");
+
+    // Bind parameters
+    $stmt->bind_param("sss", $user, $user, $pass);
+
+    // Execute query
+    $stmt->execute();
+
+    // Get result
+    $result = $stmt->get_result();
+    $found = false;
+    $userid = null;
+
+    while($r = $result->fetch_assoc()){
+        $found = true;
+        $userid = $r['id'];
+    }
+
+    // Close statement
+    $stmt->close();
 }
 
 if($found==true) {
