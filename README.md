@@ -29,3 +29,27 @@ Para instalar el Sistema Requieres Apache+PHP+MySQL o tener instalado el XAMPP/L
 ## Mas informacion
 Encuentra mas informacion, instrucciones y demos en el siguiente link.
 Link: http://evilnapsis.com/2015/07/11/inventio-lite-sistema-de-inventario-y-ventas/
+
+# Docker compose
+
+Para poder correr el Sistema de Inventario, se puede utilizar la configuracion de docker-compose.yaml para levantar los servicios de mysql y phpmyadmin.
+
+`docker compose up`
+
+Al terminar de levantar el servicio hay que restaurar el schema.sql desde la pestanhan SQL.
+
+Ten encuenta que se necesita el archivo `.env` en el directorio raiz, para poder leer las credenciales para la configuracion del mysql y phpmyadmin.
+
+Ejemplo:
+```
+MYSQL_DATABASE=inventiolite
+MYSQL_ROOT_PASSWORD=admin
+MYSQL_USER=cocodrilo
+MYSQL_PASSWORD=cocodrilo_password
+
+PMA_HOST=mysql
+PMA_PORT=3306
+PMA_USER=root
+PMA_PASSWORD=admin
+```
+
