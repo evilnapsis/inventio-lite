@@ -1,0 +1,40 @@
+services:
+  webserver:
+    container_name: Inventio
+    build:
+      context: .
+      dockerfile: Dockerfile  
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql
+    env_file:
+      - ./.env
+    restart: always
+
+  mysql:
+    image: mysql:5.5.54
+    environment:
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1-apache
+    container_name: phpmyadmin-inventio
+    restart: always
+    environment:
+      PMA_HOST: "${PMA_HOST}"
+      PMA_PORT: "${PMA_PORT}"
+      PMA_USER: "${PMA_USER}" 
+      PMA_PASSWORD: "${PMA_PASSWORD}"
+    ports:
+      - "8081:80"                    
+    depends_on:
+      - mysql
+
