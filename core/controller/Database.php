@@ -2,7 +2,14 @@
 class Database {
 	public static $db;
 	public static $con;
+<<<<<<< HEAD
 	public $user, $pass, $host, $ddbb;
+=======
+	public $user;
+	public $pass;
+	public $host;
+	public $ddbb;
+>>>>>>> e617d9a09fb6ff866f29060b41ebcd771daddb7c
 	function Database(){
 //		$this->user="root";$this->pass="";$this->host="localhost";$this->ddbb="inventiolite";
 	}
