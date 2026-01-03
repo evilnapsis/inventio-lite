@@ -2,11 +2,13 @@
 class Database {
 	public static $db;
 	public static $con;
+	public $user, $pass, $host, $ddbb;
 	function Database(){
-		$this->user="root";$this->pass="";$this->host="localhost";$this->ddbb="inventiolite";
+//		$this->user="root";$this->pass="";$this->host="localhost";$this->ddbb="inventiolite";
 	}
 
 	function connect(){
+		$this->user="root";$this->pass="";$this->host="localhost";$this->ddbb="inventiolite";
 		$con = new mysqli($this->host,$this->user,$this->pass,$this->ddbb);
 		$con->query("set sql_mode=''");
 		return $con;
