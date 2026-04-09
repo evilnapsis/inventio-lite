@@ -2,16 +2,9 @@
 	<div class="col-md-12">
 
 		<h1>Directorio de Proveedores</h1>
-<div class="">
-	<a href="index.php?view=newprovider" class="btn btn-secondary"><i class='fa fa-truck'></i> Nuevo Proveedor</a>
-<div class="btn-group pull-right">
-  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="report/providers-word.php">Word 2007 (.docx)</a></li>
-  </ul>
-</div>
+<div class="mb-3">
+	<a href="index.php?view=newprovider" class="btn btn-primary"><i class='fa fa-truck'></i> Nuevo Proveedor</a>
+  <a href="./providers-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 <br>
 <div class="card">
@@ -36,6 +29,7 @@
 			<th>Telefono</th>
 			<th></th>
 			</thead>
+      <tbody>
 			<?php
 			foreach($users as $user){
 				?>
@@ -53,8 +47,13 @@
 				<?php
 
 			}
-			echo "</table>";
+      ?>
+      </tbody>
+			</table>
 
+
+
+		<?php
 
 
 		}else{

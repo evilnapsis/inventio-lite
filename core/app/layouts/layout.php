@@ -42,6 +42,7 @@
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
     <link rel="stylesheet" type="text/css" href="assets/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="assets/datatables/datatables.min.css">
     <script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
     <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
   </head>
@@ -268,8 +269,12 @@
     <script src="vendors/chart.js/js/chart.min.js"></script>
     <script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
     <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
+    <script src="assets/datatables/datatables.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
+      $(document).ready(function() {
+        $(".table").DataTable();
+      });
     </script>
 
   </body>

@@ -3,22 +3,6 @@
 		<h1>Lista de Usuarios</h1>
 	<a href="index.php?view=newuser" class="btn btn-secondary "><i class='bi bi-user'></i> Nuevo Usuario</a>
 	<br><br>
-		<?php
-		/*
-		$u = new UserData();
-		print_r($u);
-		$u->name = "Agustin";
-		$u->lastname = "Ramos";
-		$u->email = "evilnapsis@gmail.com";
-		$u->password = sha1(md5("l00lapal00za"));
-		$u->add();
-
-
-		$f = $u->createForm();
-		print_r($f);
-		echo $f->label("name")." ".$f->render("name");
-		*/
-		?>
 <div class="card">
 	<div class="card-header">USUARIOS
 	</div>
@@ -40,6 +24,7 @@
 			<th>Admin</th>
 			<th></th>
 			</thead>
+			<tbody>
 			<?php
 			foreach($users as $user){
 				?>
@@ -49,20 +34,28 @@
 				<td><?php echo $user->email; ?></td>
 				<td>
 					<?php if($user->is_active):?>
-						<i class="glyphicon glyphicon-ok"></i>
+						<i class="bi bi-check-lg"></i>
 					<?php endif; ?>
 				</td>
 				<td>
 					<?php if($user->is_admin):?>
-						<i class="glyphicon glyphicon-ok"></i>
+						<i class="bi bi-check-lg"></i>
 					<?php endif; ?>
 				</td>
-				<td style="width:30px;"><a href="index.php?view=edituser&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a></td>
+				<td style="width:130px;">
+					<a href="index.php?view=edituser&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
+					<?php if($user->id != $_SESSION["user_id"]):?>
+					<a href="index.php?view=deluser&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
+					<?php endif; ?>
+				</td>
 				</tr>
 				<?php
 
 			}
- echo "</table>";
+			?>
+			</tbody>
+			</table>
+		<?php
 
 
 		}else{

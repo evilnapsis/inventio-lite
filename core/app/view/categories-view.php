@@ -24,6 +24,7 @@
 			<th>Nombre</th>
 			<th></th>
 			</thead>
+			<tbody>
 			<?php
 			foreach($users as $user){
 				?>
@@ -34,8 +35,13 @@
 				<?php
 
 			}
-			echo "</table>";
+			?>
+			</tbody>
+			</table>
 
+
+
+		<?php
 
 
 		}else{

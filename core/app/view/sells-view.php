@@ -18,14 +18,15 @@ if(count($products)>0){
 	</div>
 		<div class="card-body">
 
-<table class="table table-bordered table-hover	">
+<table class="table table-bordered table-hover">
 	<thead>
 		<th></th>
-		<th>Producto</th>
+		<th>Productos</th>
 		<th>Total</th>
 		<th>Fecha</th>
 		<th></th>
 	</thead>
+	<tbody>
 	<?php foreach($products as $sell):?>
 
 	<tr>
@@ -38,14 +39,11 @@ if(count($products)>0){
 $operations = OperationData::getAllProductsBySellId($sell->id);
 echo count($operations);
 ?>
+		</td>
 		<td>
 
 <?php
 $total= $sell->total-$sell->discount;
-	/*foreach($operations as $operation){
-		$product  = $operation->getProduct();
-		$total += $operation->q*$product->price_out;
-	}*/
 		echo "<b>$ ".number_format($total)."</b>";
 
 ?>			
@@ -56,7 +54,7 @@ $total= $sell->total-$sell->discount;
 	</tr>
 
 <?php endforeach; ?>
-
+	</tbody>
 </table>
 
 <div class="clearfix"></div>

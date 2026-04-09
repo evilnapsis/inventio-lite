@@ -1,12 +1,7 @@
 
 <h1>Resumen de Venta</h1>
-<div class="">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="report/onesell-word.php?id=<?php echo $_GET["id"];?>">Word 2007 (.docx)</a></li>
-  </ul>
+<div class="mb-3">
+  <a href="./onesell-pdf.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 <br>
 

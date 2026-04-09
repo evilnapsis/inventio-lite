@@ -27,34 +27,10 @@ $clients = PersonData::getClients();
 </div>
 
 <div class="col-md-3">
-<input type="submit" class="btn btn-success btn-block" value="Procesar">
+<input type="submit" class="btn btn-primary btn-block" value="Procesar">
 </div>
 
 </div>
-<!--
-<br>
-<div class="row">
-<div class="col-md-4">
-
-<select name="mesero_id" class="form-control">
-	<option value="">--  MESEROS --</option>
-	<?php foreach($meseros as $p):?>
-	<option value="<?php echo $p->id;?>"><?php echo $p->name;?></option>
-	<?php endforeach; ?>
-</select>
-
-</div>
-
-<div class="col-md-4">
-
-<select name="operation_type_id" class="form-control">
-	<option value="1">VENTA</option>
-</select>
-
-</div>
-
-</div>
--->
 </form>
 
 	</div>
@@ -86,6 +62,7 @@ $clients = PersonData::getClients();
 
 			 <?php if(count($operations)>0):?>
 			 	<?php $supertotal = 0; ?>
+<a href="./sellreports-pdf.php?client_id=<?php echo $_GET["client_id"]; ?>&sd=<?php echo $_GET["sd"]; ?>&ed=<?php echo $_GET["ed"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a><br><br>
 <table class="table table-bordered">
 	<thead>
 		<th>Id</th>
