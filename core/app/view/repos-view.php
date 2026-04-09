@@ -2,10 +2,10 @@
 	<div class="col-md-12">
     <div class="card mb-4">
       <div class="card-body">
-        <h1>Punto de Venta</h1>
+        <h1>Reposición de Inventario (Compras)</h1>
         <p><b>Buscar producto por nombre o por código:</b></p>
         <form id="searchp" onsubmit="return false;">
-          <input type="hidden" name="view" value="sellpos">
+          <input type="hidden" name="view" value="repos">
           <div class="row">
             <div class="col-md-10">
               <input type="text" id="product_code" name="product" class="form-control" autocomplete="off" placeholder="Escriba el nombre o código del producto...">
@@ -28,7 +28,7 @@
         <div id="show_search_results" class="row">
           <!-- Aquí se cargarán los productos en cuadrícula -->
           <div class="col-md-12 text-center text-muted">
-            <p><i class="bi bi-cart4" style="font-size: 3rem;"></i></p>
+            <p><i class="bi bi-box-seam" style="font-size: 3rem;"></i></p>
             <p>Realice una búsqueda para comenzar.</p>
           </div>
         </div>
@@ -41,7 +41,7 @@
       <div class="card">
         <div class="card-header">RESUMEN</div>
         <div class="card-body text-center text-muted">
-          <p>Cargando carrito...</p>
+          <p>Cargando lista...</p>
         </div>
       </div>
     </div>
@@ -72,32 +72,28 @@ $(document).ready(function(){
   function searchProducts(){
     var q = $("#product_code").val();
     if(q==""){ return; }
-    $.get("./?action=searchproductpos", {product: q}, function(data){
+    $.get("./?action=searchproductrepos", {product: q}, function(data){
 			$("#show_search_results").html(data);
 		});
   }
 
   function addToCart(product_id){
     var q = $("#q-"+product_id).val();
-    $.post("./?action=addtocartpos", {product_id: product_id, q: q}, function(data){
-      if(data.trim() == "error_insufficient_stock"){
-        Swal.fire('Atención', 'No hay suficiente stock disponible para agregar esa cantidad.', 'warning');
-      } else {
-        updateCart();
-      }
+    $.post("./?action=addtorepos", {product_id: product_id, q: q}, function(data){
+      updateCart();
     });
   }
   window.addToCart = addToCart;
 
   function updateCart(){
-    $.get("./?action=cartpos", function(data){
+    $.get("./?action=cartrepos", function(data){
       $("#cart_summary").html(data);
     });
   }
   window.updateCart = updateCart;
 
   function deleteFromCart(product_id){
-    $.get("./?action=delfromcartpos", {product_id: product_id}, function(data){
+    $.get("./?action=delfromrepos", {product_id: product_id}, function(data){
       updateCart();
     });
   }

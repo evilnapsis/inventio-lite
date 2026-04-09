@@ -122,26 +122,27 @@
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
             </svg> INICIO</a></li>
-        <li class="nav-item"><a class="nav-link" href="./?view=sell">
+        <!--<li class="nav-item"><a class="nav-link" href="./?view=sell">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-money"></use>
             </svg> VENDER</a>
-        </li>
+        </li>-->
         <li class="nav-item"><a class="nav-link" href="./?view=sellpos">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calculator"></use>
             </svg> VENDER POS</a>
         </li>
+
         <li class="nav-item"><a class="nav-link" href="./?view=sells">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cart"></use>
             </svg> VENTAS</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="./?view=box">
+        <!--<li class="nav-item"><a class="nav-link" href="./?view=box">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-3d"></use>
             </svg> CAJA</a>
-        </li>
+        </li>-->
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-folder-open"></use>
@@ -159,8 +160,9 @@
             </svg> INVENTARIO</a>
           <ul class="nav-group-items">
             <li class="nav-item"><a class="nav-link" href="./?view=inventary"><span class="nav-icon"></span> INVENTARIO</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=re"><span class="nav-icon"></span> HACER COMPRA  </a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=repos"><span class="nav-icon"></span> NUEVA COMPRA  </a></li>
             <li class="nav-item"><a class="nav-link" href="./?view=res"><span class="nav-icon"></span> COMPRAS  </a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=box"><span class="nav-icon"></span> CAJA  </a></li>
           </ul>
         </li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
