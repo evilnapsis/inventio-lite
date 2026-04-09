@@ -8,7 +8,7 @@ if(count($products)>0){
 $q= OperationData::getQYesF($product->id);
 	?>
 		
-    <div class="col-md-2 mb-3">
+    <div class="col-lg-2 col-md-4 col-6 mb-3">
       <div class="card h-100 <?php if($q<=$product->inventary_min){ echo "border-danger"; }?>">
         <?php if($product->image!=""):?>
           <img src="storage/products/<?php echo $product->image;?>" class="card-img-top" style="height: 100px; object-fit: cover;">
