@@ -17,6 +17,7 @@
 			// si hay usuarios
 			?>
 
+			<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 			<thead>
 			<th>Nombre</th>
@@ -36,6 +37,7 @@
 			?>
 			</tbody>
 			</table>
+			</div>
 
 
 

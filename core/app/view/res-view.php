@@ -15,6 +15,7 @@ $products = SellData::getRes();
 
 if(count($products)>0){
 	?>
+<div class="table-responsive">
 <table class="table table-bordered table-hover	">
 	<thead>
 		<th></th>
@@ -34,6 +35,7 @@ if(count($products)>0){
 $operations = OperationData::getAllProductsBySellId($sell->id);
 echo count($operations);
 ?>
+		</td>
 		<td>
 
 <?php
@@ -54,6 +56,7 @@ $total=0;
 <?php endforeach; ?>
 
 </table>
+</div>
 
 
 	<?php

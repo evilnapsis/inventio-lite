@@ -21,24 +21,25 @@ $total_total = 0;
 		CAJA
 	</div>
 		<div class="card-body">
+<div class="table-responsive">
 <table class="table table-bordered table-hover	">
 	<thead>
 		<th></th>
-		<th>Producto</th>
+		<th>Productos</th>
 		<th>Total</th>
 		<th>Fecha</th>
 	</thead>
 	<?php foreach($products as $sell):?>
 
 	<tr>
-		<td style="width:30px;">
+		<td style="width:30px;"></td>
 
 		<td>
-
 <?php
 $operations = OperationData::getAllProductsBySellId($sell->id);
 echo count($operations);
 ?>
+		</td>
 		<td>
 
 <?php
@@ -59,6 +60,7 @@ $total=0;
 <?php endforeach; ?>
 
 </table>
+</div>
 <h1>Total: <?php echo "$ ".number_format($total_total,2,".",","); ?></h1>
 		</div>
 </div>

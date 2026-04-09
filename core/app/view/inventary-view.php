@@ -20,7 +20,8 @@
 $products = ProductData::getAll();
 if(count($products)>0){
 	?>
-<br><table class="table table-bordered table-hover">
+<div class="table-responsive">
+<table class="table table-bordered table-hover">
 	<thead>
 		<th>Codigo</th>
 		<th>Nombre</th>
@@ -44,6 +45,7 @@ if(count($products)>0){
 	<?php endforeach;?>
   </tbody>
 </table>
+</div>
 <div class="clearfix"></div>
 <?php
 }else{

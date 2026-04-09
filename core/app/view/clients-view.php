@@ -21,6 +21,7 @@
 			// si hay usuarios
 			?>
 
+			<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 			<thead>
 			<th>Nombre completo</th>
@@ -49,6 +50,7 @@
       ?>
       </tbody>
 			</table>
+			</div>
 
 
 		<?php
