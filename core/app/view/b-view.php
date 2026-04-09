@@ -4,16 +4,9 @@
 <!-- Single button -->
 
 		<h1><i class='fa fa-archive'></i> Corte de Caja #<?php echo $_GET["id"]; ?></h1>
-		<div class="">
+<div class="mb-3">
 <a href="./index.php?view=boxhistory" class="btn btn-secondary"><i class="fa fa-clock-o"></i> Historial</a>
-<div class="btn-group">
-  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu pull-right" role="menu">
-    <li><a href="report/box-word.php?id=<?php echo $_GET["id"];?>">Word 2007 (.docx)</a></li>
-  </ul>
-</div>
+<a href="./box-pdf.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 		<div class="clearfix"></div>
 <br>
@@ -37,11 +30,12 @@ $total_total = 0;
 		<th>Total</th>
 		<th>Fecha</th>
 	</thead>
+	<tbody>
 	<?php foreach($products as $sell):?>
 
 	<tr>
 		<td style="width:30px;">
-<a href="./index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-default btn-xs"><i class="fa fa-arrow-right"></i></a>			
+<a href="./index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-secondary btn-xs"><i class="fa fa-arrow-right"></i></a>			
 
 
 <?php
@@ -56,8 +50,8 @@ $total=0;
 		$product  = $operation->getProduct();
 		$total += $operation->q*$product->price_out;
 	}
-		$total_total += $total;
-		echo "<b>$ ".number_format($total,2,".",",")."</b>";
+	$total_total += $total;
+	echo "<b>$ ".number_format($total,2,".",",")."</b>";
 
 ?>			
 
@@ -66,7 +60,7 @@ $total=0;
 	</tr>
 
 <?php endforeach; ?>
-
+	</tbody>
 </table>
 <h1>Total: <?php echo "$ ".number_format($total_total,2,".",","); ?></h1>
 	<?php

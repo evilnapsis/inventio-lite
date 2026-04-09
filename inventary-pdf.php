@@ -22,29 +22,28 @@ function Footer()
 }
 }
 
-$providers = PersonData::getProviders();
+$products = ProductData::getAll();
 
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
-$pdf->Cell(0,10,'DIRECTORIO DE PROVEEDORES',0,1,'C');
+$pdf->Cell(0,10,'INVENTARIO DE PRODUCTOS',0,1,'C');
 $pdf->Ln(5);
 
 $pdf->SetFont('Arial','B',10);
 $pdf->SetFillColor(232,232,232);
-$pdf->Cell(15,10,'ID',1,0,'C',1);
-$pdf->Cell(65,10,'Nombre',1,0,'C',1);
-$pdf->Cell(60,10,'Direccion',1,0,'C',1);
-$pdf->Cell(50,10,'Telefono',1,1,'C',1);
+$pdf->Cell(30,10,'Codigo',1,0,'C',1);
+$pdf->Cell(110,10,'Nombre',1,0,'C',1);
+$pdf->Cell(50,10,'Disponible',1,1,'C',1);
 
 $pdf->SetFont('Arial','',10);
 
-foreach($providers as $provider){
-    $pdf->Cell(15,10,$provider->id,1,0,'C');
-    $pdf->Cell(65,10,utf8_decode($provider->name." ".$provider->lastname),1,0,'L');
-    $pdf->Cell(60,10,utf8_decode($provider->address1),1,0,'L');
-    $pdf->Cell(50,10,$provider->phone1,1,1,'L');
+foreach($products as $product){
+    $q = OperationData::getQYesF($product->id);
+    $pdf->Cell(30,10,$product->id,1,0,'C');
+    $pdf->Cell(110,10,utf8_decode($product->name),1,0,'L');
+    $pdf->Cell(50,10,$q,1,1,'C');
 }
 
 $pdf->Output();

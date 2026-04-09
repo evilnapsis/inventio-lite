@@ -1,10 +1,6 @@
 <?php
 include "core/autoload.php";
-include "core/app/model/SellData.php";
-include "core/app/model/OperationData.php";
-include "core/app/model/ProductData.php";
-include "core/app/model/PersonData.php";
-include "core/app/model/UserData.php";
+include "core/app/autoload.php";
 
 require('fpdf/fpdf.php');
 

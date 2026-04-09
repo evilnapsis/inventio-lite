@@ -3,13 +3,8 @@
 <!-- Single button -->
 
 		<h1><i class="glyphicon glyphicon-stats"></i> Inventario de Productos</h1>
-<div class="btn-group pull-right">
-  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="report/inventary-word.php">Word 2007 (.docx)</a></li>
-  </ul>
+<div class="mb-3">
+	<a href="./inventary-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 		<div class="clearfix"></div>
 		<br>

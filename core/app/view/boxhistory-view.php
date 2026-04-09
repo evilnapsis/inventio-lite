@@ -2,13 +2,8 @@
 	<div class="col-md-12">
 <!-- Single button -->
 		<h1><i class='fa fa-archive'></i> Historial de Caja</h1>
-<div class="">
-  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-    <i class="fa fa-download"></i> Descargar <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="report/boxhistory-word.php">Word 2007 (.docx)</a></li>
-  </ul>
+<div class="mb-3">
+	<a href="./boxhistory-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 <br>
 		<div class="clearfix"></div>
@@ -33,6 +28,7 @@ $total_total = 0;
 		<th>Total</th>
 		<th>Fecha</th>
 	</thead>
+	<tbody>
 	<?php foreach($boxes as $box):
 $sells = SellData::getByBoxId($box->id);
 
@@ -40,7 +36,7 @@ $sells = SellData::getByBoxId($box->id);
 
 	<tr>
 		<td style="width:30px;">
-<a href="./index.php?view=b&id=<?php echo $box->id; ?>" class="btn btn-default btn-xs"><i class="fa fa-arrow-right"></i></a>			
+<a href="./index.php?view=b&id=<?php echo $box->id; ?>" class="btn btn-secondary btn-xs"><i class="fa fa-arrow-right"></i></a>			
 		</td>
 		<td>
 
@@ -63,7 +59,7 @@ $operations = OperationData::getAllProductsBySellId($sell->id);
 	</tr>
 
 <?php endforeach; ?>
-
+	</tbody>
 </table>
 <h1>Total: <?php echo "$ ".number_format($total_total,2,".",","); ?></h1>
 	<?php

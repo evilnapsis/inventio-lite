@@ -16,7 +16,7 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Inventio Lite</title>
+    <title>Inventio Lite - Dashboard</title>
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -237,17 +237,7 @@
             </li>
           </ul>
         </div>
-        <div class="header-divider"></div>
-        <div class="container-fluid">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb my-0 ms-2">
-              <li class="breadcrumb-item">
-                <!-- if breadcrumb is single--><span>Home</span>
-              </li>
-              <li class="breadcrumb-item active"><span>Dashboard</span></li>
-            </ol>
-          </nav>
-        </div>
+
       </header>
       <div class="body flex-grow-1 px-3">
         <div class="container-fluid">

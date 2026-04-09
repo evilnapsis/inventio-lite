@@ -110,6 +110,9 @@ foreach($products as $product){
 <?php 
 
 if(count($products_array)>0){?>
+<div class="mb-3">
+	<a href="./alerts-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+</div>
 <br><table class="table table-bordered table-hover">
 	<thead>
 		<th >Codigo</th>
@@ -117,6 +120,7 @@ if(count($products_array)>0){?>
 		<th>En Stock</th>
 		<th></th>
 	</thead>
+  <tbody>
 	<?php
 foreach($products as $product):
 	$q=OperationData::getQYesF($product->id);
@@ -134,6 +138,7 @@ foreach($products as $product):
 <?php
 endforeach;
 ?>
+  </tbody>
 </table>
 
 <div class="clearfix"></div>

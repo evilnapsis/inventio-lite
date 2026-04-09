@@ -8,10 +8,9 @@ $operations = OperationData::getAllByProductId($product->id);
 
 
 <h1><?php echo $product->name;; ?> <small>Historial</small></h1>
-
-
-	</div>
-	</div>
+<div class="mb-3">
+	<a href="./history-pdf.php?id=<?php echo $product->id; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+</div>
 
 <div class="row">
 
@@ -129,6 +128,7 @@ $ototal = -1*OperationData::GetOutputQYesF($product->id);
 			<th>Fecha</th>
 			<th></th>
 			</thead>
+      <tbody>
 			<?php foreach($operations as $operation):?>
 			<tr>
 			<td></td>
@@ -147,6 +147,7 @@ $ototal = -1*OperationData::GetOutputQYesF($product->id);
 			</script>
 			</tr>
 			<?php endforeach; ?>
+      </tbody>
 			</table>
 		<?php endif; ?>
 		</div>

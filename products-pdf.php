@@ -1,7 +1,6 @@
 <?php
 include "core/autoload.php";
-include "core/app/model/ProductData.php";
-include "core/app/model/CategoryData.php";
+include "core/app/autoload.php";
 
 require('fpdf/fpdf.php');
 
