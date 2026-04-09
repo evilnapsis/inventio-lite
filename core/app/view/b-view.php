@@ -6,7 +6,7 @@
 		<h1><i class='fa fa-archive'></i> Corte de Caja #<?php echo $_GET["id"]; ?></h1>
 <div class="mb-3">
 <a href="./index.php?view=boxhistory" class="btn btn-secondary"><i class="fa fa-clock-o"></i> Historial</a>
-<a href="./box-pdf.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+<a href="report/box-pdf.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 		<div class="clearfix"></div>
 <br>
@@ -35,7 +35,7 @@ $total_total = 0;
 
 	<tr>
 		<td style="width:30px;">
-<a href="./index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-secondary btn-xs"><i class="fa fa-arrow-right"></i></a>			
+<a href="./index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-secondary btn-sm"><i class="bi bi-eye"></i></a>			
 
 
 <?php

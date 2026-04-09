@@ -10,8 +10,6 @@
 		CATEGORIAS
 	</div>
 		<div class="card-body">
-
-
 		<?php
 
 		$users = CategoryData::getAll();

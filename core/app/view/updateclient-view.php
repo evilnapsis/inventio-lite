@@ -10,6 +10,7 @@ if(count($_POST)>0){
 	$user->update_client();
 
 
+	$_SESSION["updated"] = "Cliente actualizado correctamente";
 print "<script>window.location='index.php?view=clients';</script>";
 
 

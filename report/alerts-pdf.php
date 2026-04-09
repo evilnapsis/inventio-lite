@@ -1,8 +1,9 @@
 <?php
-include "core/autoload.php";
-include "core/app/autoload.php";
+include "../core/autoload.php";
+include "../core/app/autoload.php";
+Core::$root="../";
 
-require('fpdf/fpdf.php');
+require('../fpdf/fpdf.php');
 
 class PDF extends FPDF
 {

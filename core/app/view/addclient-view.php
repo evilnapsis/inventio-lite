@@ -9,6 +9,7 @@ if(count($_POST)>0){
 	$user->phone1 = $_POST["phone1"];
 	$user->add_client();
 
+	$_SESSION["success"] = "Cliente agregado correctamente";
 print "<script>window.location='index.php?view=clients';</script>";
 
 

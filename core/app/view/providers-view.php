@@ -4,7 +4,7 @@
 		<h1>Directorio de Proveedores</h1>
 <div class="mb-3">
 	<a href="index.php?view=newprovider" class="btn btn-primary"><i class='fa fa-truck'></i> Nuevo Proveedor</a>
-  <a href="./providers-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+  <a href="report/providers-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 <br>
 <div class="card">

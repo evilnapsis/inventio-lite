@@ -12,6 +12,7 @@ if(count($_POST)>0){
 	$user->password = sha1(md5($_POST["password"]));
 	$user->add();
 
+	$_SESSION["success"] = "Usuario agregado correctamente";
 print "<script>window.location='index.php?view=users';</script>";
 
 

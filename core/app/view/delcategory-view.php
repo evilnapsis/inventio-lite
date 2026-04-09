@@ -7,6 +7,7 @@ foreach ($products as $product) {
 }
 
 $category->del();
+$_SESSION["deleted"] = "Categoria eliminada correctamente";
 Core::redir("./index.php?view=categories");
 
 

@@ -9,5 +9,6 @@ foreach ($operations as $op) {
 $product = ProductData::getById($_GET["id"]);
 $product->del();
 
+$_SESSION["deleted"] = "Producto eliminado correctamente";
 Core::redir("./index.php?view=products");
 ?>

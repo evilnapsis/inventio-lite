@@ -4,7 +4,7 @@
 
 		<h1><i class="glyphicon glyphicon-stats"></i> Inventario de Productos</h1>
 <div class="mb-3">
-	<a href="./inventary-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+	<a href="report/inventary-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 		<div class="clearfix"></div>
 		<br>

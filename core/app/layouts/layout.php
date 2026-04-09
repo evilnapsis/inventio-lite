@@ -45,6 +45,8 @@
     <link rel="stylesheet" type="text/css" href="assets/datatables/datatables.min.css">
     <script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
     <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="vendors/sweetalert/sweetalert2.min.css">
+    <script type="text/javascript" src="vendors/sweetalert/sweetalert2.min.js"></script>
   </head>
   <body>
 <?php if(!isset($_SESSION["user_id"])):?>
@@ -266,6 +268,54 @@
         $(".table").DataTable();
       });
     </script>
+
+<?php if(isset($_SESSION["success"])):?>
+	<script>
+		Swal.fire({
+			icon: 'success',
+			title: '¡Éxito!',
+			text: '<?php echo $_SESSION["success"]; ?>',
+			confirmButtonText: 'Aceptar'
+		});
+	</script>
+<?php unset($_SESSION["success"]); ?>
+<?php endif; ?>
+
+<?php if(isset($_SESSION["updated"])):?>
+	<script>
+		Swal.fire({
+			icon: 'success',
+			title: '¡Éxito!',
+			text: '<?php echo $_SESSION["updated"]; ?>',
+			confirmButtonText: 'Aceptar'
+		});
+	</script>
+<?php unset($_SESSION["updated"]); ?>
+<?php endif; ?>
+
+<?php if(isset($_SESSION["deleted"])):?>
+	<script>
+		Swal.fire({
+			icon: 'success',
+			title: '¡Éxito!',
+			text: '<?php echo $_SESSION["deleted"]; ?>',
+			confirmButtonText: 'Aceptar'
+		});
+	</script>
+<?php unset($_SESSION["deleted"]); ?>
+<?php endif; ?>
+
+<?php if(isset($_SESSION["error"])):?>
+	<script>
+		Swal.fire({
+			icon: 'error',
+			title: '¡Error!',
+			text: '<?php echo $_SESSION["error"]; ?>',
+			confirmButtonText: 'Aceptar'
+		});
+	</script>
+<?php unset($_SESSION["error"]); ?>
+<?php endif; ?>
 
   </body>
 </html>

@@ -2,7 +2,7 @@
 
 <h1>Resumen de Compra</h1>
 <div class="mb-3">
-  <a href="./onere-pdf.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+  <a href="report/onere-pdf.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 <br>
 <?php if(isset($_GET["id"]) && $_GET["id"]!=""):?>

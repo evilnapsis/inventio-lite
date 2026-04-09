@@ -38,21 +38,17 @@ if($num_succ==count($cart)){
 }
 
 if($process==false){
-$_SESSION["errors"] = $errors;
+    $error_msg = "";
+    foreach($errors as $e){
+        $error_msg .= $e["message"] . " ";
+    }
+    $_SESSION["error"] = $error_msg;
 	?>	
 <script>
 	window.location="index.php?view=sell";
 </script>
 <?php
 }
-
-
-
-
-
-
-
-
 
 //////////////////////////////////
 		if($process==true){
@@ -80,16 +76,12 @@ $_SESSION["errors"] = $errors;
 			 $op->sell_id=$s[1];
 			 $op->q= $c["q"];
 
-			if(isset($_POST["is_oficial"])){
-				$op->is_oficial = 1;
-			}
-
 			$add = $op->add();			 		
 
 			unset($_SESSION["cart"]);
-			setcookie("selled","selled");
 		}
 ////////////////////
+$_SESSION["success"] = "Venta procesada correctamente";
 print "<script>window.location='index.php?view=onesell&id=$s[1]';</script>";
 		}
 	}

@@ -34,16 +34,12 @@ $process = true;
 			 $op->sell_id=$s[1];
 			 $op->q= $c["q"];
 
-			if(isset($_POST["is_oficial"])){
-				$op->is_oficial = 1;
-			}
-
 			$add = $op->add();			 		
 
 		}
 			unset($_SESSION["reabastecer"]);
-			setcookie("selled","selled");
 ////////////////////
+$_SESSION["success"] = "Compra (Reposición) procesada correctamente";
 print "<script>window.location='index.php?view=onere&id=$s[1]';</script>";
 		}
 	}

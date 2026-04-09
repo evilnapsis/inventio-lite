@@ -4,7 +4,7 @@
 		<h1>Directorio de Clientes</h1>
 <div class="mb-3">
 	<a href="index.php?view=newclient" class="btn btn-primary"><i class='fa fa-smile-o'></i> Nuevo Cliente</a>
-  <a href="./clients-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+  <a href="report/clients-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>	
 <br>
 <div class="card">

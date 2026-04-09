@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="col-md-12">
 <!-- Single button -->
-		<h1><i class='fa fa-archive'></i> Historial de Caja</h1>
+		<h1><i class='bi bi-archive'></i> Historial de Caja</h1>
 <div class="mb-3">
-	<a href="./boxhistory-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+	<a href="report/boxhistory-pdf.php" target="_blank" class="btn btn-success text-white"><i class="bi bi-download"></i> Descargar PDF</a>
 </div>
 <br>
 		<div class="clearfix"></div>
@@ -36,7 +36,7 @@ $sells = SellData::getByBoxId($box->id);
 
 	<tr>
 		<td style="width:30px;">
-<a href="./index.php?view=b&id=<?php echo $box->id; ?>" class="btn btn-secondary btn-xs"><i class="fa fa-arrow-right"></i></a>			
+<a href="./index.php?view=b&id=<?php echo $box->id; ?>" class="btn btn-secondary btn-sm"><i class="bi bi-eye"></i></a>			
 		</td>
 		<td>
 

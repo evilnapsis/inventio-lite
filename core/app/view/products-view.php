@@ -4,7 +4,7 @@
 		<h1>Productos</h1>
 <div class="mb-3">
 	<a href="index.php?view=newproduct" class="btn btn-primary">Agregar Producto</a>
-  <a href="./products-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+  <a href="report/products-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 <br>
 

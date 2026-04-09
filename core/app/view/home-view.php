@@ -111,7 +111,7 @@ foreach($products as $product){
 
 if(count($products_array)>0){?>
 <div class="mb-3">
-	<a href="./alerts-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+	<a href="report/alerts-pdf.php" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 <br><table class="table table-bordered table-hover">
 	<thead>

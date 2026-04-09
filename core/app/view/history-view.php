@@ -9,7 +9,7 @@ $operations = OperationData::getAllByProductId($product->id);
 
 <h1><?php echo $product->name;; ?> <small>Historial</small></h1>
 <div class="mb-3">
-	<a href="./history-pdf.php?id=<?php echo $product->id; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+	<a href="report/history-pdf.php?id=<?php echo $product->id; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
 </div>
 
 <div class="row">

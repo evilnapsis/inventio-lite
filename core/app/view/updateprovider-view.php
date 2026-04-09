@@ -10,6 +10,7 @@ if(count($_POST)>0){
 	$user->update_provider();
 
 
+	$_SESSION["updated"] = "Proveedor actualizado correctamente";
 print "<script>window.location='index.php?view=providers';</script>";
 
 

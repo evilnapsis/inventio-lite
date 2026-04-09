@@ -35,7 +35,7 @@ if(count($_POST)>0){
 		}
 	}
 
-	setcookie("prdupd","true");
+	$_SESSION["updated"] = "Producto actualizado correctamente";
 	print "<script>window.location='index.php?view=editproduct&id=$_POST[product_id]';</script>";
 
 
