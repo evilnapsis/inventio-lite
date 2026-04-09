@@ -127,6 +127,11 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-money"></use>
             </svg> VENDER</a>
         </li>
+        <li class="nav-item"><a class="nav-link" href="./?view=sellpos">
+            <svg class="nav-icon">
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calculator"></use>
+            </svg> VENDER POS</a>
+        </li>
         <li class="nav-item"><a class="nav-link" href="./?view=sells">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cart"></use>

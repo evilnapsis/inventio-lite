@@ -9,7 +9,7 @@
 				<input type="text" name="product" class="form-control">
 			</div>
 			<div class="col-md-3">
-			<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+			<button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Buscar</button>
 			</div>
 		</div>
 		</form>
@@ -37,14 +37,12 @@ if(count($products)>0){
 		<th>Precio unitario</th>
 		<th>En inventario</th>
 		<th>Cantidad</th>
-		<th style="width:100px;"></th>
 	</thead>
 	<?php
 $products_in_cero=0;
 	 foreach($products as $product):
 $q= OperationData::getQYesF($product->id);
 	?>
-		<form method="post" action="index.php?view=addtore">
 	<tr class="<?php if($q<=$product->inventary_min){ echo "danger"; }?>">
 		<td style="width:80px;"><?php echo $product->id; ?></td>
 		<td><?php echo $product->name; ?></td>
@@ -53,14 +51,18 @@ $q= OperationData::getQYesF($product->id);
 		<td>
 			<?php echo $q; ?>
 		</td>
-		<td>
+		<td style="width:250px;">
+		<form method="post" action="index.php?view=addtore">
 		<input type="hidden" name="product_id" value="<?php echo $product->id; ?>">
-		<input type="" class="form-control" required name="q" placeholder="Cantidad de producto ..."></td>
-		<td style="width:100px;">
-		<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-refresh"></i> Agregar</button>
-		</td>
+    <div class="input-group">
+		<input type="number" class="form-control" required name="q" placeholder="Cantidad ...">
+      <span class="input-group-btn">
+		<button type="submit" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Agregar</button>
+      </span>
+    </div>
+		</form>
+    </td>
 	</tr>
-	</form>
 	<?php endforeach;?>
 </table>
 		</div>
