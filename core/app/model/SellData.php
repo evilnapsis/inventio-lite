@@ -1,8 +1,18 @@
 <?php
 class SellData {
 	public static $tablename = "sell";
+	public $id;
+	public $person_id;
+	public $user_id;
+	public $operation_type_id;
+	public $box_id;
+	public $total;
+	public $cash;
+	public $discount;
+	public $created_at;
 
-	public function SellData(){
+
+	public function __construct(){
 		$this->created_at = "NOW()";
 	}
 

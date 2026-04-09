@@ -1,6 +1,14 @@
 <?php
 class PostData {
 	public static $tablename = "slide";
+	public $id;
+	public $title;
+	public $content;
+	public $image;
+	public $is_public;
+	public $created_at;
+	public $user_id;
+
 
 	public  function createForm(){
 		$form = new lbForm();
@@ -11,12 +19,11 @@ class PostData {
 
 	}
 
-	public function PostData(){
+	public function __construct(){
 		$this->title = "";
 		$this->content = "";
 		$this->image = "";
-		$this->theme_id = "";
-				$this->user_id = "";
+		$this->user_id = "";
 		$this->is_public = "0";
 		$this->created_at = "NOW()";
 	}

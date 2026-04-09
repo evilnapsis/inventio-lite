@@ -1,14 +1,27 @@
 <?php
 class PersonData {
 	public static $tablename = "person";
+	public $id;
+	public $image;
+	public $name;
+	public $lastname;
+	public $company;
+	public $address1;
+	public $address2;
+	public $phone1;
+	public $phone2;
+	public $email1;
+	public $email2;
+	public $kind;
+	public $created_at;
 
 
-	public function PersonData(){
+
+	public function __construct(){
 		$this->name = "";
 		$this->lastname = "";
-		$this->email = "";
+		$this->email1 = "";
 		$this->image = "";
-		$this->password = "";
 		$this->created_at = "NOW()";
 	}
 
@@ -86,8 +99,7 @@ class PersonData {
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->name = $r['name'];
 			$array[$cnt]->lastname = $r['lastname'];
-			$array[$cnt]->email = $r['email1'];
-			$array[$cnt]->username = $r['username'];
+			$array[$cnt]->email1 = $r['email1'];
 			$array[$cnt]->phone1 = $r['phone1'];
 			$array[$cnt]->address1 = $r['address1'];
 			$array[$cnt]->created_at = $r['created_at'];
@@ -144,7 +156,6 @@ class PersonData {
 			$array[$cnt] = new PersonData();
 			$array[$cnt]->id = $r['id'];
 			$array[$cnt]->name = $r['name'];
-			$array[$cnt]->mail = $r['mail'];
 			$array[$cnt]->created_at = $r['created_at'];
 			$cnt++;
 		}

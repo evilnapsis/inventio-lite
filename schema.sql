@@ -128,11 +128,4 @@ create table configuration(
 	val varchar(255)
 );
 insert into configuration(short,name,kind,val) value("title","Titulo del Sistema",2,"Inventio Lite");
-insert into configuration(short,name,kind,val) value("use_image_product","Utilizar Imagenes en los productos",1,0);
-insert into configuration(short,name,kind,val) value("active_clients","Activar clientes",1,0);
-insert into configuration(short,name,kind,val) value("active_providers","Activar proveedores",1,0);
-insert into configuration(short,name,kind,val) value("active_categories","Activar categorias",1,0);
-insert into configuration(short,name,kind,val) value("active_reports_word","Activar reportes en Word",1,0);
-insert into configuration(short,name,kind,val) value("active_reports_excel","Activar reportes en Excel",1,0);
-insert into configuration(short,name,kind,val) value("active_reports_pdf","Activar reportes en PDF",1,0);
 

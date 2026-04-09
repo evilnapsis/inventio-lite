@@ -1,15 +1,13 @@
 <?php
 class BoxData {
 	public static $tablename = "box";
+	public $id;
+	public $created_at;
 
 
 
-	public function BoxData(){
-		$this->name = "";
-		$this->lastname = "";
-		$this->email = "";
-		$this->image = "";
-		$this->password = "";
+
+	public function __construct(){
 		$this->created_at = "NOW()";
 	}
 

@@ -1,8 +1,11 @@
 <?php
 class OperationTypeData {
 	public static $tablename = "operation_type";
+	public $id;
+	public $name;
 
-	public function OperationTypeData(){
+
+	public function __construct(){
 		$this->name = "";
 	}
 

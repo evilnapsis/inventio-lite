@@ -1,8 +1,23 @@
 <?php
 class ProductData {
 	public static $tablename = "product";
+	public $id;
+	public $image;
+	public $barcode;
+	public $name;
+	public $description;
+	public $inventary_min;
+	public $price_in;
+	public $price_out;
+	public $unit;
+	public $presentation;
+	public $user_id;
+	public $category_id;
+	public $created_at;
+	public $is_active;
 
-	public function ProductData(){
+
+	public function __construct(){
 		$this->name = "";
 		$this->price_in = "";
 		$this->price_out = "";
