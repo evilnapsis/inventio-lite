@@ -116,11 +116,11 @@ $ototal = -1*OperationData::GetOutputQYesF($product->id);
 	<div class="card-header">
 		HISTORIAL
 	</div>
-		<div class="card-body">
+		<div class="card-body p-0">
 
 
 		<?php if(count($operations)>0):?>
-			<table class="table table-bordered table-hover">
+			<table class="table table-bordered table-hover table-sm mb-0">
 			<thead>
 			<th></th>
 			<th>Cantidad</th>

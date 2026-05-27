@@ -29,7 +29,7 @@ if(count($products)>0){
 
 
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-sm mb-0">
 	<thead>
 		<th>Codigo</th>
 		<th>Nombre</th>
@@ -79,7 +79,7 @@ $q= OperationData::getQYesF($product->id);
 <?php if(isset($_SESSION["errors"])):?>
 <h2>Errores</h2>
 <p></p>
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-sm mb-0">
 <tr class="danger">
 	<th>Codigo</th>
 	<th>Producto</th>
@@ -112,7 +112,7 @@ $total = 0;
 		<div class="card-body">
 
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-sm mb-0">
 <thead>
 	<th style="width:30px;">Codigo</th>
 	<th style="width:30px;">Cantidad</th>
@@ -161,7 +161,7 @@ $clients = PersonData::getProviders();
   </div>
   <div class="row">
 <div class="col-md-6 col-md-offset-6">
-<table class="table table-bordered">
+<table class="table table-bordered table-sm mb-0">
 <tr>
 	<td><p>Subtotal</p></td>
 	<td><p><b>$ <?php echo number_format($total*.84); ?></b></p></td>

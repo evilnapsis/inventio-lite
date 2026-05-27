@@ -5,13 +5,13 @@
 	<div class="card-header">
 		BITACORA
 	</div>
-		<div class="card-body">
+		<div class="card-body p-0">
 		<?php
 		// Obtener todos los registro de la bitacora
 		$logs = BitacoraData::getAll();
 		if(count($logs)>0): ?>
 
-			<table class="table table-bordered table-hover">
+			<table class="table table-bordered table-hover table-sm mb-0">
 			<thead>
 			<th>Descripcion</th>
 			<th>Usuario</th>

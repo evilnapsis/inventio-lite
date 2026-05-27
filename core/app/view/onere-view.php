@@ -3,6 +3,7 @@
 <h1>Resumen de Compra</h1>
 <div class="mb-3">
   <a href="report/onere-pdf.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+  <a href="report/ticket-re.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-primary text-white"><i class="bi bi-receipt"></i> Imprimir Ticket</a>
 </div>
 <br>
 <?php if(isset($_GET["id"]) && $_GET["id"]!=""):?>
@@ -37,7 +38,7 @@ if(isset($_COOKIE["selled"])){
 		<div class="card-body">
 
 
-<table class="table table-bordered">
+<table class="table table-bordered table-sm mb-0">
 <?php if($sell->person_id!=""):
 $client = $sell->getPerson();
 ?>
@@ -56,7 +57,7 @@ $user = $sell->getUser();
 </tr>
 <?php endif; ?>
 </table>
-<br><table class="table table-bordered table-hover">
+<br><table class="table table-bordered table-hover table-sm mb-0">
 	<thead>
 		<th>Codigo</th>
 		<th>Cantidad</th>

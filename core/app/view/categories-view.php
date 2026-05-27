@@ -9,7 +9,7 @@
 	<div class="card-header">
 		CATEGORIAS
 	</div>
-		<div class="card-body">
+		<div class="card-body p-0">
 		<?php
 
 		$users = CategoryData::getAll();
@@ -18,7 +18,7 @@
 			?>
 
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table class="table table-bordered table-hover table-sm mb-0">
 			<thead>
 			<th>Nombre</th>
 			<th></th>

@@ -6,7 +6,7 @@
 <div class="card">
 	<div class="card-header">USUARIOS
 	</div>
-		<div class="card-body">
+		<div class="card-body p-0">
 
 
 		<?php
@@ -16,7 +16,7 @@
 			// si hay usuarios
 			?>
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table class="table table-bordered table-hover table-sm mb-0">
 			<thead>
 			<th>Nombre completo</th>
 			<th>Nombre de usuario</th>

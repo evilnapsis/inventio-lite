@@ -10,6 +10,7 @@ class SellData {
 	public $cash;
 	public $discount;
 	public $created_at;
+	public $date;
 
 
 	public function __construct(){
@@ -109,6 +110,12 @@ class SellData {
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new SellData());
 
+	}
+
+	public static function getSellsLast30Days(){
+		$sql = "select date(created_at) as date, sum(total) as total from ".self::$tablename." where operation_type_id=2 and created_at >= date_sub(now(), interval 30 day) group by date(created_at) order by date(created_at) asc";
+		$query = Executor::doit($sql);
+		return Model::many($query[0],new SellData());
 	}
 
 }

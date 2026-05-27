@@ -4,6 +4,12 @@
 		<div class="clearfix"></div>
 
 
+<div class="card">
+	<div class="card-header">
+		VENTAS
+	</div>
+		<div class="card-body p-0">
+
 <?php
 
 $products = SellData::getSells();
@@ -12,14 +18,8 @@ if(count($products)>0){
 
 	?>
 
-<div class="card">
-	<div class="card-header">
-		VENTAS
-	</div>
-		<div class="card-body">
-
 <div class="table-responsive">
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-sm mb-0">
 	<thead>
 		<th></th>
 		<th>Productos</th>
@@ -31,8 +31,9 @@ if(count($products)>0){
 	<?php foreach($products as $sell):?>
 
 	<tr>
-		<td style="width:30px;">
-		<a href="index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-link"><i class="bi bi-eye"></i></a></td>
+		<td style="width:60px;">
+		<a href="index.php?view=onesell&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-link" title="Ver Detalle"><i class="bi bi-eye"></i></a>
+		<a href="report/ticket.php?id=<?php echo $sell->id; ?>" target="_blank" class="btn btn-xs btn-link" title="Imprimir Ticket"><i class="bi bi-receipt"></i></a></td>
 
 		<td>
 

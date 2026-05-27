@@ -103,6 +103,22 @@ class ConfigurationData {
 		return $array;
 	}
 
+	public static function getByShort($short){
+		$sql = "select * from ".self::$tablename." where short=\"$short\"";
+		$query = Executor::doit($sql);
+		$found = null;
+		$data = new ConfigurationData();
+		while($r = $query[0]->fetch_array()){
+			$data->id = $r['id'];
+			$data->short = $r['short'];
+			$data->name = $r['name'];
+			$data->kind = $r['kind'];
+			$data->val = $r['val'];
+			$found = $data;
+			break;
+		}
+		return $found;
+	}
 
 }
 

@@ -1,0 +1,181 @@
+/* Card overrides to match inventio-new / Mecharocket style */
+.card {
+    border: 0 !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    margin-bottom: 1.5rem !important;
+    border-radius: 0.5rem !important;
+}
+
+.card-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    padding: 1.1rem 1.5rem !important;
+    color: #374151 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border-top-left-radius: 0.5rem !important;
+    border-top-right-radius: 0.5rem !important;
+}
+
+.card-body {
+    padding: 1.5rem !important;
+}
+
+.card-body.p-0 {
+    padding: 0 !important;
+}
+
+.card-footer {
+    background-color: #ffffff !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+    padding: 1rem 1.5rem !important;
+    border-bottom-left-radius: 0.5rem !important;
+    border-bottom-right-radius: 0.5rem !important;
+}
+
+/* Table overrides to match inventio-new / Mecharocket style */
+.table {
+    vertical-align: middle !important;
+    border-collapse: collapse !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.table thead, 
+.table .table-light {
+    background-color: #f8f9fa !important;
+    color: #374151 !important;
+}
+
+.table thead th {
+    font-weight: 700 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+    padding: 0.9rem 1.25rem !important;
+    text-transform: uppercase !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.05em !important;
+}
+
+.table tbody td {
+    padding: 0.9rem 1.25rem !important;
+    font-size: 0.9rem !important;
+}
+
+.table.table-sm thead th,
+.table.table-sm tbody td {
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.85rem !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+/* Titles and Headers styling */
+.body h1, 
+.body h2, 
+h1, 
+h2 {
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    color: #1f2937 !important;
+    margin-bottom: 1.25rem !important;
+    letter-spacing: -0.02em !important;
+}
+
+/* Form Controls & Inputs styling */
+.form-control, 
+.form-select {
+    border: 1px solid #d1d5db !important;
+    border-radius: 0.375rem !important;
+    padding: 0.475rem 0.75rem !important;
+    font-size: 0.9rem !important;
+    color: #374151 !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+}
+
+.form-control:focus, 
+.form-select:focus {
+    border-color: #5856d6 !important;
+    box-shadow: 0 0 0 0.25rem rgba(88, 86, 214, 0.18) !important;
+    outline: 0 !important;
+}
+
+/* Button overrides for standard Bootstrap 5 look */
+.btn {
+    border-radius: 0.375rem !important;
+    font-weight: 600 !important;
+    padding: 0.475rem 1rem !important;
+    font-size: 0.875rem !important;
+    transition: all 0.2s !important;
+}
+
+.btn-xs {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 0.25rem !important;
+}
+
+.btn-primary {
+    background-color: #5856d6 !important;
+    border-color: #5856d6 !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover {
+    background-color: #4643c1 !important;
+    border-color: #413ea3 !important;
+}
+
+.btn-info {
+    background-color: #39f !important;
+    border-color: #39f !important;
+    color: #ffffff !important;
+}
+
+.btn-info:hover {
+    background-color: #2982d9 !important;
+    border-color: #2475c4 !important;
+}
+
+/* Select2 overrides to match Bootstrap 5 theme */
+.select2-container--default .select2-selection--single {
+    border: 1px solid #d1d5db !important;
+    border-radius: 0.375rem !important;
+    height: calc(2.25rem + 2px) !important;
+    padding: 0.375rem 0.75rem !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 1.5 !important;
+    color: #374151 !important;
+    padding-left: 0 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100% !important;
+}
+
+/* Jumbotron style overrides for empty states */
+.jumbotron {
+    padding: 3rem 2rem !important;
+    background-color: #f8f9fa !important;
+    border-radius: 0.5rem !important;
+    text-align: center !important;
+    border: 1px dashed rgba(0, 0, 0, 0.1) !important;
+    margin: 1.5rem 0 !important;
+}
+
+.jumbotron h2 {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #4f5d73 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.jumbotron p {
+    color: #6c757d !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 0 !important;
+}

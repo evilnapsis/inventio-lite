@@ -6,7 +6,7 @@
 	<div class="card-header">
 		COMPRAS
 	</div>
-		<div class="card-body">
+		<div class="card-body p-0">
 
 
 
@@ -16,7 +16,7 @@ $products = SellData::getRes();
 if(count($products)>0){
 	?>
 <div class="table-responsive">
-<table class="table table-bordered table-hover	">
+<table class="table table-bordered table-hover table-sm mb-0">
 	<thead>
 		<th></th>
 		<th>Producto</th>
@@ -27,7 +27,10 @@ if(count($products)>0){
 	<?php foreach($products as $sell):?>
 
 	<tr>
-		<td style="width:30px;"><a href="index.php?view=onere&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-link"><i class="bi bi-eye"></i></a></td>
+		<td style="width:60px;">
+			<a href="index.php?view=onere&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-link" title="Ver Detalle"><i class="bi bi-eye"></i></a>
+			<a href="report/ticket-re.php?id=<?php echo $sell->id; ?>" target="_blank" class="btn btn-xs btn-link" title="Imprimir Ticket"><i class="bi bi-receipt"></i></a>
+		</td>
 
 		<td>
 

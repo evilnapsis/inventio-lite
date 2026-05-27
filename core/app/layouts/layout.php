@@ -1,328 +1,276 @@
 <!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v4.2.1
-* @link https://coreui.io
-* Copyright (c) 2022 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://coreui.io/license)
--->
-<!-- Breadcrumb-->
-<html lang="en">
+<html lang="es">
   <head>
     <base href="./">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <meta name="description" content="Inventio Lite - Sistema de Inventario y Ventas">
+    <meta name="author" content="Evilnapsis">
     <title>Inventio Lite - Dashboard</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <!-- Vendors styles-->
     <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
-    <link rel="stylesheet" href="assets/css/vendors/simplebar.css">
+    <link rel="stylesheet" href="css/vendors/simplebar.css">
     <!-- Main styles for this application-->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/custom-inventio.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="assets/datatables/datatables.min.css">
-    <script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
-    <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="vendors/sweetalert/sweetalert2.min.css">
-    <script type="text/javascript" src="vendors/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="vendors/datatables/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="vendors/select2/select2.min.css">
+    <script type="text/javascript" src="vendors/sweetalert/sweetalert2.all.min.js"></script>
   </head>
   <body>
-<?php if(!isset($_SESSION["user_id"])):?>
-<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-lg-6">
-<div class="card-group d-block d-md-flex row">
-<div class="card col-md-12 p-4 mb-0">
-<div class="card-body">
-<h1>INVENTIO <b>LITE</b></h1>
-<br>
-<p class="text-medium-emphasis">Iniciar Sesion al Sistema</p>
-<form method="post" action="./?action=processlogin">
-<div class="input-group mb-3"><span class="input-group-text">
-<svg class="icon">
-<use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-</svg></span>
-<input class="form-control" type="text" name="username" placeholder="Email">
-</div>
-<div class="input-group mb-4"><span class="input-group-text">
-<svg class="icon">
-<use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-</svg></span>
-<input class="form-control" name="password" type="password" placeholder="Password">
-</div>
-<div class="row">
-<div class="col-6">
-<button class="btn btn-primary px-4" type="submit">Iniciar Sesion</button>
-</div>
-<!--
-<div class="col-6 text-end">
-<button class="btn btn-link px-0" type="button">Forgot password?</button>
-</div>
--->
-</div>
-</form>
-<br><br><br>
-
-</div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-<?php else:?>
-    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
-
-<div class="sidebar-brand d-none d-md-flex">
-<div class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-
-<h4><a href="./" style="color: white;">INVENTIO<b>LITE</b></a></h4>
-
-</div>
-<div class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
-<h4><a href="./" style="color: white;">I<b>L</b></a></h4>
-
-</div>
-</div>
-
-
-
-
-
-
-
-
-
+    <?php if(isset($_SESSION["user_id"])):
+      $curr_user = UserData::getById($_SESSION["user_id"]);
+    ?>
+    <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
+      <div class="sidebar-header border-bottom">
+        <div class="sidebar-brand">
+          <span class="sidebar-brand-full" style="font-size:20px; font-weight: bold;"><i class="bi bi-box-seam me-2"></i>INVENTIO<span class="text-primary">LITE</span></span>
+          <span class="sidebar-brand-narrow">IL</span>
+        </div>
+        <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
+      </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item"><a class="nav-link" href="./">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
-            </svg> INICIO</a></li>
-        <!--<li class="nav-item"><a class="nav-link" href="./?view=sell">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-money"></use>
-            </svg> VENDER</a>
-        </li>-->
-        <li class="nav-item"><a class="nav-link" href="./?view=sellpos">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calculator"></use>
-            </svg> VENDER POS</a>
+        <li class="nav-item">
+          <a class="nav-link" href="./">
+            <i class="nav-icon bi bi-house"></i> Inicio
+          </a>
         </li>
 
-        <li class="nav-item"><a class="nav-link" href="./?view=sells">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cart"></use>
-            </svg> VENTAS</a>
+        <li class="nav-title">OPERACIONES</li>
+        <li class="nav-item">
+          <a class="nav-link" href="./?view=sellpos">
+            <i class="nav-icon bi bi-calculator"></i> Vender POS
+          </a>
         </li>
-        <!--<li class="nav-item"><a class="nav-link" href="./?view=box">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-3d"></use>
-            </svg> CAJA</a>
-        </li>-->
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-folder-open"></use>
-            </svg> CATALOGOS</a>
-          <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="./?view=products"><span class="nav-icon"></span> PRODUCTOS</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=categories"><span class="nav-icon"></span> CATEGORIAS  </a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=clients"><span class="nav-icon"></span> CLIENTES  </a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=providers"><span class="nav-icon"></span> PROVEEDORES  </a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="./?view=sells">
+            <i class="nav-icon bi bi-cart"></i> Ventas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./?view=alerts">
+            <i class="nav-icon bi bi-bell"></i> Alertas
+          </a>
+        </li>
+
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <i class="nav-icon bi bi-folder"></i> Catálogos
+          </a>
+          <ul class="nav-group-items compact">
+            <li class="nav-item"><a class="nav-link" href="./?view=products"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=categories"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Categorías</a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=clients"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Clientes</a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=providers"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Proveedores</a></li>
           </ul>
         </li>
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-storage"></use>
-            </svg> INVENTARIO</a>
-          <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="./?view=inventary"><span class="nav-icon"></span> INVENTARIO</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=repos"><span class="nav-icon"></span> NUEVA COMPRA  </a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=res"><span class="nav-icon"></span> COMPRAS  </a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=box"><span class="nav-icon"></span> CAJA  </a></li>
+
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <i class="nav-icon bi bi-boxes"></i> Inventario
+          </a>
+          <ul class="nav-group-items compact">
+            <li class="nav-item"><a class="nav-link" href="./?view=inventary"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Inventario</a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=repos"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Nueva Compra</a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=res"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Compras</a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=box"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Caja</a></li>
           </ul>
         </li>
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart"></use>
-            </svg> REPORTES</a>
-          <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="./?view=reports"><span class="nav-icon"></span> MOVIMIENTOS</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=sellreports"><span class="nav-icon"></span> REPORTE DE VENTAS  </a></li>
+
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <i class="nav-icon bi bi-bar-chart"></i> Reportes
+          </a>
+          <ul class="nav-group-items compact">
+            <li class="nav-item"><a class="nav-link" href="./?view=reports"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Movimientos</a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=sellreports"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Reporte de Ventas</a></li>
           </ul>
         </li>
-<!--
-        <li class="nav-title">Components</li>
--->
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-            </svg> ADMINISTRACION</a>
-          <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="./?view=users&opt=all"><span class="nav-icon"></span> USUARIOS</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=settings&opt=all"><span class="nav-icon"></span> AJUSTES</a></li>
+
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <i class="nav-icon bi bi-gear"></i> Administración
+          </a>
+          <ul class="nav-group-items compact">
+            <li class="nav-item"><a class="nav-link" href="./?view=users&opt=all"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Usuarios</a></li>
+            <li class="nav-item"><a class="nav-link" href="./?view=settings&opt=all"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Ajustes</a></li>
           </ul>
         </li>
-        <!--
-        <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/templates/installation/" target="_blank">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
-            </svg> Docs</a></li>
-        <li class="nav-item"><a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
-            </svg> Try CoreUI
-            <div class="fw-semibold">PRO</div>
-          </a></li>
-        -->
       </ul>
-      <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+      <div class="sidebar-footer border-top d-none d-md-flex">
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+      </div>
     </div>
-    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-      <header class="header header-sticky mb-4">
-        <div class="container-fluid">
-          <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
-            <svg class="icon icon-lg">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
-            </svg>
-          </button><a class="header-brand d-md-none" href="#">
-            <svg width="118" height="46" alt="CoreUI Logo">
-              <use xlink:href="assets/brand/coreui.svg#full"></use>
-            </svg></a>
-            <!--
-          <ul class="header-nav d-none d-md-flex">
-            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-          </ul>
-        -->
+    <div class="wrapper d-flex flex-column min-vh-100">
+      <header class="header header-sticky p-0 mb-4 shadow-sm">
+        <div class="container-fluid border-bottom px-4">
+          <button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()" style="margin-inline-start: -14px;">
+            <i class="bi bi-list fs-3"></i>
+          </button>
+          
           <ul class="header-nav ms-auto">
-            <!--
-            <li class="nav-item"><a class="nav-link" href="#">
-                <svg class="icon icon-lg">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                </svg></a></li>
-              -->
           </ul>
-          <ul class="header-nav ms-3">
-            <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/user.png" alt="user@email.com"></div>
+          <ul class="header-nav">
+            <li class="nav-item py-1">
+              <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <div class="avatar avatar-md bg-primary text-white d-flex align-items-center justify-content-center rounded-circle fw-bold">
+                  <?php echo substr($curr_user->name ?? '',0,1).substr($curr_user->lastname ?? '',0,1); ?>
+                </div>
               </a>
-              <div class="dropdown-menu dropdown-menu-end pt-0">
-                <div class="dropdown-header bg-light py-2">
-                  <div class="fw-semibold">Account</div>
-                </div><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                  </svg> Settings</a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="./logout.php">
-                  <svg class="icon me-2">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                  </svg> Logout </a>
+              <div class="dropdown-menu dropdown-menu-end pt-0 shadow border-0">
+                <div class="dropdown-header bg-light text-body-secondary fw-semibold rounded-top mb-2">Mi Cuenta</div>
+                <div class="px-3 py-2">
+                  <div class="fw-bold"><?php echo $curr_user->name." ".$curr_user->lastname; ?></div>
+                  <div class="small text-muted"><?php echo $curr_user->is_admin ? "Administrador" : "Usuario"; ?></div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="./?view=settings&opt=all">
+                  <i class="bi bi-gear me-2"></i> Ajustes
+                </a>
+                <a class="dropdown-item" href="./logout.php">
+                  <i class="bi bi-box-arrow-right me-2 text-danger"></i> Cerrar sesión
+                </a>
               </div>
             </li>
           </ul>
         </div>
-
       </header>
-      <div class="body flex-grow-1 px-3">
-        <div class="container-fluid">
-
-          <?php View::load("index");?>
-
+      <div class="body flex-grow-1">
+        <div class="container-fluid px-4">
+          <?php View::load("index"); ?>
         </div>
       </div>
-      <footer class="footer">
-        <div><a href="https://evilnapsis.com/">Evilnapsis </a> © 2026.</div>
-        <div class="ms-auto">Version <b>4.2</b></div> 
+      <footer class="footer px-4 border-top-0 bg-transparent text-muted small">
+        <div>Inventio Lite © 2026. Desarrollado por <a href="https://evilnapsis.com/" target="_blank" class="text-decoration-none">Evilnapsis</a></div>
+        <div class="ms-auto">v4.2</div>
       </footer>
+    </div>
+    <?php else:?>
+    <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-5">
+            <div class="card shadow-lg border-0">
+              <div class="card-body p-5">
+                <div class="text-center mb-4">
+                  <div class="display-1 text-primary mb-2"><i class="bi bi-box-seam-fill"></i></div>
+                  <h1 class="h3 fw-bold">Inventio Lite</h1>
+                  <p class="text-muted">Sistema de Inventario y Ventas</p>
+                </div>
+                <form method="post" action="./?action=processlogin">
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Usuario</label>
+                    <div class="input-group">
+                      <span class="input-group-text bg-white border-end-0"><i class="bi bi-person text-muted"></i></span>
+                      <input class="form-control border-start-0" name="username" required type="text" placeholder="Tu usuario o correo">
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label fw-bold">Contraseña</label>
+                    <div class="input-group">
+                      <span class="input-group-text bg-white border-end-0"><i class="bi bi-lock text-muted"></i></span>
+                      <input class="form-control border-start-0" name="password" required type="password" placeholder="Tu contraseña">
+                    </div>
+                  </div>
+                  <div class="d-grid mb-3">
+                    <button class="btn btn-primary btn-lg shadow-sm fw-bold" type="submit">Acceder</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <?php endif; ?>
     <!-- CoreUI and necessary plugins-->
     <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
     <script src="vendors/simplebar/js/simplebar.min.js"></script>
-    <!-- Plugins and scripts required by this view-->
-    <script src="vendors/chart.js/js/chart.min.js"></script>
-    <script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
-    <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
-    <script src="assets/datatables/datatables.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script>
-      $(document).ready(function() {
-        $(".table").DataTable();
+    <script src="vendors/datatables/datatables.min.js"></script>
+    <script src="vendors/select2/select2.full.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        const urlParams = new URLSearchParams(window.location.search);
+        const view = urlParams.get('view');
+
+        if (view !== 'onesell' && view !== 'onere' && view !== 'sellpos' && view !== 'repos') {
+          $(".table:has(thead)").not(".no-datatable").DataTable({
+            "responsive": true,
+            "language": {
+              "url": "./vendors/datatables/esmx.json"
+            }
+          });
+        }
+
+        // Initialize Select2 globally
+        if ($.fn.select2) {
+          $('.select2').each(function() {
+            $(this).select2({
+              width: '100%',
+              dropdownParent: $(this).parent()
+            });
+          });
+        }
+
+        // SweetAlert from Session
+        <?php if(isset($_SESSION["success"])): ?>
+          Swal.fire({
+            title: '¡Éxito!',
+            text: '<?php echo $_SESSION["success"]; ?>',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            timer: 4000,
+            timerProgressBar: true,
+            confirmButtonColor: '#5856d6'
+          });
+          <?php unset($_SESSION["success"]); ?>
+        <?php endif; ?>
+
+        <?php if(isset($_SESSION["updated"])): ?>
+          Swal.fire({
+            title: '¡Éxito!',
+            text: '<?php echo $_SESSION["updated"]; ?>',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            timer: 4000,
+            timerProgressBar: true,
+            confirmButtonColor: '#5856d6'
+          });
+          <?php unset($_SESSION["updated"]); ?>
+        <?php endif; ?>
+
+        <?php if(isset($_SESSION["deleted"])): ?>
+          Swal.fire({
+            title: '¡Éxito!',
+            text: '<?php echo $_SESSION["deleted"]; ?>',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            timer: 4000,
+            timerProgressBar: true,
+            confirmButtonColor: '#5856d6'
+          });
+          <?php unset($_SESSION["deleted"]); ?>
+        <?php endif; ?>
+
+        <?php if(isset($_SESSION["error"])): ?>
+          Swal.fire({
+            title: '¡Error!',
+            text: '<?php echo $_SESSION["error"]; ?>',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            timer: 4000,
+            timerProgressBar: true,
+            confirmButtonColor: '#d33'
+          });
+          <?php unset($_SESSION["error"]); ?>
+        <?php endif; ?>
       });
     </script>
-
-<?php if(isset($_SESSION["success"])):?>
-	<script>
-		Swal.fire({
-			icon: 'success',
-			title: '¡Éxito!',
-			text: '<?php echo $_SESSION["success"]; ?>',
-			confirmButtonText: 'Aceptar'
-		});
-	</script>
-<?php unset($_SESSION["success"]); ?>
-<?php endif; ?>
-
-<?php if(isset($_SESSION["updated"])):?>
-	<script>
-		Swal.fire({
-			icon: 'success',
-			title: '¡Éxito!',
-			text: '<?php echo $_SESSION["updated"]; ?>',
-			confirmButtonText: 'Aceptar'
-		});
-	</script>
-<?php unset($_SESSION["updated"]); ?>
-<?php endif; ?>
-
-<?php if(isset($_SESSION["deleted"])):?>
-	<script>
-		Swal.fire({
-			icon: 'success',
-			title: '¡Éxito!',
-			text: '<?php echo $_SESSION["deleted"]; ?>',
-			confirmButtonText: 'Aceptar'
-		});
-	</script>
-<?php unset($_SESSION["deleted"]); ?>
-<?php endif; ?>
-
-<?php if(isset($_SESSION["error"])):?>
-	<script>
-		Swal.fire({
-			icon: 'error',
-			title: '¡Error!',
-			text: '<?php echo $_SESSION["error"]; ?>',
-			confirmButtonText: 'Aceptar'
-		});
-	</script>
-<?php unset($_SESSION["error"]); ?>
-<?php endif; ?>
-
   </body>
 </html>

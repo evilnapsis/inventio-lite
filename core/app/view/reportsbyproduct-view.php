@@ -49,7 +49,7 @@ if($px<=$npaginas):
 <?php endif; ?>
 </div>
 <div class="clearfix"></div>
-<br><table class="table table-bordered table-hover">
+<br><table class="table table-bordered table-hover table-sm mb-0">
 	<thead>
 		<th>Codigo</th>
 		<th>Nombre</th>

@@ -13,7 +13,7 @@ if($product!=null):
 </div>
 
 <div class="well">
-		<table class="table table-bordered">
+		<table class="table table-bordered table-sm mb-0">
 				<thead>
 					<tr>
 						<th>Fecha de incio <a href="#" class="btn btn-sm btn-default" id="dp4" data-date-format="yyyy-mm-dd" data-date="2012-02-20">Cambiar</a></th>
@@ -56,7 +56,7 @@ if($product!=null):
 <script>
 	$("#wellcome").hide();
 </script>
-<table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered table-sm mb-0">
 	<thead>
 		<th>Id</th>
 		<th>Producto</th>

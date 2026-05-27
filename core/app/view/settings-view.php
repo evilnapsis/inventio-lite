@@ -13,10 +13,10 @@ $configurations = ConfigurationData::getAll();
 <div class="card">
 	<div class="card-header">AJUSTES
 	</div>
-		<div class="card-body">
+		<div class="card-body p-0">
 
 
-<table class="table table-bordered">
+<table class="table table-bordered table-sm mb-0">
 <thead>
 	<th>Clave</th>
 	<th>Valor</th>

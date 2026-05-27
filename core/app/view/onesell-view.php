@@ -2,6 +2,7 @@
 <h1>Resumen de Venta</h1>
 <div class="mb-3">
   <a href="report/onesell-pdf.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a>
+  <a href="report/ticket.php?id=<?php echo $_GET["id"]; ?>" target="_blank" class="btn btn-primary text-white"><i class="bi bi-receipt"></i> Imprimir Ticket</a>
 </div>
 <br>
 
@@ -32,7 +33,7 @@ if(isset($_COOKIE["selled"])){
 ?>
 <div class="card">
 	<div class="card-body">
-<table class="table table-bordered">
+<table class="table table-bordered table-sm mb-0">
 <?php if($sell->person_id!=""):
 $client = $sell->getPerson();
 ?>
@@ -51,7 +52,7 @@ $user = $sell->getUser();
 </tr>
 <?php endif; ?>
 </table>
-<br><table class="table table-bordered table-hover">
+<br><table class="table table-bordered table-hover table-sm mb-0">
 	<thead>
 		<th>Codigo</th>
 		<th>Cantidad</th>
@@ -78,7 +79,7 @@ $user = $sell->getUser();
 <br><br>
 <div class="row">
 <div class="col-md-4">
-<table class="table table-bordered">
+<table class="table table-bordered table-sm mb-0">
 	<tr>
 		<td><h4>Descuento:</h4></td>
 		<td><h4>$ <?php echo number_format($sell->discount,2,'.',','); ?></h4></td>

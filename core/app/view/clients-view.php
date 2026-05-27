@@ -11,7 +11,7 @@
 	<div class="card-header">
 		CLIENTES
 	</div>
-		<div class="card-body">
+		<div class="card-body p-0">
 
 
 		<?php
@@ -22,7 +22,7 @@
 			?>
 
 			<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table class="table table-bordered table-hover table-sm mb-0">
 			<thead>
 			<th>Nombre completo</th>
 			<th>Direccion</th>

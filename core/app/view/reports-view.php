@@ -85,7 +85,7 @@ $products = ProductData::getAll();
 
 
 			 <?php if(count($operations)>0):?>
-<table class="table table-bordered">
+<table class="table table-bordered table-sm mb-0">
 	<thead>
 		<th>Id</th>
 		<th>Producto</th>

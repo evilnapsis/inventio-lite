@@ -63,7 +63,7 @@ $clients = PersonData::getClients();
 			 <?php if(count($operations)>0):?>
 			 	<?php $supertotal = 0; ?>
 <a href="report/sellreports-pdf.php?client_id=<?php echo $_GET["client_id"]; ?>&sd=<?php echo $_GET["sd"]; ?>&ed=<?php echo $_GET["ed"]; ?>" target="_blank" class="btn btn-success text-white"><i class="fa fa-download"></i> Descargar PDF</a><br><br>
-<table class="table table-bordered">
+<table class="table table-bordered table-sm mb-0">
 	<thead>
 		<th>Id</th>
 		<th>Subtotal</th>

@@ -11,7 +11,7 @@
 <div class="card">
 	<div class="card-header">INVENTARIO
 	</div>
-		<div class="card-body">
+		<div class="card-body p-0">
 
 
 
@@ -21,7 +21,7 @@ $products = ProductData::getAll();
 if(count($products)>0){
 	?>
 <div class="table-responsive">
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-sm mb-0">
 	<thead>
 		<th>Codigo</th>
 		<th>Nombre</th>

@@ -24,7 +24,7 @@ if(count($products)>0){
 $total_total = 0;
 ?>
 <br>
-<table class="table table-bordered table-hover	">
+<table class="table table-bordered table-hover table-sm mb-0">
 	<thead>
 		<th></th>
 		<th>Total</th>

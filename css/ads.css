@@ -1,0 +1,56 @@
+#carbonads {
+  position: static;
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  overflow: hidden;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  text-align: left;
+  background-color: var(--cui-white);
+  border: var(--cui-border-width) solid var(--cui-border-color);
+  border-radius: var(--cui-border-radius);
+}
+#carbonads a {
+  color: var(--cui-body-color);
+  text-decoration: none;
+}
+
+.carbon-img {
+  float: left;
+  margin-right: 0.75rem;
+}
+
+.carbon-poweredby {
+  display: block;
+  margin-top: 0.75rem;
+  color: var(--cui-body-color) !important;
+}
+
+.banner-coreui-pro {
+  display: block;
+  min-height: 126px;
+  padding: 0.7rem 1rem;
+  color: var(--cui-body-color);
+  text-decoration: none;
+  background-image: url("../assets/img/background-pro-yellow.jpg");
+  background-position: 50%;
+  background-clip: border-box;
+  background-size: cover;
+  border: var(--cui-border-width) solid var(--cui-border-color-translucent);
+  border-radius: var(--cui-border-radius);
+}
+
+.banner-coreui-pro-logo {
+  float: left;
+  margin-right: 1rem;
+}
+
+[data-coreui-theme=dark] #carbonads {
+  background-color: var(--cui-tertiary-bg);
+}
+[data-coreui-theme=dark] .banner-coreui-pro {
+  background-image: url("../assets/img/background-pro.jpg");
+}
+
+/*# sourceMappingURL=ads.css.map */

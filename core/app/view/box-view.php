@@ -22,7 +22,7 @@ $total_total = 0;
 	</div>
 		<div class="card-body">
 <div class="table-responsive">
-<table class="table table-bordered table-hover	">
+<table class="table table-bordered table-hover table-sm mb-0">
 	<thead>
 		<th></th>
 		<th>Productos</th>
