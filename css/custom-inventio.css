@@ -179,3 +179,12 @@ h2 {
     font-size: 0.95rem !important;
     margin-bottom: 0 !important;
 }
+
+.card-hover {
+    transition: transform 0.22s ease-in-out, box-shadow 0.22s ease-in-out !important;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+}
