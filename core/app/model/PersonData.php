@@ -1,6 +1,6 @@
 <?php
 /**
- * kind: 1 = Cliente, 2 = Proveedor
+ * Modelo unificado para Clientes (kind=1) y Proveedores (kind=2).
  */
 class PersonData {
 	public static $tablename = "person";

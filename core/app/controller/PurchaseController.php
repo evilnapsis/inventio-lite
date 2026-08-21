@@ -4,6 +4,9 @@ namespace App\Controller;
 use App\Service\PurchaseService;
 use ViewEngine;
 
+/**
+ * Consulta y gestión del historial de compras/reabastecimientos.
+ */
 class PurchaseController {
 	private $purchaseService;
 	private $baseFolder;

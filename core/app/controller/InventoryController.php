@@ -4,6 +4,9 @@ namespace App\Controller;
 use App\Service\InventoryService;
 use ViewEngine;
 
+/**
+ * Maneja la vista del resumen general de existencias e inventario.
+ */
 class InventoryController {
 	private $inventoryService;
 

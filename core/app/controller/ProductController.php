@@ -6,6 +6,9 @@ use ViewEngine;
 use Req;
 use Upload;
 
+/**
+ * Gestiona el catálogo de productos, su historial de movimientos y la carga de imágenes.
+ */
 class ProductController {
 	private $productService;
 	private $baseFolder;

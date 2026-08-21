@@ -1,4 +1,7 @@
 <?php
+/**
+ * Modelo para el registro de movimientos de almacén (entradas y salidas de stock).
+ */
 class OperationData {
 	public static $tablename = "operation";
 	public $id;

@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Calcula existencias totales, valor del inventario e indicadores de stock.
+ */
 class InventoryService {
 	public function getInventorySummary(): array {
 		$products = \ProductData::getAll();

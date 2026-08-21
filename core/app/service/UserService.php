@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Gestiona el alta, modificación y eliminación segura de usuarios y sus credenciales.
+ */
 class UserService {
 	public function getAllUsers(): array {
 		return \UserData::getAll();

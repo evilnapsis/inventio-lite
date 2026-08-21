@@ -6,6 +6,9 @@ use App\Service\SellService;
 use ViewEngine;
 use Req;
 
+/**
+ * Gestiona la interfaz del Punto de Venta (POS): búsqueda en vivo, carrito interactivo y cobro.
+ */
 class PosController {
 	private $cartService;
 	private $sellService;

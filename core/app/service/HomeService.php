@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Prepara las métricas, listas recientes y datos para la gráfica del Dashboard.
+ */
 class HomeService {
 	public function getDashboardData(): array {
 		$products = \ProductData::getAll();

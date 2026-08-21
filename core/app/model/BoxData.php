@@ -1,4 +1,7 @@
 <?php
+/**
+ * Modelo para representar las sesiones y cortes de caja registrados en la base de datos.
+ */
 class BoxData {
 	public static $tablename = "box";
 	public $id;

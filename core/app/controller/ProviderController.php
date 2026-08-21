@@ -5,6 +5,9 @@ use App\Service\PersonService;
 use ViewEngine;
 use Req;
 
+/**
+ * Administra el catálogo de proveedores (kind = 2).
+ */
 class ProviderController {
 	private $personService;
 	private $baseFolder;

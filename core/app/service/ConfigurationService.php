@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Servicio para consultar y actualizar parámetros de configuración del sistema.
+ */
 class ConfigurationService {
 	public function getAll(): array {
 		return \ConfigurationData::getAll();

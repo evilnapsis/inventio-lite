@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Servicio para procesar datos de reportes de kardex/movimientos y ventas por rango.
+ */
 class ReportService {
 	public function getMovements($productId, $start, $end): array {
 		if (empty($productId)) {

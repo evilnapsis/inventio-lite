@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Servicio para evaluar el nivel de inventario y calcular alertas de stock bajo.
+ */
 class AlertService {
 	// Productos en o por debajo de su minimo de inventario, con el mismo criterio de severidad
 	// que alerts-view.php (0 = sin existencias, <=min/2 = muy pocas, <=min = pocas).

@@ -5,6 +5,9 @@ use App\Service\PersonService;
 use ViewEngine;
 use Req;
 
+/**
+ * Administra el registro y mantenimiento de clientes (kind = 1).
+ */
 class ClientController {
 	private $personService;
 	private $baseFolder;

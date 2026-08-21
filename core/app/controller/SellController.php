@@ -4,6 +4,9 @@ namespace App\Controller;
 use App\Service\SellService;
 use ViewEngine;
 
+/**
+ * Gestiona la lista de ventas realizadas, detalle del ticket y cancelación de notas.
+ */
 class SellController {
 	private $sellService;
 	private $baseFolder;

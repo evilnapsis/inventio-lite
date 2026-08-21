@@ -5,6 +5,9 @@ use App\Service\ConfigurationService;
 use ViewEngine;
 use Req;
 
+/**
+ * Controla el panel de configuración global del sistema en la base de datos.
+ */
 class SettingsController {
 	private $configService;
 	private $baseFolder;

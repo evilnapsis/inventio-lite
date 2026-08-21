@@ -1,4 +1,7 @@
 <?php
+/**
+ * Modelo para las categorías de clasificación de productos.
+ */
 class CategoryData {
 	public static $tablename = "category";
 	public $id;

@@ -6,6 +6,9 @@ use App\Service\PurchaseService;
 use ViewEngine;
 use Req;
 
+/**
+ * Controla el proceso de compra y reposición de inventario de mercancía a proveedores.
+ */
 class ReposController {
 	private $cartService;
 	private $purchaseService;

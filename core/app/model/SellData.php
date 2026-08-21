@@ -1,8 +1,6 @@
 <?php
 /**
- * operation_type_id: 2 = venta, 1 = "re" (remision/compra) -- ver modulo Repos, sin migrar todavia.
- * add()/add_with_client()/add_re()/add_re_with_client() devuelven [true, insertId] -- ese
- * insertId (indice 1) sigue siendo usado por processre-view.php y processrepos-view.php (legacy).
+ * Modelo para encabezados de transacciones: Ventas (operation_type_id=2) y Compras (operation_type_id=1).
  */
 class SellData {
 	public static $tablename = "sell";

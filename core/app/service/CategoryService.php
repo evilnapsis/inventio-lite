@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Servicio para la gestión y desvinculación segura de categorías de productos.
+ */
 class CategoryService {
 	public function getAllCategories(): array {
 		return \CategoryData::getAll();

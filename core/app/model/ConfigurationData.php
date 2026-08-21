@@ -1,4 +1,7 @@
 <?php
+/**
+ * Modelo para administrar variables y opciones globales de configuración en BD.
+ */
 class ConfigurationData {
 	public static $tablename = "configuration";
 	public $id;

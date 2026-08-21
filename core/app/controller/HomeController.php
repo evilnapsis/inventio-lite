@@ -4,6 +4,9 @@ namespace App\Controller;
 use App\Service\HomeService;
 use ViewEngine;
 
+/**
+ * Controla la vista principal (Dashboard) del sistema.
+ */
 class HomeController {
 	private $homeService;
 

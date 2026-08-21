@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Gestiona el ciclo de vida del producto y sus entradas/existencias iniciales.
+ */
 class ProductService {
 	public function getAllProducts(): array {
 		return \ProductData::getAll();

@@ -5,6 +5,9 @@ use App\Service\CategoryService;
 use ViewEngine;
 use Req;
 
+/**
+ * Gestiona el catálogo de categorías de productos (listar, crear, editar, eliminar).
+ */
 class CategoryController {
 	private $categoryService;
 	private $baseFolder;

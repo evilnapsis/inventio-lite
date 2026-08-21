@@ -5,6 +5,9 @@ use App\Service\UserService;
 use ViewEngine;
 use Req;
 
+/**
+ * Controla la administración de usuarios del sistema (creación, roles y permisos).
+ */
 class UserController {
 	private $userService;
 	private $baseFolder;

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Modelo de usuarios del sistema, sus datos de acceso y roles.
+ */
 class UserData {
 	public static $tablename = "user";
 	public $id;

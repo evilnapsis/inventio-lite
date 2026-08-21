@@ -5,6 +5,9 @@ use App\Service\SettingsService;
 use ViewEngine;
 use Req;
 
+/**
+ * Controla la página de perfil personal del usuario autenticado y el cambio de su contraseña.
+ */
 class ProfileController {
 	private $settingsService;
 	private $baseFolder;

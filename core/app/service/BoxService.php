@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Agrupa la lógica de caja: cálculo de ingresos no procesados, cortes de caja y totales.
+ */
 class BoxService {
 	public function getUnboxedSells(): array {
 		return \SellData::getSellsUnBoxed();

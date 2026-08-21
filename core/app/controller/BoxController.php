@@ -4,6 +4,9 @@ namespace App\Controller;
 use App\Service\BoxService;
 use ViewEngine;
 
+/**
+ * Controla el flujo de caja diario, cierres de caja e historial de cortes.
+ */
 class BoxController {
 	private $boxService;
 	private $baseFolder;

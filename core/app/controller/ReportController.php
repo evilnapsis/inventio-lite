@@ -5,6 +5,9 @@ use App\Service\ReportService;
 use ViewEngine;
 use Req;
 
+/**
+ * Genera reportes filtrables por fecha de movimientos de inventario y ventas.
+ */
 class ReportController {
 	private $reportService;
 

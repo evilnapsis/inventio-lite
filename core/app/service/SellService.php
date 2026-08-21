@@ -1,6 +1,9 @@
 <?php
 namespace App\Service;
 
+/**
+ * Procesa ventas, validaciones de stock previa a transacción y eliminación de registros.
+ */
 class SellService {
 	public function getAllSells(): array {
 		return \SellData::getSells();

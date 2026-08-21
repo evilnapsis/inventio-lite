@@ -1,4 +1,7 @@
 <?php
+/**
+ * Modelo para definir el tipo de operación de inventario ("entrada" o "salida").
+ */
 class OperationTypeData {
 	public static $tablename = "operation_type";
 	public $id;

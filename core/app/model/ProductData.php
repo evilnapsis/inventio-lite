@@ -1,4 +1,7 @@
 <?php
+/**
+ * Modelo de datos del catálogo de artículos y productos del almacén.
+ */
 class ProductData {
 	public static $tablename = "product";
 	public $id;
