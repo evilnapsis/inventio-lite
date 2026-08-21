@@ -1,0 +1,72 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Agregar Usuario{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+  <h1>Agregar Usuario</h1>
+  <br>
+<div class="card">
+  <div class="card-header">USUARIOS
+  </div>
+    <div class="card-body">
+
+    <form class="form-horizontal" method="post" action="{{ base_url }}/user/create" role="form">
+      {{ csrf_field() }}
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Nombre*</label>
+    <div class="col-md-6">
+      <input type="text" name="name" class="form-control" value="{{ old.name|default('') }}" placeholder="Nombre">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Apellido*</label>
+    <div class="col-md-6">
+      <input type="text" name="lastname" required class="form-control" value="{{ old.lastname|default('') }}" placeholder="Apellido">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Nombre de usuario*</label>
+    <div class="col-md-6">
+      <input type="text" name="username" class="form-control" required value="{{ old.username|default('') }}" placeholder="Nombre de usuario">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Email*</label>
+    <div class="col-md-6">
+      <input type="text" name="email" class="form-control" value="{{ old.email|default('') }}" placeholder="Email">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Contraseña</label>
+    <div class="col-md-6">
+      <input type="password" name="password" class="form-control" placeholder="Contraseña">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Es administrador</label>
+    <div class="col-md-6">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="is_admin">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <p class="alert alert-info">* Campos obligatorios</p>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-primary">Agregar Usuario</button>
+    </div>
+  </div>
+</form>
+    </div>
+</div>
+
+  </div>
+</div>
+{% endblock %}

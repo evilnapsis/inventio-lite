@@ -1,0 +1,69 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Productos{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h1>Productos</h1>
+    <div class="mb-3">
+      <a href="{{ base_url }}/product/new" class="btn btn-primary">Agregar Producto</a>
+      <a href="report/products-pdf.php" target="_blank" class="btn btn-success text-white"><i class="bi bi-download"></i> Descargar PDF</a>
+    </div>
+    <br>
+
+    <div class="card">
+      <div class="card-header">
+        PRODUCTOS
+      </div>
+      <div class="card-body p-0">
+        {% if products|length > 0 %}
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm mb-0">
+              <thead>
+                <th>Codigo</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio Entrada</th>
+                <th>Precio Salida</th>
+                <th>Categoria</th>
+                <th>Minima</th>
+                <th>Activo</th>
+                <th></th>
+              </thead>
+              <tbody>
+                {% for product in products %}
+                  <tr>
+                    <td>{{ product.barcode }}</td>
+                    <td>
+                      {% if product.image %}
+                        <img src="storage/products/{{ product.image }}" style="width:64px;">
+                      {% endif %}
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td>$ {{ product.price_in|number_format(2, '.', ',') }}</td>
+                    <td>$ {{ product.price_out|number_format(2, '.', ',') }}</td>
+                    <td>{% if product.category_id %}{{ product.getCategory.name }}{% else %}<center>----</center>{% endif %}</td>
+                    <td>{{ product.inventary_min }}</td>
+                    <td>{% if product.is_active %}<i class="bi bi-check-lg"></i>{% endif %}</td>
+                    <td style="width:150px;">
+                      <a href="{{ base_url }}/product/{{ product.id }}/edit" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                      <form action="{{ base_url }}/product/{{ product.id }}/delete" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar este producto?');">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                      </form>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="jumbotron p-4">
+            <h2>No hay productos</h2>
+            <p>No se han agregado productos a la base de datos, puedes agregar uno dando click en el boton <b>"Agregar Producto"</b>.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

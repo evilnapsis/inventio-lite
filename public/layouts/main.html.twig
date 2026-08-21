@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <base href="{{ base_url }}/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Inventio Lite - Sistema de Inventario y Ventas">
+    <meta name="author" content="Evilnapsis">
+    <title>Inventio Lite - {% block title %}Dashboard{% endblock %}</title>
+    <!-- Vendors & Application Styles -->
+    <link rel="stylesheet" href="assets/vendor/simplebar/css/simplebar.css">
+    <link rel="stylesheet" href="assets/css/vendors/simplebar.css">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/custom-inventio.css" rel="stylesheet">
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/select2/select2.min.css">
+    <script type="text/javascript" src="assets/vendor/sweetalert/sweetalert2.all.min.js"></script>
+  </head>
+  <body>
+    <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
+      <div class="sidebar-header border-bottom">
+        <div class="sidebar-brand">
+          <span class="sidebar-brand-full" style="font-size:20px; font-weight: bold;"><i class="bi bi-box-seam me-2"></i>INVENTIO<span class="text-primary">LITE</span></span>
+          <span class="sidebar-brand-narrow">IL</span>
+        </div>
+        <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
+      </div>
+      <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ base_url }}/home">
+            <i class="nav-icon bi bi-house"></i> Inicio
+          </a>
+        </li>
+
+        <li class="nav-title">OPERACIONES</li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ base_url }}/pos">
+            <i class="nav-icon bi bi-calculator"></i> Vender POS
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ base_url }}/sells">
+            <i class="nav-icon bi bi-cart"></i> Ventas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ base_url }}/alerts">
+            <i class="nav-icon bi bi-bell"></i> Alertas
+          </a>
+        </li>
+
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <i class="nav-icon bi bi-folder"></i> Catálogos
+          </a>
+          <ul class="nav-group-items compact">
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/products"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/categories"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Categorías</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/clients"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Clientes</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/providers"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Proveedores</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <i class="nav-icon bi bi-boxes"></i> Inventario
+          </a>
+          <ul class="nav-group-items compact">
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/inventory"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Inventario</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/repos"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Nueva Compra</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/purchases"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Compras</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/box"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Caja</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <i class="nav-icon bi bi-bar-chart"></i> Reportes
+          </a>
+          <ul class="nav-group-items compact">
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/reports/movements"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Movimientos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/reports/sales"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Reporte de Ventas</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-group">
+          <a class="nav-link nav-group-toggle" href="#">
+            <i class="nav-icon bi bi-gear"></i> Administración
+          </a>
+          <ul class="nav-group-items compact">
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/users"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Usuarios</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ base_url }}/settings"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Ajustes</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="sidebar-footer border-top d-none d-md-flex">
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+      </div>
+    </div>
+    <div class="wrapper d-flex flex-column min-vh-100">
+      <header class="header header-sticky p-0 mb-4 shadow-sm">
+        <div class="container-fluid border-bottom px-4">
+          <button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()" style="margin-inline-start: -14px;">
+            <i class="bi bi-list fs-3"></i>
+          </button>
+
+          <ul class="header-nav ms-auto">
+          </ul>
+          <ul class="header-nav">
+            <li class="nav-item py-1">
+              <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <div class="avatar avatar-md bg-primary text-white d-flex align-items-center justify-content-center rounded-circle fw-bold">
+                  {{ curr_user.name|default('')|slice(0, 1) }}{{ curr_user.lastname|default('')|slice(0, 1) }}
+                </div>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end pt-0 shadow border-0">
+                <div class="dropdown-header bg-light text-body-secondary fw-semibold rounded-top mb-2">Mi Cuenta</div>
+                <div class="px-3 py-2">
+                  <div class="fw-bold">{{ curr_user.name }} {{ curr_user.lastname }}</div>
+                  <div class="small text-muted">{{ curr_user.is_admin ? "Administrador" : "Usuario" }}</div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ base_url }}/profile">
+                  <i class="bi bi-person me-2"></i> Mi Perfil
+                </a>
+                <a class="dropdown-item" href="{{ base_url }}/settings">
+                  <i class="bi bi-gear me-2"></i> Ajustes
+                </a>
+                <a class="dropdown-item" href="./logout.php">
+                  <i class="bi bi-box-arrow-right me-2 text-danger"></i> Cerrar sesión
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <div class="body flex-grow-1">
+        <div class="container-fluid px-4">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+      <footer class="footer px-4 border-top-0 bg-transparent text-muted small">
+        <div>Inventio Lite © 2026. Desarrollado por <a href="https://evilnapsis.com/" target="_blank" class="text-decoration-none">Evilnapsis</a></div>
+        <div class="ms-auto">v4.2</div>
+      </footer>
+    </div>
+    <!-- CoreUI and necessary plugins-->
+    <script src="assets/vendor/@coreui/coreui/js/coreui.bundle.min.js"></script>
+    <script src="assets/vendor/simplebar/js/simplebar.min.js"></script>
+    <script src="assets/vendor/datatables/datatables.min.js"></script>
+    <script src="assets/vendor/select2/select2.full.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(".table:has(thead)").not(".no-datatable").DataTable({
+          "responsive": true,
+          "language": {
+            "url": "{{ base_url }}/assets/vendor/datatables/esmx.json"
+          }
+        });
+
+        if ($.fn.select2) {
+          $('.select2').each(function() {
+            $(this).select2({
+              width: '100%',
+              dropdownParent: $(this).parent()
+            });
+          });
+        }
+
+        {% if flash_success %}
+          Swal.fire({
+            title: '¡Éxito!',
+            text: {{ flash_success|json_encode|raw }},
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            timer: 4000,
+            timerProgressBar: true,
+            confirmButtonColor: '#5856d6'
+          });
+        {% endif %}
+
+        {% if flash_updated %}
+          Swal.fire({
+            title: '¡Éxito!',
+            text: {{ flash_updated|json_encode|raw }},
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            timer: 4000,
+            timerProgressBar: true,
+            confirmButtonColor: '#5856d6'
+          });
+        {% endif %}
+
+        {% if flash_deleted %}
+          Swal.fire({
+            title: '¡Éxito!',
+            text: {{ flash_deleted|json_encode|raw }},
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            timer: 4000,
+            timerProgressBar: true,
+            confirmButtonColor: '#5856d6'
+          });
+        {% endif %}
+
+        {% if flash_error %}
+          Swal.fire({
+            title: '¡Error!',
+            text: {{ flash_error|json_encode|raw }},
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            timer: 4000,
+            timerProgressBar: true,
+            confirmButtonColor: '#d33'
+          });
+        {% endif %}
+
+        {% for field, message in errors|default([]) %}
+          Swal.fire({
+            title: 'Error',
+            text: {{ message|json_encode|raw }},
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#d33'
+          });
+        {% endfor %}
+      });
+    </script>
+  </body>
+</html>

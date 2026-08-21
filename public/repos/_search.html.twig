@@ -1,0 +1,31 @@
+{% if term is empty or rows is empty %}
+	<div class="col-md-12"><p class="alert alert-danger">No se encontró el producto</p></div>
+{% else %}
+	{% for row in rows %}
+		{% set product = row.product %}
+		{% set stock = row.q %}
+		<div class="col-lg-2 col-md-4 col-6 mb-3">
+			<div class="card h-100 {% if stock <= product.inventary_min %}border-danger{% endif %}">
+				{% if product.image %}
+					<img src="storage/products/{{ product.image }}" class="card-img-top" style="height: 100px; object-fit: cover;">
+				{% else %}
+					<div class="bg-light text-center py-2" style="height: 100px;">
+						<i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+					</div>
+				{% endif %}
+				<div class="card-body p-1">
+					<h6 class="card-title mb-1 text-truncate small" title="{{ product.name }}">{{ product.name }}</h6>
+					<p class="card-text mb-1" style="font-size: 0.75rem;">Stock: <b>{{ stock }}</b></p>
+					<p class="card-text fw-bold text-success mb-2" style="font-size: 0.85rem;">Comp: $ {{ product.price_in|number_format(2) }}</p>
+
+					<div class="input-group input-group-sm">
+						<input type="number" id="q-{{ product.id }}" class="form-control" value="1" min="1">
+						<button class="btn btn-success" onclick="addToCart({{ product.id }})">
+							<i class="bi bi-plus-lg"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}

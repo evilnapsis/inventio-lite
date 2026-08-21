@@ -1,0 +1,54 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Caja{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+
+		<h1><i class="bi bi-archive"></i> Caja</h1>
+		<div class="btn-group pull-right">
+			<a href="{{ base_url }}/box/history" class="btn btn-primary"><i class="bi bi-clock-history"></i> Historial</a>
+			<form action="{{ base_url }}/box/process" method="POST" class="d-inline">
+				{{ csrf_field() }}
+				<button type="submit" class="btn btn-primary">Procesar Ventas <i class="bi bi-arrow-right"></i></button>
+			</form>
+		</div>
+		<div class="clearfix"></div>
+		<br>
+
+		{% if rows|length > 0 %}
+			<div class="card">
+				<div class="card-header">
+					CAJA
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered table-hover table-sm mb-0">
+							<thead>
+								<th></th>
+								<th>Productos</th>
+								<th>Total</th>
+								<th>Fecha</th>
+							</thead>
+							{% for row in rows %}
+								<tr>
+									<td style="width:30px;"></td>
+									<td>{{ row.count }}</td>
+									<td><b>$ {{ row.total|number_format(2) }}</b></td>
+									<td>{{ row.sell.created_at }}</td>
+								</tr>
+							{% endfor %}
+						</table>
+					</div>
+					<h1>Total: $ {{ total|number_format(2) }}</h1>
+				</div>
+			</div>
+		{% else %}
+			<div class="jumbotron">
+				<h2>No hay ventas</h2>
+				<p>No se ha realizado ninguna venta.</p>
+			</div>
+		{% endif %}
+		<br><br><br><br><br><br><br><br><br><br>
+	</div>
+</div>
+{% endblock %}

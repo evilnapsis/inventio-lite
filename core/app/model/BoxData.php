@@ -4,80 +4,40 @@ class BoxData {
 	public $id;
 	public $created_at;
 
-
-
-
 	public function __construct(){
 		$this->created_at = "NOW()";
 	}
 
+	private static function db(): \PDO {
+		return Database::getPdo();
+	}
+
 	public function add(){
-		$sql = "insert into box (created_at) ";
-		$sql .= "value ($this->created_at)";
-		return Executor::doit($sql);
+		$stmt = self::db()->prepare("insert into ".self::$tablename." (created_at) values (NOW())");
+		$stmt->execute();
+		$this->id = self::db()->lastInsertId();
+		return [true, $this->id];
 	}
 
 	public static function delById($id){
-		$sql = "delete from ".self::$tablename." where id=$id";
-		Executor::doit($sql);
+		$stmt = self::db()->prepare("delete from ".self::$tablename." where id = :id");
+		$stmt->execute(['id' => $id]);
 	}
 	public function del(){
-		$sql = "delete from ".self::$tablename." where id=$this->id";
-		Executor::doit($sql);
+		self::delById($this->id);
 	}
-
-// partiendo de que ya tenemos creado un objecto BoxData previamente utilizamos el contexto
-	public function update(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\" where id=$this->id";
-		Executor::doit($sql);
-	}
-
 
 	public static function getById($id){
-		$sql = "select * from ".self::$tablename." where id=$id";
-		$query = Executor::doit($sql);
-		$found = null;
-		$data = new BoxData();
-		while($r = $query[0]->fetch_array()){
-			$data->id = $r['id'];
-			$data->created_at = $r['created_at'];
-			$found = $data;
-			break;
-		}
-		return $found;
+		$stmt = self::db()->prepare("select * from ".self::$tablename." where id = :id");
+		$stmt->execute(['id' => $id]);
+		$stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::class);
+		return $stmt->fetch() ?: null;
 	}
-
-
 
 	public static function getAll(){
-		$sql = "select * from ".self::$tablename;
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new BoxData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
+		$stmt = self::db()->query("select * from ".self::$tablename);
+		return $stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::class);
 	}
-
-
-	public static function getLike($q){
-		$sql = "select * from ".self::$tablename." where name like '%$q%'";
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new BoxData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
-	}
-
 
 }
 

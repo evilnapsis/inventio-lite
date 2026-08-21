@@ -34,24 +34,24 @@
       </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
         <li class="nav-item">
-          <a class="nav-link" href="./">
+          <a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/home">
             <i class="nav-icon bi bi-house"></i> Inicio
           </a>
         </li>
 
         <li class="nav-title">OPERACIONES</li>
         <li class="nav-item">
-          <a class="nav-link" href="./?view=sellpos">
+          <a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/pos">
             <i class="nav-icon bi bi-calculator"></i> Vender POS
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./?view=sells">
+          <a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/sells">
             <i class="nav-icon bi bi-cart"></i> Ventas
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./?view=alerts">
+          <a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/alerts">
             <i class="nav-icon bi bi-bell"></i> Alertas
           </a>
         </li>
@@ -61,10 +61,10 @@
             <i class="nav-icon bi bi-folder"></i> Catálogos
           </a>
           <ul class="nav-group-items compact">
-            <li class="nav-item"><a class="nav-link" href="./?view=products"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Productos</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=categories"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Categorías</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=clients"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Clientes</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=providers"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Proveedores</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/products"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/categories"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Categorías</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/clients"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Clientes</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/providers"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Proveedores</a></li>
           </ul>
         </li>
 
@@ -73,10 +73,10 @@
             <i class="nav-icon bi bi-boxes"></i> Inventario
           </a>
           <ul class="nav-group-items compact">
-            <li class="nav-item"><a class="nav-link" href="./?view=inventary"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Inventario</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=repos"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Nueva Compra</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=res"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Compras</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=box"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Caja</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/inventory"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Inventario</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/repos"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Nueva Compra</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/purchases"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Compras</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/box"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Caja</a></li>
           </ul>
         </li>
 
@@ -85,8 +85,8 @@
             <i class="nav-icon bi bi-bar-chart"></i> Reportes
           </a>
           <ul class="nav-group-items compact">
-            <li class="nav-item"><a class="nav-link" href="./?view=reports"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Movimientos</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=sellreports"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Reporte de Ventas</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/reports/movements"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Movimientos</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/reports/sales"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Reporte de Ventas</a></li>
           </ul>
         </li>
 
@@ -95,8 +95,8 @@
             <i class="nav-icon bi bi-gear"></i> Administración
           </a>
           <ul class="nav-group-items compact">
-            <li class="nav-item"><a class="nav-link" href="./?view=users&opt=all"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Usuarios</a></li>
-            <li class="nav-item"><a class="nav-link" href="./?view=settings&opt=all"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Ajustes</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/users"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Usuarios</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/settings"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Ajustes</a></li>
           </ul>
         </li>
       </ul>
@@ -130,7 +130,7 @@
                   <div class="small text-muted"><?php echo $curr_user->is_admin ? "Administrador" : "Usuario"; ?></div>
                 </div>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="./?view=settings&opt=all">
+                <a class="dropdown-item" href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/settings">
                   <i class="bi bi-gear me-2"></i> Ajustes
                 </a>
                 <a class="dropdown-item" href="./logout.php">

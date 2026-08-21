@@ -1,0 +1,53 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Ajustes del Sistema{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<div>
+				<h1 class="h3 mb-0 text-gray-800"><i class="bi bi-gear me-2"></i>Ajustes del Sistema</h1>
+				<p class="text-muted small mb-0">Configuración general de la aplicación</p>
+			</div>
+		</div>
+
+		<div class="card shadow-sm border-0">
+			<div class="card-header bg-white py-3">
+				<h6 class="m-0 font-weight-bold text-primary">Opciones de Configuración</h6>
+			</div>
+			<div class="card-body">
+				<form method="post" action="{{ base_url }}/settings/update">
+					{{ csrf_field() }}
+					{% for cfg in configs %}
+						<div class="mb-3 row">
+							<label class="col-sm-3 col-form-label fw-bold">{{ cfg.name }}</label>
+							<div class="col-sm-9">
+								{% if cfg.kind == 1 %}
+									<select name="configs[{{ cfg.id }}]" class="form-select">
+										<option value="1" {% if cfg.val == "1" or cfg.val == "true" %}selected{% endif %}>Sí / Activado</option>
+										<option value="0" {% if cfg.val == "0" or cfg.val == "false" %}selected{% endif %}>No / Desactivado</option>
+									</select>
+								{% elseif cfg.kind == 3 %}
+									<input type="number" name="configs[{{ cfg.id }}]" class="form-control" value="{{ cfg.val }}">
+								{% else %}
+									<input type="text" name="configs[{{ cfg.id }}]" class="form-control" value="{{ cfg.val }}">
+								{% endif %}
+								<span class="form-text text-muted">Identificador: <code>{{ cfg.short }}</code></span>
+							</div>
+						</div>
+					{% else %}
+						<p class="text-muted">No hay opciones de configuración registradas.</p>
+					{% endfor %}
+
+					{% if configs|length > 0 %}
+						<div class="mt-4 text-end">
+							<button type="submit" class="btn btn-primary px-4 fw-bold">
+								<i class="bi bi-check-circle me-1"></i> Guardar Ajustes
+							</button>
+						</div>
+					{% endif %}
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

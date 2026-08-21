@@ -1,0 +1,48 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Historial de Caja{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<h1><i class="bi bi-archive"></i> Historial de Caja</h1>
+		<div class="mb-3">
+			<a href="report/boxhistory-pdf.php" target="_blank" class="btn btn-success text-white"><i class="bi bi-download"></i> Descargar PDF</a>
+		</div>
+		<br>
+		<div class="clearfix"></div>
+		<div class="card">
+			<div class="card-header">
+				HISTORIAL DE CAJA
+			</div>
+			<div class="card-body">
+				{% if rows|length > 0 %}
+					<br>
+					<table class="table table-bordered table-hover table-sm mb-0">
+						<thead>
+							<th></th>
+							<th>Total</th>
+							<th>Fecha</th>
+						</thead>
+						<tbody>
+							{% for row in rows %}
+								<tr>
+									<td style="width:30px;">
+										<a href="{{ base_url }}/box/{{ row.box.id }}" class="btn btn-secondary btn-sm"><i class="bi bi-eye"></i></a>
+									</td>
+									<td><b>$ {{ row.total|number_format(2) }}</b></td>
+									<td>{{ row.box.created_at }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<div class="jumbotron">
+						<h2>No hay ventas</h2>
+						<p>No se ha realizado ninguna venta.</p>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+		<br><br><br><br><br><br><br><br><br><br>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Editar Producto{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+	<h1>{{ product.name }} <small>Editar Producto</small></h1>
+
+<div class="card">
+  <div class="card-header">
+    EDITAR PRODUCTO
+  </div>
+    <div class="card-body">
+
+		<form class="form-horizontal" method="post" id="addproduct" enctype="multipart/form-data" action="{{ base_url }}/product/{{ product.id }}/update" role="form">
+			{{ csrf_field() }}
+
+  <div class="form-group">
+    <label for="image" class="col-lg-3 control-label">Imagen*</label>
+    <div class="col-md-8">
+      <input type="file" name="image" id="image" placeholder="">
+{% if product.image %}
+  <br>
+        <img src="storage/products/{{ product.image }}" class="img-fluid">
+{% endif %}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="barcode" class="col-lg-3 control-label">Codigo de barras*</label>
+    <div class="col-md-8">
+      <input type="text" name="barcode" class="form-control" id="barcode" value="{{ product.barcode }}" placeholder="Codigo de barras del Producto">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="name" class="col-lg-3 control-label">Nombre*</label>
+    <div class="col-md-8">
+      <input type="text" name="name" class="form-control" id="name" value="{{ product.name }}" placeholder="Nombre del Producto">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="category_id" class="col-lg-3 control-label">Categoria</label>
+    <div class="col-md-8">
+    <select name="category_id" class="form-control">
+    <option value="">-- NINGUNA --</option>
+    {% for category in categories %}
+      <option value="{{ category.id }}" {% if product.category_id and product.category_id == category.id %}selected{% endif %}>{{ category.name }}</option>
+    {% endfor %}
+      </select>    </div>
+  </div>
+  <div class="form-group">
+    <label for="description" class="col-lg-3 control-label">Descripcion</label>
+    <div class="col-md-8">
+      <textarea name="description" class="form-control" id="description" placeholder="Descripcion del Producto">{{ product.description }}</textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="price_in" class="col-lg-3 control-label">Precio de Entrada*</label>
+    <div class="col-md-8">
+      <input type="text" name="price_in" class="form-control" value="{{ product.price_in }}" id="price_in" placeholder="Precio de entrada">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="price_out" class="col-lg-3 control-label">Precio de Salida*</label>
+    <div class="col-md-8">
+      <input type="text" name="price_out" class="form-control" id="price_out" value="{{ product.price_out }}" placeholder="Precio de salida">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="unit" class="col-lg-3 control-label">Unidad*</label>
+    <div class="col-md-8">
+      <input type="text" name="unit" class="form-control" id="unit" value="{{ product.unit }}" placeholder="Unidad del Producto">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="presentation" class="col-lg-3 control-label">Presentacion</label>
+    <div class="col-md-8">
+      <input type="text" name="presentation" class="form-control" id="presentation" value="{{ product.presentation }}" placeholder="Presentacion del Producto">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inventary_min" class="col-lg-3 control-label">Minima en inventario:</label>
+    <div class="col-md-8">
+      <input type="text" name="inventary_min" class="form-control" value="{{ product.inventary_min }}" id="inventary_min" placeholder="Minima en Inventario (Default 10)">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-3 control-label">Esta activo</label>
+    <div class="col-md-8">
+<div class="checkbox">
+    <label>
+      <input type="checkbox" name="is_active" {% if product.is_active %}checked{% endif %}>
+    </label>
+  </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-3 col-lg-8">
+      <button type="submit" class="btn btn-success">Actualizar Producto</button>
+    </div>
+  </div>
+</form>
+    </div>
+</div>
+
+<br><br>
+	</div>
+</div>
+{% endblock %}

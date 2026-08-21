@@ -1,0 +1,62 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}{{ new_title }}{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+  <h1>{{ new_title }}</h1>
+  <br>
+<div class="card">
+  <div class="card-header">
+    {{ new_header }}
+  </div>
+    <div class="card-body">
+
+    <form class="form-horizontal" method="post" action="{{ base_url }}/{{ singular }}/create" role="form">
+      {{ csrf_field() }}
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Nombre*</label>
+    <div class="col-md-6">
+      <input type="text" name="name" class="form-control" value="{{ old.name|default('') }}" placeholder="Nombre">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Apellido*</label>
+    <div class="col-md-6">
+      <input type="text" name="lastname" required class="form-control" value="{{ old.lastname|default('') }}" placeholder="Apellido">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Direccion*</label>
+    <div class="col-md-6">
+      <input type="text" name="address1" class="form-control" required value="{{ old.address1|default('') }}" placeholder="Direccion">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Email*</label>
+    <div class="col-md-6">
+      <input type="text" name="email1" class="form-control" value="{{ old.email1|default('') }}" placeholder="Email">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Telefono*</label>
+    <div class="col-md-6">
+      <input type="text" name="phone1" class="form-control" value="{{ old.phone1|default('') }}" placeholder="Telefono">
+    </div>
+  </div>
+
+  <p class="alert alert-info">* Campos obligatorios</p>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-primary">{{ new_button }}</button>
+    </div>
+  </div>
+</form>
+    </div>
+</div>
+
+  </div>
+</div>
+{% endblock %}

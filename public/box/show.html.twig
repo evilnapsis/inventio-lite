@@ -1,0 +1,51 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Corte de Caja{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+
+		<h1><i class="bi bi-archive"></i> Corte de Caja #{{ box_id }}</h1>
+		<div class="mb-3">
+			<a href="{{ base_url }}/box/history" class="btn btn-secondary"><i class="bi bi-clock-history"></i> Historial</a>
+			<a href="report/box-pdf.php?id={{ box_id }}" target="_blank" class="btn btn-success text-white"><i class="bi bi-download"></i> Descargar PDF</a>
+		</div>
+		<div class="clearfix"></div>
+		<br>
+		<div class="card">
+			<div class="card-header">
+				CORTE DE CAJA
+			</div>
+			<div class="card-body">
+				{% if rows|length > 0 %}
+					<br>
+					<table class="table table-bordered table-hover table-sm mb-0">
+						<thead>
+							<th></th>
+							<th>Total</th>
+							<th>Fecha</th>
+						</thead>
+						<tbody>
+							{% for row in rows %}
+								<tr>
+									<td style="width:30px;">
+										<a href="{{ base_url }}/sell/{{ row.sell.id }}" class="btn btn-secondary btn-sm"><i class="bi bi-eye"></i></a>
+									</td>
+									<td><b>$ {{ row.total|number_format(2) }}</b></td>
+									<td>{{ row.sell.created_at }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<h1>Total: $ {{ total|number_format(2) }}</h1>
+				{% else %}
+					<div class="jumbotron">
+						<h2>No hay ventas</h2>
+						<p>No se ha realizado ninguna venta.</p>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,115 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-8">RESUMEN DE VENTA</div>
+      <div class="col-4 text-end">
+        <a href="{{ base_url }}/pos/cart/clear" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="card-body p-0">
+    {% if items|length > 0 %}
+      <table class="table table-sm table-hover mb-0">
+        <thead>
+          <tr class="bg-light">
+            <th>Cant.</th>
+            <th>Producto</th>
+            <th class="text-end">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.q }}</td>
+            <td class="small">{{ item.product.name }}</td>
+            <td class="text-end fw-bold">$ {{ item.subtotal|number_format(2) }}</td>
+            <td class="text-end">
+              <button class="btn btn-link btn-sm text-danger p-0" onclick="deleteFromCart({{ item.product.id }})">
+                <i class="bi bi-x-circle"></i>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="p-3 bg-light border-top">
+        <div class="d-flex justify-content-between mb-1">
+          <span>Subtotal:</span>
+          <span>$ {{ (total * 0.84)|number_format(2) }}</span>
+        </div>
+        <div class="d-flex justify-content-between mb-1">
+          <span>IVA (16%):</span>
+          <span>$ {{ (total * 0.16)|number_format(2) }}</span>
+        </div>
+        <div class="d-flex justify-content-between h5 mt-2 pt-2 border-top">
+          <span class="fw-bold">TOTAL:</span>
+          <span class="fw-bold text-primary">$ {{ total|number_format(2) }}</span>
+        </div>
+      </div>
+
+      <div class="p-3">
+        <form method="post" id="processsellpos" action="{{ base_url }}/pos/checkout">
+          {{ csrf_field() }}
+          <div class="mb-3">
+            <label class="form-label small">Cliente</label>
+            <select name="client_id" class="form-select form-select-sm">
+              <option value="">-- NINGUNO --</option>
+              {% for client in clients %}
+                <option value="{{ client.id }}">{{ client.name }} {{ client.lastname }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label small">Descuento</label>
+            <input type="number" name="discount" class="form-control form-control-sm" value="0" id="discount_pos">
+          </div>
+          <div class="mb-3">
+            <label class="form-label small text-success fw-bold">Efectivo Recibido</label>
+            <input type="number" name="money" required class="form-control" id="money_pos" step="0.01">
+          </div>
+          <input type="hidden" name="total" value="{{ total }}">
+          <button type="submit" class="btn btn-primary w-100">
+            <i class="bi bi-check-circle me-1"></i> FINALIZAR VENTA
+          </button>
+        </form>
+      </div>
+    {% else %}
+      <div class="p-5 text-center text-muted">
+        <i class="bi bi-cart-x" style="font-size: 3rem;"></i>
+        <p class="mt-2">El carrito está vacío.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+	$("#processsellpos").submit(function(e){
+		var discount = $("#discount_pos").val();
+		var money = $("#money_pos").val();
+    var total = {{ total }};
+		if(parseFloat(money) < (total - parseFloat(discount))){
+			Swal.fire('Error', 'El efectivo recibido es insuficiente.', 'error');
+			e.preventDefault();
+		}else{
+			if(discount==""){ discount=0;}
+      var cambio = parseFloat(money) - (total - parseFloat(discount));
+      e.preventDefault();
+      Swal.fire({
+        title: 'Confirmar Venta',
+        text: 'Cambio para el cliente: $' + cambio.toFixed(2),
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, finalizar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.submit();
+        }
+      });
+		}
+	});
+</script>

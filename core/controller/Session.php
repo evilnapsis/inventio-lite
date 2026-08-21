@@ -28,6 +28,21 @@ class Session{
 		else return false;
 	}
 
+	// Anadido para la migracion a rutas limpias (FastRoute) / proteccion CSRF
+	public static function csrfToken(): string {
+		if(empty($_SESSION['csrf_token'])){
+			$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+		}
+		return $_SESSION['csrf_token'];
+	}
+
+	public static function validateCsrf(?string $token): bool {
+		if(empty($_SESSION['csrf_token']) || empty($token)){
+			return false;
+		}
+		return hash_equals($_SESSION['csrf_token'], $token);
+	}
+
 }
 
 ?>

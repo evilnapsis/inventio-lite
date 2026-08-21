@@ -1,0 +1,127 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Compra{% endblock %}
+{% block content %}
+{% if sell %}
+<h1><i class="bi bi-receipt"></i> Resumen de Compra</h1>
+<div class="mb-3">
+  <a href="report/onere-pdf.php?id={{ sell.id }}" target="_blank" class="btn btn-success text-white"><i class="bi bi-download"></i> Descargar PDF</a>
+  <a href="report/ticket-re.php?id={{ sell.id }}" target="_blank" class="btn btn-primary text-white"><i class="bi bi-receipt"></i> Imprimir Ticket</a>
+</div>
+
+<div class="card shadow-sm border-0 mb-4">
+	<div class="card-header bg-white py-3">
+		<h5 class="card-title mb-0 text-primary fw-bold"><i class="bi bi-info-circle me-2"></i>Información General de la Compra #{{ sell.id }}</h5>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-6 mb-3 mb-md-0">
+				<h6 class="text-uppercase fw-bold text-muted small mb-3">Detalle del Documento</h6>
+				<table class="table table-borderless table-sm mb-0">
+					<tr>
+						<td style="width: 120px;" class="fw-bold text-secondary">Folio / ID:</td>
+						<td>#{{ sell.id }}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold text-secondary">Fecha:</td>
+						<td>{{ sell.created_at }}</td>
+					</tr>
+					{% if user %}
+					<tr>
+						<td class="fw-bold text-secondary">Atendido por:</td>
+						<td>{{ user.name }} {{ user.lastname }}</td>
+					</tr>
+					{% endif %}
+				</table>
+			</div>
+
+			<div class="col-md-6">
+				<h6 class="text-uppercase fw-bold text-muted small mb-3">Información del Proveedor</h6>
+				{% if provider %}
+				<table class="table table-borderless table-sm mb-0">
+					<tr>
+						<td style="width: 120px;" class="fw-bold text-secondary">Nombre:</td>
+						<td><strong>{{ provider.name }} {{ provider.lastname }}</strong></td>
+					</tr>
+					{% if provider.phone1 %}
+					<tr>
+						<td class="fw-bold text-secondary">Teléfono:</td>
+						<td>{{ provider.phone1 }}</td>
+					</tr>
+					{% endif %}
+					{% if provider.email1 %}
+					<tr>
+						<td class="fw-bold text-secondary">Email:</td>
+						<td>{{ provider.email1 }}</td>
+					</tr>
+					{% endif %}
+				</table>
+				{% else %}
+					<p class="text-muted mb-0"><i class="bi bi-truck me-2"></i>Proveedor no registrado</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="card shadow-sm border-0 mb-4">
+	<div class="card-header bg-white py-3">
+		<h5 class="card-title mb-0 text-primary fw-bold"><i class="bi bi-box-seam me-2"></i>Productos Comprados</h5>
+	</div>
+	<div class="card-body p-0">
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover table-sm mb-0">
+				<thead>
+					<th>Código</th>
+					<th>Cantidad</th>
+					<th>Nombre del Producto</th>
+					<th>Precio Unitario</th>
+					<th>Total</th>
+				</thead>
+				<tbody>
+					{% for line in lines %}
+					<tr>
+						<td>{{ line.product.id }}</td>
+						<td>{{ line.operation.q }}</td>
+						<td>{{ line.product.name }}</td>
+						<td>$ {{ line.product.price_in|number_format(2) }}</td>
+						<td><strong>$ {{ line.subtotal|number_format(2) }}</strong></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="row justify-content-end">
+	<div class="col-md-5 col-lg-4">
+		<div class="card shadow-sm border-0">
+			<div class="card-body p-0">
+				<table class="table table-borderless mb-0">
+					<tr class="border-bottom bg-light fs-5">
+						<td class="px-3 py-2 fw-bold text-primary">Total:</td>
+						<td class="px-3 py-2 text-end fw-bold text-primary font-monospace">$ {{ total|number_format(2) }}</td>
+					</tr>
+					{% if sell.cash and sell.cash > 0 %}
+					<tr class="border-bottom text-success">
+						<td class="px-3 py-2 fw-bold">Efectivo Pagado:</td>
+						<td class="px-3 py-2 text-end font-monospace">$ {{ sell.cash|number_format(2) }}</td>
+					</tr>
+					<tr class="text-info">
+						<td class="px-3 py-2 fw-bold">Cambio / Vuelto:</td>
+						<td class="px-3 py-2 text-end fw-bold font-monospace">$ {{ (sell.cash - total)|number_format(2) }}</td>
+					</tr>
+					{% endif %}
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br><br><br><br><br>
+{% else %}
+	<div class="alert alert-danger">
+		<i class="bi bi-exclamation-triangle-fill me-2"></i> Error 501: Identificador de compra no especificado.
+	</div>
+{% endif %}
+{% endblock %}

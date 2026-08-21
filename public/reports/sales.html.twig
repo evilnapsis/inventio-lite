@@ -1,0 +1,77 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Reportes de Ventas{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+	<h1>Reportes de Ventas</h1>
+
+	<form method="get" action="{{ base_url }}/reports/sales">
+	<div class="row">
+		<div class="col-md-3">
+			<select name="client_id" class="form-control">
+				<option value="">-- TODOS --</option>
+				{% for c in clients %}
+				<option value="{{ c.id }}" {% if client_id == c.id %}selected{% endif %}>{{ c.name }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="col-md-3">
+			<input type="date" name="sd" value="{{ sd }}" class="form-control">
+		</div>
+		<div class="col-md-3">
+			<input type="date" name="ed" value="{{ ed }}" class="form-control">
+		</div>
+		<div class="col-md-3">
+			<input type="submit" class="btn btn-primary btn-block" value="Procesar">
+		</div>
+	</div>
+	</form>
+
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">REPORTE DE VENTAS</div>
+			<div class="card-body">
+				{% if sells is null %}
+					{% if sd is not empty or ed is not empty %}
+						<div class="jumbotron">
+							<h2>Fecha Incorrectas</h2>
+							<p>Puede ser que no selecciono un rango de fechas, o el rango seleccionado es incorrecto.</p>
+						</div>
+					{% endif %}
+				{% elseif sells|length > 0 %}
+					<a href="report/sellreports-pdf.php?client_id={{ client_id }}&sd={{ sd }}&ed={{ ed }}" target="_blank" class="btn btn-success text-white"><i class="bi bi-download"></i> Descargar PDF</a><br><br>
+					<table class="table table-bordered table-sm mb-0">
+						<thead>
+							<th>Id</th>
+							<th>Subtotal</th>
+							<th>Descuento</th>
+							<th>Total</th>
+							<th>Fecha</th>
+						</thead>
+						{% for sell in sells %}
+						<tr>
+							<td>{{ sell.id }}</td>
+							<td>$ {{ sell.total|number_format(2) }}</td>
+							<td>$ {{ sell.discount|number_format(2) }}</td>
+							<td>$ {{ (sell.total - sell.discount)|number_format(2) }}</td>
+							<td>{{ sell.created_at }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+					<h1>Total de ventas: $ {{ total|number_format(2) }}</h1>
+				{% else %}
+					<div class="jumbotron">
+						<h2>No hay operaciones</h2>
+						<p>El rango de fechas seleccionado no proporciono ningun resultado de operaciones.</p>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+<br><br><br><br>
+{% endblock %}

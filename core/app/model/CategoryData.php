@@ -7,9 +7,6 @@ class CategoryData {
 	public $description;
 	public $created_at;
 
-
-
-
 	public function __construct(){
 		$this->name = "";
 		$this->image = "";
@@ -17,76 +14,62 @@ class CategoryData {
 		$this->created_at = "NOW()";
 	}
 
+	private static function db(): \PDO {
+		return Database::getPdo();
+	}
+
 	public function add(){
-		$sql = "insert into category (name,created_at) ";
-		$sql .= "value (\"$this->name\",$this->created_at)";
-		Executor::doit($sql);
+		$stmt = self::db()->prepare(
+			"insert into ".self::$tablename." (name, image, description, created_at) values (:name, :image, :description, NOW())"
+		);
+		$stmt->execute([
+			'name' => $this->name,
+			'image' => $this->image,
+			'description' => $this->description,
+		]);
+		$this->id = self::db()->lastInsertId();
 	}
 
 	public static function delById($id){
-		$sql = "delete from ".self::$tablename." where id=$id";
-		Executor::doit($sql);
+		$stmt = self::db()->prepare("delete from ".self::$tablename." where id = :id");
+		$stmt->execute(['id' => $id]);
 	}
+
 	public function del(){
-		$sql = "delete from ".self::$tablename." where id=$this->id";
-		Executor::doit($sql);
+		self::delById($this->id);
 	}
 
-// partiendo de que ya tenemos creado un objecto CategoryData previamente utilizamos el contexto
+	// partiendo de que ya tenemos creado un objecto CategoryData previamente utilizamos el contexto
 	public function update(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\" where id=$this->id";
-		Executor::doit($sql);
+		$stmt = self::db()->prepare(
+			"update ".self::$tablename." set name = :name, image = :image, description = :description where id = :id"
+		);
+		$stmt->execute([
+			'name' => $this->name,
+			'image' => $this->image,
+			'description' => $this->description,
+			'id' => $this->id,
+		]);
 	}
-
 
 	public static function getById($id){
-		$sql = "select * from ".self::$tablename." where id=$id";
-		$query = Executor::doit($sql);
-		$found = null;
-		$data = new CategoryData();
-		while($r = $query[0]->fetch_array()){
-			$data->id = $r['id'];
-			$data->name = $r['name'];
-			$data->created_at = $r['created_at'];
-			$found = $data;
-			break;
-		}
-		return $found;
+		$stmt = self::db()->prepare("select * from ".self::$tablename." where id = :id");
+		$stmt->execute(['id' => $id]);
+		$stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::class);
+		$found = $stmt->fetch();
+		return $found ?: null;
 	}
-
-
 
 	public static function getAll(){
-		$sql = "select * from ".self::$tablename;
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new CategoryData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->name = $r['name'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
+		$stmt = self::db()->query("select * from ".self::$tablename);
+		return $stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::class);
 	}
-
 
 	public static function getLike($q){
-		$sql = "select * from ".self::$tablename." where name like '%$q%'";
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new CategoryData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->name = $r['name'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
+		$stmt = self::db()->prepare("select * from ".self::$tablename." where name like :q");
+		$stmt->execute(['q' => '%'.$q.'%']);
+		return $stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::class);
 	}
-
 
 }
 

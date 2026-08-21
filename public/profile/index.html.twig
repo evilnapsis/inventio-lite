@@ -1,0 +1,119 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Mi Perfil{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+	<div>
+		<h1 class="h3 mb-0 text-gray-800"><i class="bi bi-person-badge me-2"></i>Mi Perfil</h1>
+		<p class="text-muted small mb-0">Información del usuario y seguridad de la cuenta</p>
+	</div>
+</div>
+
+<div class="row g-4">
+	<!-- Columna Perfil / Avatar -->
+	<div class="col-lg-4">
+		<div class="card shadow-sm border-0 text-center p-4">
+			<div class="card-body">
+				<div class="avatar avatar-xl bg-primary text-white rounded-circle mx-auto d-flex align-items-center justify-content-center fw-bold fs-1 mb-3" style="width: 90px; height: 90px;">
+					{{ curr_user.name|default('')|slice(0, 1) }}{{ curr_user.lastname|default('')|slice(0, 1) }}
+				</div>
+				<h4 class="fw-bold mb-1">{{ curr_user.name }} {{ curr_user.lastname }}</h4>
+				<span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill fw-semibold mb-3">
+					<i class="bi bi-shield-check me-1"></i>{{ curr_user.is_admin ? "Administrador" : "Usuario" }}
+				</span>
+				
+				<hr class="my-4 text-muted opacity-25">
+
+				<div class="text-start small">
+					<div class="mb-2 text-muted">
+						<i class="bi bi-person me-2"></i><strong>Nombre de usuario:</strong>
+						<span class="text-dark d-block ms-4">{{ curr_user.username|default('N/A') }}</span>
+					</div>
+					<div class="mb-2 text-muted">
+						<i class="bi bi-envelope me-2"></i><strong>Correo electrónico:</strong>
+						<span class="text-dark d-block ms-4">{{ curr_user.email|default('N/A') }}</span>
+					</div>
+					<div class="text-muted">
+						<i class="bi bi-calendar-check me-2"></i><strong>Fecha de registro:</strong>
+						<span class="text-dark d-block ms-4">{{ curr_user.created_at|default('N/A') }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Columna Formulario Cambiar Contraseña -->
+	<div class="col-lg-8">
+		<div class="card shadow-sm border-0">
+			<div class="card-header bg-white py-3 border-bottom">
+				<h6 class="m-0 font-weight-bold text-primary">
+					<i class="bi bi-key me-2"></i>Seguridad y Cambio de Contraseña
+				</h6>
+			</div>
+			<div class="card-body p-4">
+				<form id="changepasswd" method="post" action="{{ base_url }}/profile/change-password">
+					{{ csrf_field() }}
+
+					<div class="mb-3">
+						<label for="password" class="form-label fw-bold text-secondary">Contraseña Actual</label>
+						<div class="input-group">
+							<span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+							<input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña actual" required>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="newpassword" class="form-label fw-bold text-secondary">Nueva Contraseña</label>
+							<div class="input-group">
+								<span class="input-group-text bg-light"><i class="bi bi-shield-lock"></i></span>
+								<input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Nueva contraseña" required>
+							</div>
+						</div>
+						<div class="col-md-6 mb-4">
+							<label for="confirmnewpassword" class="form-label fw-bold text-secondary">Confirmar Nueva Contraseña</label>
+							<div class="input-group">
+								<span class="input-group-text bg-light"><i class="bi bi-shield-lock-fill"></i></span>
+								<input type="password" class="form-control" id="confirmnewpassword" name="confirmnewpassword" placeholder="Confirma la nueva contraseña" required>
+							</div>
+						</div>
+					</div>
+
+					<div class="d-flex justify-content-end pt-2">
+						<button type="submit" class="btn btn-primary px-4 fw-bold shadow-sm">
+							<i class="bi bi-check-circle me-1"></i> Actualizar Contraseña
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$("#changepasswd").submit(function(e){
+		const pass = $("#password").val();
+		const newPass = $("#newpassword").val();
+		const confirmPass = $("#confirmnewpassword").val();
+
+		if(!pass || !newPass || !confirmPass){
+			e.preventDefault();
+			Swal.fire({
+				title: 'Campos incompletos',
+				text: 'No debes dejar espacios vacíos.',
+				icon: 'warning',
+				confirmButtonColor: '#5856d6'
+			});
+		} else if(newPass !== confirmPass){
+			e.preventDefault();
+			Swal.fire({
+				title: 'Contraseñas no coinciden',
+				text: 'La nueva contraseña no coincide con la confirmación.',
+				icon: 'error',
+				confirmButtonColor: '#d33'
+			});
+		}
+	});
+});
+</script>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Editar Usuario{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+  <h1>Editar Usuario</h1>
+  <br>
+<div class="card">
+  <div class="card-header">EDITAR USUARIO
+  </div>
+    <div class="card-body">
+
+    <form class="form-horizontal" method="post" action="{{ base_url }}/user/{{ user.id }}/update" role="form">
+      {{ csrf_field() }}
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Nombre*</label>
+    <div class="col-md-6">
+      <input type="text" name="name" value="{{ user.name }}" class="form-control" placeholder="Nombre">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Apellido*</label>
+    <div class="col-md-6">
+      <input type="text" name="lastname" value="{{ user.lastname }}" required class="form-control" placeholder="Apellido">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Nombre de usuario*</label>
+    <div class="col-md-6">
+      <input type="text" name="username" value="{{ user.username }}" class="form-control" required placeholder="Nombre de usuario">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Email*</label>
+    <div class="col-md-6">
+      <input type="text" name="email" value="{{ user.email }}" class="form-control" placeholder="Email">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Contraseña</label>
+    <div class="col-md-6">
+      <input type="password" name="password" class="form-control" placeholder="Contraseña">
+      <p class="help-block">La contraseña solo se modificara si escribes algo, en caso contrario no se modifica.</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Esta activo</label>
+    <div class="col-md-6">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="is_active" {% if user.is_active %}checked{% endif %}>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Es administrador</label>
+    <div class="col-md-6">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="is_admin" {% if user.is_admin %}checked{% endif %}>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <p class="alert alert-info">* Campos obligatorios</p>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+    </div>
+  </div>
+</form>
+    </div>
+</div>
+  </div>
+</div>
+{% endblock %}

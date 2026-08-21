@@ -1,0 +1,127 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Ventas{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<h1><i class="bi bi-cart"></i> Lista de Ventas</h1>
+		<div class="clearfix"></div>
+
+		<div class="row mb-4">
+			<div class="col-md-3">
+				<div class="card shadow-sm border-0">
+					<div class="card-body p-3 d-flex align-items-center">
+						<div class="bg-primary text-white p-3 me-3 rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+							<i class="bi bi-receipt fs-4"></i>
+						</div>
+						<div>
+							<div class="fs-5 fw-bold text-primary">{{ total_transactions }}</div>
+							<div class="text-medium-emphasis text-uppercase fw-semibold small" style="font-size: 0.75rem;">Ventas Realizadas</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card shadow-sm border-0">
+					<div class="card-body p-3 d-flex align-items-center">
+						<div class="bg-info text-white p-3 me-3 rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+							<i class="bi bi-currency-dollar fs-4"></i>
+						</div>
+						<div>
+							<div class="fs-5 fw-bold text-info">${{ total_gross|number_format(2) }}</div>
+							<div class="text-medium-emphasis text-uppercase fw-semibold small" style="font-size: 0.75rem;">Subtotal Bruto</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card shadow-sm border-0">
+					<div class="card-body p-3 d-flex align-items-center">
+						<div class="bg-danger text-white p-3 me-3 rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+							<i class="bi bi-percent fs-4"></i>
+						</div>
+						<div>
+							<div class="fs-5 fw-bold text-danger">${{ total_discount|number_format(2) }}</div>
+							<div class="text-medium-emphasis text-uppercase fw-semibold small" style="font-size: 0.75rem;">Descuentos Aplicados</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card shadow-sm border-0">
+					<div class="card-body p-3 d-flex align-items-center">
+						<div class="bg-success text-white p-3 me-3 rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+							<i class="bi bi-cash-stack fs-4"></i>
+						</div>
+						<div>
+							<div class="fs-5 fw-bold text-success">${{ total_net|number_format(2) }}</div>
+							<div class="text-medium-emphasis text-uppercase fw-semibold small" style="font-size: 0.75rem;">Total Neto Cobrado</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-header">VENTAS</div>
+			<div class="card-body p-0">
+				{% if rows|length > 0 %}
+					<div class="table-responsive">
+						<table class="table table-bordered table-hover table-sm mb-0">
+							<thead>
+								<th>Folio/ID</th>
+								<th>Cliente</th>
+								<th>Atendido Por</th>
+								<th>Productos</th>
+								<th>Descuento</th>
+								<th>Total Neto</th>
+								<th>Fecha</th>
+								<th>Acciones</th>
+							</thead>
+							<tbody>
+								{% for row in rows %}
+									{% set sell = row.sell %}
+									<tr>
+										<td>#{{ sell.id }}</td>
+										<td>{{ row.client_name }}</td>
+										<td>{{ row.user_name }}</td>
+										<td>
+											<span class="badge bg-secondary">{{ row.refs }} ref.</span>
+											<small class="text-muted">({{ row.items_count }} uds.)</small>
+										</td>
+										<td>$ {{ sell.discount|number_format(2) }}</td>
+										<td><strong>$ {{ (sell.total - sell.discount)|number_format(2) }}</strong></td>
+										<td>{{ sell.created_at }}</td>
+										<td style="width: 170px;">
+											<div class="btn-group">
+												<a href="{{ base_url }}/sell/{{ sell.id }}" class="btn btn-xs btn-info text-white" title="Ver Detalle">
+													<i class="bi bi-eye"></i> Detalle
+												</a>
+												<a href="report/ticket.php?id={{ sell.id }}" target="_blank" class="btn btn-xs btn-primary text-white" title="Imprimir Ticket">
+													<i class="bi bi-receipt"></i> Ticket
+												</a>
+												<form action="{{ base_url }}/sell/{{ sell.id }}/delete" method="POST" class="d-inline" onsubmit="return confirm('¿Estás completamente seguro de que deseas eliminar esta venta? Esta acción no se puede deshacer y afectará el inventario/caja.');">
+													{{ csrf_field() }}
+													<button type="submit" class="btn btn-xs btn-danger text-white" title="Eliminar"><i class="bi bi-trash"></i></button>
+												</form>
+											</div>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				{% else %}
+					<div class="p-4 text-center">
+						<div class="jumbotron m-0">
+							<h2>No hay ventas</h2>
+							<p>No se ha realizado ninguna venta en el sistema.</p>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<br><br><br><br><br><br><br><br><br><br>
+	</div>
+</div>
+{% endblock %}

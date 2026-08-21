@@ -1,0 +1,75 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Reportes{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+	<h1>Reportes</h1>
+
+	<form method="get" action="{{ base_url }}/reports/movements">
+	<div class="row">
+		<div class="col-md-3">
+			<select name="product_id" class="form-control">
+				<option value="">-- TODOS --</option>
+				{% for p in products %}
+				<option value="{{ p.id }}" {% if product_id == p.id %}selected{% endif %}>{{ p.name }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="col-md-3">
+			<input type="date" name="sd" value="{{ sd }}" class="form-control">
+		</div>
+		<div class="col-md-3">
+			<input type="date" name="ed" value="{{ ed }}" class="form-control">
+		</div>
+		<div class="col-md-3">
+			<input type="submit" class="btn btn-success btn-block" value="Procesar">
+		</div>
+	</div>
+	</form>
+
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">MOVIMIENTOS</div>
+			<div class="card-body">
+				{% if operations is null %}
+					{% if sd is not empty or ed is not empty %}
+						<div class="">
+							<h2>Fecha Incorrectas</h2>
+							<p>Puede ser que no selecciono un rango de fechas, o el rango seleccionado es incorrecto.</p>
+						</div>
+					{% endif %}
+				{% elseif operations|length > 0 %}
+					<table class="table table-bordered table-sm mb-0">
+						<thead>
+							<th>Id</th>
+							<th>Producto</th>
+							<th>Cantidad</th>
+							<th>Operacion</th>
+							<th>Fecha</th>
+						</thead>
+						{% for operation in operations %}
+						<tr>
+							<td>{{ operation.id }}</td>
+							<td>{{ operation.getProduct.name }}</td>
+							<td>{{ operation.q }}</td>
+							<td>{{ operation.getOperationtype.name }}</td>
+							<td>{{ operation.created_at }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+				{% else %}
+					<div class="jumbotron">
+						<h2>No hay operaciones</h2>
+						<p>El rango de fechas seleccionado no proporciono ningun resultado de operaciones.</p>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+<br><br><br><br>
+{% endblock %}

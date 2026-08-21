@@ -1,4 +1,7 @@
 <?php
+/**
+ * kind: 1 = Cliente, 2 = Proveedor
+ */
 class PersonData {
 	public static $tablename = "person";
 	public $id;
@@ -15,8 +18,6 @@ class PersonData {
 	public $kind;
 	public $created_at;
 
-
-
 	public function __construct(){
 		$this->name = "";
 		$this->lastname = "";
@@ -25,143 +26,81 @@ class PersonData {
 		$this->created_at = "NOW()";
 	}
 
-	public function add_client(){
-		$sql = "insert into person (name,lastname,address1,email1,phone1,kind,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->address1\",\"$this->email1\",\"$this->phone1\",1,$this->created_at)";
-		Executor::doit($sql);
+	private static function db(): \PDO {
+		return Database::getPdo();
 	}
 
-	public function add_provider(){
-		$sql = "insert into person (name,lastname,address1,email1,phone1,kind,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->address1\",\"$this->email1\",\"$this->phone1\",2,$this->created_at)";
-		Executor::doit($sql);
+	public function add($kind){
+		$stmt = self::db()->prepare(
+			"insert into ".self::$tablename." (name,lastname,address1,email1,phone1,kind,created_at) ".
+			"values (:name,:lastname,:address1,:email1,:phone1,:kind,NOW())"
+		);
+		$stmt->execute([
+			'name' => $this->name,
+			'lastname' => $this->lastname,
+			'address1' => $this->address1,
+			'email1' => $this->email1,
+			'phone1' => $this->phone1,
+			'kind' => $kind,
+		]);
+		$this->id = self::db()->lastInsertId();
 	}
 
 	public static function delById($id){
-		$sql = "delete from ".self::$tablename." where id=$id";
-		Executor::doit($sql);
+		$stmt = self::db()->prepare("delete from ".self::$tablename." where id = :id");
+		$stmt->execute(['id' => $id]);
 	}
 	public function del(){
-		$sql = "delete from ".self::$tablename." where id=$this->id";
-		Executor::doit($sql);
+		self::delById($this->id);
 	}
 
-// partiendo de que ya tenemos creado un objecto PersonData previamente utilizamos el contexto
+	// partiendo de que ya tenemos creado un objecto PersonData previamente utilizamos el contexto
 	public function update(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\",email1=\"$this->email1\",address1=\"$this->address1\",lastname=\"$this->lastname\",phone1=\"$this->phone1\" where id=$this->id";
-		Executor::doit($sql);
+		$stmt = self::db()->prepare(
+			"update ".self::$tablename." set name=:name, email1=:email1, address1=:address1, ".
+			"lastname=:lastname, phone1=:phone1 where id=:id"
+		);
+		$stmt->execute([
+			'name' => $this->name,
+			'email1' => $this->email1,
+			'address1' => $this->address1,
+			'lastname' => $this->lastname,
+			'phone1' => $this->phone1,
+			'id' => $this->id,
+		]);
 	}
-
-	public function update_client(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\",email1=\"$this->email1\",address1=\"$this->address1\",lastname=\"$this->lastname\",phone1=\"$this->phone1\" where id=$this->id";
-		Executor::doit($sql);
-	}
-
-	public function update_provider(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\",email1=\"$this->email1\",address1=\"$this->address1\",lastname=\"$this->lastname\",phone1=\"$this->phone1\" where id=$this->id";
-		Executor::doit($sql);
-	}
-
-	public function update_passwd(){
-		$sql = "update ".self::$tablename." set password=\"$this->password\" where id=$this->id";
-		Executor::doit($sql);
-	}
-
 
 	public static function getById($id){
-		$sql = "select * from ".self::$tablename." where id=$id";
-		$query = Executor::doit($sql);
-		$found = null;
-		$data = new PersonData();
-		while($r = $query[0]->fetch_array()){
-			$data->id = $r['id'];
-			$data->name = $r['name'];
-			$data->lastname = $r['lastname'];
-			$data->address1 = $r['address1'];
-			$data->phone1 = $r['phone1'];
-			$data->email1 = $r['email1'];
-			$data->created_at = $r['created_at'];
-			$found = $data;
-			break;
-		}
-		return $found;
+		$stmt = self::db()->prepare("select * from ".self::$tablename." where id = :id");
+		$stmt->execute(['id' => $id]);
+		$stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::class);
+		return $stmt->fetch() ?: null;
 	}
 
-
-
 	public static function getAll(){
-		$sql = "select * from ".self::$tablename;
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new PersonData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->name = $r['name'];
-			$array[$cnt]->lastname = $r['lastname'];
-			$array[$cnt]->email1 = $r['email1'];
-			$array[$cnt]->phone1 = $r['phone1'];
-			$array[$cnt]->address1 = $r['address1'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
+		$stmt = self::db()->query("select * from ".self::$tablename);
+		return $stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::class);
 	}
 
 	public static function getClients(){
-		$sql = "select * from ".self::$tablename." where kind=1 order by name,lastname";
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new PersonData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->name = $r['name'];
-			$array[$cnt]->lastname = $r['lastname'];
-			$array[$cnt]->email1 = $r['email1'];
-			$array[$cnt]->phone1 = $r['phone1'];
-			$array[$cnt]->address1 = $r['address1'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
+		return self::getByKind(1);
 	}
 
-
 	public static function getProviders(){
-		$sql = "select * from ".self::$tablename." where kind=2 order by name,lastname";
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new PersonData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->name = $r['name'];
-			$array[$cnt]->lastname = $r['lastname'];
-			$array[$cnt]->email1 = $r['email1'];
-			$array[$cnt]->phone1 = $r['phone1'];
-			$array[$cnt]->address1 = $r['address1'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
+		return self::getByKind(2);
+	}
+
+	private static function getByKind($kind){
+		$stmt = self::db()->prepare("select * from ".self::$tablename." where kind = :kind order by name, lastname");
+		$stmt->execute(['kind' => $kind]);
+		return $stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::class);
 	}
 
 	public static function getLike($q){
-		$sql = "select * from ".self::$tablename." where name like '%$q%'";
-		$query = Executor::doit($sql);
-		$array = array();
-		$cnt = 0;
-		while($r = $query[0]->fetch_array()){
-			$array[$cnt] = new PersonData();
-			$array[$cnt]->id = $r['id'];
-			$array[$cnt]->name = $r['name'];
-			$array[$cnt]->created_at = $r['created_at'];
-			$cnt++;
-		}
-		return $array;
+		$stmt = self::db()->prepare("select * from ".self::$tablename." where name like :q");
+		$stmt->execute(['q' => '%'.$q.'%']);
+		return $stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::class);
 	}
-
 
 }
 

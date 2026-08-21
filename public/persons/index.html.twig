@@ -1,0 +1,53 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h1>{{ title }}</h1>
+    <div class="mb-3">
+      <a href="{{ base_url }}/{{ singular }}/new" class="btn btn-primary">{{ new_label }}</a>
+      <a href="{{ pdf_path }}" target="_blank" class="btn btn-success text-white"><i class="bi bi-download"></i> Descargar PDF</a>
+    </div>
+    <br>
+    <div class="card">
+      <div class="card-header">
+        {{ header_label }}
+      </div>
+      <div class="card-body p-0">
+        {% if persons|length > 0 %}
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm mb-0">
+              <thead>
+                <th>Nombre completo</th>
+                <th>Direccion</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th></th>
+              </thead>
+              <tbody>
+                {% for person in persons %}
+                  <tr>
+                    <td>{{ person.name }} {{ person.lastname }}</td>
+                    <td>{{ person.address1 }}</td>
+                    <td>{{ person.email1 }}</td>
+                    <td>{{ person.phone1 }}</td>
+                    <td style="width:130px;">
+                      <a href="{{ base_url }}/{{ singular }}/{{ person.id }}/edit" class="btn btn-warning btn-xs">Editar</a>
+                      <form action="{{ base_url }}/{{ singular }}/{{ person.id }}/delete" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar este registro?');">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
+                      </form>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <p class="alert alert-danger m-3">{{ empty_message }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

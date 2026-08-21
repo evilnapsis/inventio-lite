@@ -1,0 +1,32 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Nueva Categoría{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h1>Nueva Categoria</h1>
+    <br>
+    <div class="card">
+      <div class="card-header">
+        NUEVA CATEGORIA
+      </div>
+      <div class="card-body">
+        <form class="form-horizontal" method="post" action="{{ base_url }}/category/create" role="form">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Nombre*</label>
+            <div class="col-md-6">
+              <input type="text" name="name" required class="form-control" value="{{ old.name|default('') }}" placeholder="Nombre">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+              <button type="submit" class="btn btn-primary">Agregar Categoria</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

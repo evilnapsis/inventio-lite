@@ -1,0 +1,205 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Nuevo Producto{% endblock %}
+{% block content %}
+<!-- Header -->
+<div class="d-flex align-items-center justify-content-between mb-4">
+	<div>
+		<h1 class="h3 mb-0 fw-bold"><i class="bi bi-box-seam text-primary me-2"></i>Nuevo Producto</h1>
+		<p class="text-muted small mb-0">Completa la información requerida para registrar un nuevo producto en el catálogo.</p>
+	</div>
+	<div>
+		<a href="{{ base_url }}/products" class="btn btn-outline-secondary">
+			<i class="bi bi-arrow-left me-1"></i> Volver a Productos
+		</a>
+	</div>
+</div>
+
+<!-- Card Único -->
+<div class="card shadow-sm">
+	<div class="card-header d-flex align-items-center justify-content-between">
+		<span><i class="bi bi-pencil-square me-2 text-primary"></i> REGISTRO DE PRODUCTO</span>
+		<span id="profit-badge" class="badge bg-success bg-opacity-10 text-success border border-success d-none">
+			Ganancia: <strong id="profit-amount">$0.00</strong> (<span id="profit-percent">0%</span>)
+		</span>
+	</div>
+	<div class="card-body p-4">
+		<form method="post" enctype="multipart/form-data" id="addproduct" action="{{ base_url }}/product/create" role="form">
+			{{ csrf_field() }}
+
+			<!-- Sección 1: Información General -->
+			<h6 class="text-primary fw-bold mb-3"><i class="bi bi-info-circle me-2"></i>Información General</h6>
+			<div class="row g-3 mb-4">
+				<div class="col-md-8">
+					<label for="name" class="form-label fw-bold">Nombre del Producto <span class="text-danger">*</span></label>
+					<input type="text" name="name" required class="form-control" id="name" value="{{ old.name|default('') }}" placeholder="Ej: Laptop HP 15-dy2061la">
+				</div>
+
+				<div class="col-md-4">
+					<label for="product_code" class="form-label fw-bold">Código de Barras <span class="text-danger">*</span></label>
+					<div class="input-group">
+						<input type="text" name="barcode" id="product_code" class="form-control" value="{{ old.barcode|default('') }}" placeholder="Ej: 750100000001">
+						<button class="btn btn-outline-secondary" type="button" id="btn-gen-barcode" title="Generar Código Aleatorio">
+							<i class="bi bi-magic"></i>
+						</button>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<label for="category_id" class="form-label fw-bold">Categoría</label>
+					<select name="category_id" id="category_id" class="form-select select2">
+						<option value="">-- NINGUNA --</option>
+						{% for category in categories %}
+							<option value="{{ category.id }}">{{ category.name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="col-md-6">
+					<label for="unit" class="form-label fw-bold">Unidad de Medida <span class="text-danger">*</span></label>
+					<input type="text" name="unit" required class="form-control" id="unit" placeholder="Ej: Pieza, Kg, Litro, Caja" value="{{ old.unit|default('Pieza') }}">
+				</div>
+
+				<div class="col-md-12">
+					<label for="description" class="form-label fw-bold">Descripción</label>
+					<textarea name="description" class="form-control" id="description" rows="2" placeholder="Detalles, especificaciones o notas del producto...">{{ old.description|default('') }}</textarea>
+				</div>
+			</div>
+
+			<!-- Sección 2: Precios e Inventario -->
+			<h6 class="text-success fw-bold mb-3"><i class="bi bi-currency-dollar me-2"></i>Precios e Inventario</h6>
+			<div class="row g-3 mb-4">
+				<div class="col-md-6">
+					<label for="price_in" class="form-label fw-bold">Precio de Compra (Entrada) <span class="text-danger">*</span></label>
+					<div class="input-group">
+						<span class="input-group-text bg-light">$</span>
+						<input type="number" step="0.01" min="0" name="price_in" required class="form-control price-calc" id="price_in" value="{{ old.price_in|default('') }}" placeholder="0.00">
+					</div>
+					<div class="form-text">Costo de adquisición del producto.</div>
+				</div>
+
+				<div class="col-md-6">
+					<label for="price_out" class="form-label fw-bold">Precio de Venta (Salida) <span class="text-danger">*</span></label>
+					<div class="input-group">
+						<span class="input-group-text bg-light">$</span>
+						<input type="number" step="0.01" min="0" name="price_out" required class="form-control price-calc" id="price_out" value="{{ old.price_out|default('') }}" placeholder="0.00">
+					</div>
+					<div class="form-text">Precio público al que se venderá.</div>
+				</div>
+
+				<div class="col-md-4">
+					<label for="presentation" class="form-label fw-bold">Presentación</label>
+					<input type="text" name="presentation" class="form-control" id="presentation" value="{{ old.presentation|default('') }}" placeholder="Ej: Bolsa 1kg, Caja x 12">
+				</div>
+
+				<div class="col-md-4">
+					<label for="inventary_min" class="form-label fw-bold">Mínimo en Inventario</label>
+					<input type="number" min="0" name="inventary_min" class="form-control" id="inventary_min" placeholder="10" value="{{ old.inventary_min|default('10') }}">
+					<div class="form-text">Alerta de stock bajo.</div>
+				</div>
+
+				<div class="col-md-4">
+					<label for="q" class="form-label fw-bold">Inventario Inicial</label>
+					<input type="number" min="0" name="q" class="form-control" id="q" placeholder="0" value="{{ old.q|default('0') }}">
+					<div class="form-text">Stock inicial disponible.</div>
+				</div>
+			</div>
+
+			<!-- Sección 3: Imagen del Producto -->
+			<h6 class="text-warning fw-bold mb-3"><i class="bi bi-image me-2"></i>Imagen del Producto</h6>
+			<div class="row align-items-center g-3 mb-4">
+				<div class="col-auto">
+					<div id="image-preview-container" class="border rounded bg-light d-flex align-items-center justify-content-center overflow-hidden position-relative" style="width: 140px; height: 120px;">
+						<div id="image-placeholder" class="text-muted text-center p-2">
+							<i class="bi bi-card-image fs-2 d-block"></i>
+							<span class="small" style="font-size: 0.75rem;">Sin imagen</span>
+						</div>
+						<img id="image-preview" src="#" alt="Preview" class="img-fluid d-none" style="max-height: 100%; object-fit: contain;">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="mb-2">
+						<label for="image" class="btn btn-outline-primary btn-sm me-2">
+							<i class="bi bi-upload me-1"></i> Seleccionar Imagen
+						</label>
+						<button type="button" id="btn-remove-image" class="btn btn-outline-danger btn-sm d-none">
+							<i class="bi bi-trash me-1"></i> Quitar
+						</button>
+						<input type="file" name="image" id="image" accept="image/*" class="d-none">
+					</div>
+					<div class="form-text">Formatos permitidos: JPG, PNG, WEBP, GIF. Opcional.</div>
+				</div>
+			</div>
+
+			<!-- Botones de Acción -->
+			<div class="d-flex align-items-center justify-content-end gap-2 pt-3 border-top">
+				<a href="{{ base_url }}/products" class="btn btn-light px-4">
+					Cancelar
+				</a>
+				<button type="submit" class="btn btn-primary px-4 fw-bold">
+					<i class="bi bi-check-lg me-1"></i> Agregar Producto
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	// Evitar submit con ENTER en barcode
+	$("#product_code").keydown(function(e){
+		if(e.which==13){
+			e.preventDefault();
+		}
+	});
+
+	// Generador de Código de Barras Aleatorio
+	$("#btn-gen-barcode").click(function(){
+		var randomCode = '750' + Math.floor(100000000 + Math.random() * 900000000);
+		$("#product_code").val(randomCode);
+	});
+
+	// Calculador en tiempo real de ganancia
+	$(".price-calc").on("input change", function(){
+		var priceIn = parseFloat($("#price_in").val()) || 0;
+		var priceOut = parseFloat($("#price_out").val()) || 0;
+
+		if(priceOut > 0 && priceIn >= 0){
+			var profit = priceOut - priceIn;
+			var percent = priceIn > 0 ? ((profit / priceIn) * 100).toFixed(1) : 100;
+
+			$("#profit-amount").text("$" + profit.toFixed(2));
+			$("#profit-percent").text(percent + "%");
+
+			if(profit < 0) {
+				$("#profit-badge").removeClass("d-none bg-success bg-opacity-10 text-success border-success").addClass("bg-danger bg-opacity-10 text-danger border-danger");
+			} else {
+				$("#profit-badge").removeClass("d-none bg-danger bg-opacity-10 text-danger border-danger").addClass("bg-success bg-opacity-10 text-success border-success");
+			}
+		} else {
+			$("#profit-badge").addClass("d-none");
+		}
+	});
+
+	// Previsualizador de imagen
+	$("#image").change(function(){
+		var file = this.files[0];
+		if (file) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#image-preview").attr("src", e.target.result).removeClass("d-none");
+				$("#image-placeholder").addClass("d-none");
+				$("#btn-remove-image").removeClass("d-none");
+			}
+			reader.readAsDataURL(file);
+		}
+	});
+
+	$("#btn-remove-image").click(function(){
+		$("#image").val("");
+		$("#image-preview").attr("src", "#").addClass("d-none");
+		$("#image-placeholder").removeClass("d-none");
+		$(this).addClass("d-none");
+	});
+});
+</script>
+{% endblock %}

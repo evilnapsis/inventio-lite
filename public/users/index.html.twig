@@ -1,0 +1,51 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Usuarios{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h1>Lista de Usuarios</h1>
+    <a href="{{ base_url }}/user/new" class="btn btn-secondary"><i class="bi bi-person"></i> Nuevo Usuario</a>
+    <br><br>
+    <div class="card">
+      <div class="card-header">USUARIOS
+      </div>
+      <div class="card-body p-0">
+        {% if users|length > 0 %}
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm mb-0">
+              <thead>
+                <th>Nombre completo</th>
+                <th>Nombre de usuario</th>
+                <th>Email</th>
+                <th>Activo</th>
+                <th>Admin</th>
+                <th></th>
+              </thead>
+              <tbody>
+                {% for user in users %}
+                  <tr>
+                    <td>{{ user.name }} {{ user.lastname }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{% if user.is_active %}<i class="bi bi-check-lg"></i>{% endif %}</td>
+                    <td>{% if user.is_admin %}<i class="bi bi-check-lg"></i>{% endif %}</td>
+                    <td style="width:170px;">
+                      <a href="{{ base_url }}/user/{{ user.id }}/edit" class="btn btn-warning btn-xs">Editar</a>
+                      {% if user.id != session.user_id %}
+                        <form action="{{ base_url }}/user/{{ user.id }}/delete" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar este usuario?');">
+                          {{ csrf_field() }}
+                          <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
+                        </form>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

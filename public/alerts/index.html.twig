@@ -1,0 +1,57 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Alertas{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<h1>Alertas de Inventario</h1>
+
+		{% if rows|length > 0 %}
+			<div class="mb-3">
+				<a href="report/alerts-pdf.php" target="_blank" class="btn btn-success text-white">
+					<i class="bi bi-download"></i> Descargar PDF
+				</a>
+			</div>
+
+			<div class="card">
+				<div class="card-header">ALERTAS DE INVENTARIO</div>
+				<div class="card-body p-0">
+					<div class="table-responsive">
+						<table class="table table-bordered table-hover table-sm mb-0">
+							<thead>
+								<th>Código</th>
+								<th>Nombre del producto</th>
+								<th>En Stock</th>
+								<th>Estado</th>
+							</thead>
+							<tbody>
+								{% for row in rows %}
+								<tr class="{% if row.severity == 'none' or row.severity == 'critical' %}table-danger{% else %}table-warning{% endif %}">
+									<td>{{ row.product.id }}</td>
+									<td>{{ row.product.name }}</td>
+									<td>{{ row.q }}</td>
+									<td>
+										{% if row.severity == 'none' %}
+											<span class="badge bg-danger">No hay existencias.</span>
+										{% elseif row.severity == 'critical' %}
+											<span class="badge bg-danger">Quedan muy pocas existencias.</span>
+										{% else %}
+											<span class="badge bg-warning text-dark">Quedan pocas existencias.</span>
+										{% endif %}
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<div class="jumbotron">
+				<h2>No hay alertas</h2>
+				<p>Por el momento no hay alertas de inventario, estas se muestran cuando el inventario ha alcanzado el nivel mínimo.</p>
+			</div>
+		{% endif %}
+
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Categorías{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h1>Categorias</h1>
+    <div class="">
+      <a href="{{ base_url }}/category/new" class="btn btn-secondary"><i class='bi bi-list-ul'></i> Nueva Categoria</a>
+    </div>
+    <br>
+    <div class="card">
+      <div class="card-header">
+        CATEGORIAS
+      </div>
+      <div class="card-body p-0">
+        {% if categories|length > 0 %}
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm mb-0">
+              <thead>
+                <th>Nombre</th>
+                <th></th>
+              </thead>
+              <tbody>
+                {% for category in categories %}
+                  <tr>
+                    <td>{{ category.name }}</td>
+                    <td style="width:170px;">
+                      <a href="{{ base_url }}/category/{{ category.id }}/edit" class="btn btn-warning btn-xs">Editar</a>
+                      <form action="{{ base_url }}/category/{{ category.id }}/delete" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar esta categoria?');">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
+                      </form>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <p class="alert alert-danger m-3">No hay Categorias</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

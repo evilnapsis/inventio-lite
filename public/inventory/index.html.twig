@@ -1,0 +1,131 @@
+{% extends "layouts/main.html.twig" %}
+{% block title %}Inventario{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+
+		<h1><i class="bi bi-graph-up"></i> Inventario de Productos</h1>
+		<div class="mb-3">
+			<a href="report/inventary-pdf.php" target="_blank" class="btn btn-success text-white"><i class="bi bi-download"></i> Descargar PDF</a>
+		</div>
+		<div class="clearfix"></div>
+
+		<!-- Tarjetas de Métricas -->
+		<div class="row mb-4">
+			<div class="col-md-3">
+				<div class="card shadow-sm border-0">
+					<div class="card-body p-3 d-flex align-items-center">
+						<div class="bg-primary text-white p-3 me-3 rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+							<i class="bi bi-tag fs-4"></i>
+						</div>
+						<div>
+							<div class="fs-5 fw-bold text-primary">{{ total_products }}</div>
+							<div class="text-medium-emphasis text-uppercase fw-semibold small" style="font-size: 0.75rem;">Productos en Catálogo</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card shadow-sm border-0">
+					<div class="card-body p-3 d-flex align-items-center">
+						<div class="bg-success text-white p-3 me-3 rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+							<i class="bi bi-boxes fs-4"></i>
+						</div>
+						<div>
+							<div class="fs-5 fw-bold text-success">{{ total_items }}</div>
+							<div class="text-medium-emphasis text-uppercase fw-semibold small" style="font-size: 0.75rem;">Unidades en Stock</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card shadow-sm border-0">
+					<div class="card-body p-3 d-flex align-items-center">
+						<div class="bg-danger text-white p-3 me-3 rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+							<i class="bi bi-exclamation-triangle fs-4"></i>
+						</div>
+						<div>
+							<div class="fs-5 fw-bold text-danger">{{ low_stock_count }}</div>
+							<div class="text-medium-emphasis text-uppercase fw-semibold small" style="font-size: 0.75rem;">Bajo Stock / Alertas</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card shadow-sm border-0">
+					<div class="card-body p-3 d-flex align-items-center">
+						<div class="bg-warning text-white p-3 me-3 rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+							<i class="bi bi-currency-dollar fs-4"></i>
+						</div>
+						<div>
+							<div class="fs-5 fw-bold text-warning">${{ inventory_value|number_format(2) }}</div>
+							<div class="text-medium-emphasis text-uppercase fw-semibold small" style="font-size: 0.75rem;">Valor del Inventario</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Tabla de Inventario -->
+		<div class="card">
+			<div class="card-header">INVENTARIO</div>
+			<div class="card-body p-0">
+				{% if total_products > 0 %}
+					<div class="table-responsive">
+						<table class="table table-bordered table-hover table-sm mb-0">
+							<thead>
+								<th>Código</th>
+								<th>Nombre del Producto</th>
+								<th>Precio Compra</th>
+								<th>Precio Venta</th>
+								<th>Mínimo</th>
+								<th>Disponible</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</thead>
+							<tbody>
+								{% for row in rows %}
+									{% set product = row.product %}
+									<tr class="{% if row.status == 'out' %}table-danger{% elseif row.status == 'low' %}table-warning{% endif %}">
+										<td>{{ product.id }}</td>
+										<td>{{ product.name }}</td>
+										<td>$ {{ product.price_in|number_format(2) }}</td>
+										<td>$ {{ product.price_out|number_format(2) }}</td>
+										<td>{{ product.inventary_min }}</td>
+										<td><strong>{{ row.q }}</strong></td>
+										<td>
+											{% if row.status == 'out' %}
+												<span class="badge bg-danger">Sin Stock</span>
+											{% elseif row.status == 'low' %}
+												<span class="badge bg-warning text-dark">Bajo Stock</span>
+											{% else %}
+												<span class="badge bg-success">Excelente</span>
+											{% endif %}
+										</td>
+										<td style="width: 200px;">
+											<a href="{{ base_url }}/product/{{ product.id }}/history" class="btn btn-xs btn-success text-white" title="Historial">
+												<i class="bi bi-clock-history"></i> Historial
+											</a>
+											<a href="{{ base_url }}/repos?product={{ product.name|url_encode }}" class="btn btn-xs btn-primary text-white" title="Reabastecer">
+												<i class="bi bi-plus-circle"></i> Comprar
+											</a>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				{% else %}
+					<div class="p-4 text-center">
+						<div class="jumbotron m-0">
+							<h2>No hay productos</h2>
+							<p>No se han agregado productos a la base de datos.</p>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+
+	</div>
+</div>
+{% endblock %}
