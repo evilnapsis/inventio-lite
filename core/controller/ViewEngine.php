@@ -23,6 +23,9 @@ class ViewEngine {
 			self::$twig->addGlobal('base_url', $baseUrl);
 
 			self::$twig->addGlobal('csrf_token', Session::csrfToken());
+			self::$twig->addFunction(new \Twig\TwigFunction('csrf_token', function() {
+				return Session::csrfToken();
+			}));
 			self::$twig->addFunction(new \Twig\TwigFunction('csrf_field', function() {
 				return '<input type="hidden" name="csrf_token" value="' . Session::csrfToken() . '">';
 			}, ['is_safe' => ['html']]));

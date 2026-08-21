@@ -77,7 +77,7 @@ if ($routeInfo[0] === FastRoute\Dispatcher::FOUND) {
 	];
 	$handler = $routeInfo[1];
 	if (in_array($handler[0], $protectedControllers, true) && !AuthService::check()) {
-		header('Location: ' . $baseFolder . '/?view=login');
+		header('Location: ' . ($baseFolder ?: '') . '/login');
 		exit;
 	}
 

@@ -15,9 +15,15 @@ use App\Controller\ReportController;
 use App\Controller\AlertController;
 use App\Controller\SettingsController;
 use App\Controller\ProfileController;
+use App\Controller\AuthController;
 
 return function(FastRoute\RouteCollector $r) {
+	$r->addRoute('GET', '/', [HomeController::class, 'index']);
 	$r->addRoute('GET', '/home', [HomeController::class, 'index']);
+
+	$r->addRoute('GET', '/login', [AuthController::class, 'showLogin']);
+	$r->addRoute('POST', '/login', [AuthController::class, 'processLogin']);
+	$r->addRoute('GET', '/logout', [AuthController::class, 'logout']);
 
 	$r->addRoute('GET', '/categories', [CategoryController::class, 'index']);
 	$r->addRoute('GET', '/category/new', [CategoryController::class, 'new']);
