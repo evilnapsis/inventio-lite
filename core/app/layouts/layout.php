@@ -9,16 +9,16 @@
     <meta name="author" content="Evilnapsis">
     <title>Inventio Lite - Dashboard</title>
     <!-- Vendors styles-->
-    <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
-    <link rel="stylesheet" href="css/vendors/simplebar.css">
+    <link rel="stylesheet" href="assets/vendor/simplebar/css/simplebar.css">
+    <link rel="stylesheet" href="assets/css/vendors/simplebar.css">
     <!-- Main styles for this application-->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/custom-inventio.css" rel="stylesheet">
-    <script src="js/jquery.min.js"></script>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/custom-inventio.css" rel="stylesheet">
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="vendors/datatables/datatables.min.css">
-    <link rel="stylesheet" type="text/css" href="vendors/select2/select2.min.css">
-    <script type="text/javascript" src="vendors/sweetalert/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/select2/select2.min.css">
+    <script type="text/javascript" src="assets/vendor/sweetalert/sweetalert2.all.min.js"></script>
   </head>
   <body>
     <?php if(isset($_SESSION["user_id"])):
@@ -190,10 +190,11 @@
     </div>
     <?php endif; ?>
     <!-- CoreUI and necessary plugins-->
-    <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
-    <script src="vendors/simplebar/js/simplebar.min.js"></script>
-    <script src="vendors/datatables/datatables.min.js"></script>
-    <script src="vendors/select2/select2.full.min.js"></script>
+    <script src="assets/vendor/@coreui/coreui/js/coreui.bundle.min.js"></script>
+    <script src="assets/vendor/simplebar/js/simplebar.min.js"></script>
+    <script src="assets/vendor/chart.js/js/chart.min.js"></script>
+    <script src="assets/vendor/datatables/datatables.min.js"></script>
+    <script src="assets/vendor/select2/select2.full.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
         const urlParams = new URLSearchParams(window.location.search);
